@@ -1,0 +1,23 @@
+{
+  "name": "easybus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderverse6/easybus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coderverse6/easybus/issues"
+  },
+  "homepage": "https://github.com/coderverse6/easybus#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
