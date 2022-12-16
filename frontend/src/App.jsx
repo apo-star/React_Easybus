@@ -7,7 +7,10 @@ import { ThemeProvider } from "@emotion/react";
 const theme = createTheme({
   palette: {
     primary: {
-      main: purple[500],
+      main: "#FFA903",
+    },
+    secondary: {
+      main: "#622243",
     },
   },
 });
