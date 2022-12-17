@@ -72,7 +72,7 @@ function Header(props) {
               </Button>
             ))}
           </Box>
-          <Button variant="outlined" sx={{mr: 3}} color="white">Register</Button>
+          <Button variant="outlined" sx={{mr: 3}} color="success">Register</Button>
           <Button variant="contained">Sign In</Button>
         </Toolbar>
       </AppBar>
