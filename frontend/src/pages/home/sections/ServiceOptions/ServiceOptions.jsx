@@ -50,13 +50,27 @@ const ServiceOptions = () => {
             Our Great Flight Options
           </Typography>
           <Swiper
-            slidesPerView={3}
-            spaceBetween={30}
+            slidesPerView={1}
+            spaceBetween={10}
             loop={true}
             speed={1500}
             autoplay={{
               delay: 2500,
               disableOnInteraction: false,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+              },
             }}
             modules={[Autoplay]}
             className={style.serviceSwiper}

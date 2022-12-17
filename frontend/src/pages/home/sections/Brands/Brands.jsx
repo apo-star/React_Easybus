@@ -23,9 +23,9 @@ const Brands = () => {
     <Box sx={{ bgcolor: "#672A4B" }}>
       <Stack maxWidth={"90%"} mx={"auto"}>
         <Swiper
-          slidesPerView={5}
-          slidesPerGroup={5}
-          spaceBetween={30}
+          slidesPerView={2}
+          slidesPerGroup={2}
+          spaceBetween={10}
           loop={true}
           speed={1500}
           loopFillGroupWithBlank={true}
@@ -33,6 +33,23 @@ const Brands = () => {
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              slidesPerGroup: 2,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 3,
+              slidesPerGroup: 3,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 5,
+              slidesPerGroup: 5,
+              spaceBetween: 30,
+            },
           }}
           modules={[Autoplay]}
         >
