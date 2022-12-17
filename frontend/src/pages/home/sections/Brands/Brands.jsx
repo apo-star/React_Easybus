@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import { Box, Stack } from "@mui/system";
+import style from "./Brands.module.css";
 
 const brands = [
   "https://themehut.co/html/geair/assets/img/brand/brand_img01.png",
@@ -28,7 +29,7 @@ const Brands = () => {
           loop={true}
           speed={1500}
           loopFillGroupWithBlank={true}
-          className="mySwiper"
+          className={style.brandSwiper}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
@@ -36,7 +37,7 @@ const Brands = () => {
           modules={[Autoplay]}
         >
           {brands.map((brand) => (
-            <SwiperSlide key={Math.random()}>
+            <SwiperSlide className={style.brandSlide} key={Math.random()}>
               <Box>
                 <img src={brand}></img>
               </Box>
