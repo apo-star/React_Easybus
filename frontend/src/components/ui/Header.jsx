@@ -16,7 +16,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
+const navItems = ["Home", "About", "Pages", "Contact"];
 
 function Header(props) {
   const { window } = props;
@@ -29,7 +29,7 @@ function Header(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Easy Bus
       </Typography>
       <Divider />
       <List>
@@ -61,8 +61,17 @@ function Header(props) {
           >
             <MenuIcon />
           </IconButton>
-
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Box
+        component="img"
+        sx={{
+          width: '50px',
+          height:'50px',
+          
+        }}
+        alt="The house from the offer."
+        src="https://i.ibb.co/2Sdh0rv/icon-Pixcleaner.png"
+      />
+          <Typography variant="h4" color="white" component="div" sx={{ flexGrow: 1 }}>
             Easy Bus
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
@@ -72,6 +81,8 @@ function Header(props) {
               </Button>
             ))}
           </Box>
+          <Button variant="outlined" sx={{mr: 3}} color="success">Register</Button>
+          <Button variant="contained">Sign In</Button>
         </Toolbar>
       </AppBar>
       <Box component="nav">

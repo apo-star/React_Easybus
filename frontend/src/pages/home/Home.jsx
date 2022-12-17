@@ -1,6 +1,7 @@
+import Hero from "./sections/Hero/Hero";
 import Brands from "./sections/Brands/Brands";
-import Hero from "./sections/Hero";
 import ServiceOptions from "./sections/ServiceOptions/ServiceOptions";
+
 const Home = () => {
   return (
     <div>
