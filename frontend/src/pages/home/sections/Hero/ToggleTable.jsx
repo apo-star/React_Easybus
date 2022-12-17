@@ -65,7 +65,7 @@ export default function BasicTabs() {
       <TabPanel value={value} index={2}>
         <InputTable></InputTable>
       </TabPanel>
-      <Button variant="contained" >Explore</Button>
+      <Button variant="contained" >Book Now</Button>
     </Box>
   );
 }

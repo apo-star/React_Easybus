@@ -15,16 +15,17 @@ const Hero = () => {
         sx={{
           width: '100%',
           height:'85vh',
-          background:
-            ' linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)',
+          
         }}
         alt="The house from the offer."
         src="https://i.ibb.co/kBfdB3y/chuttersnap-Da-Lstmw0r9-Y-unsplash.jpg"
       />
-      <div style={{position: 'absolute', top:'40%', paddingLeft: '10%'}}>
+        <div style={{position: 'absolute', top:'40%', paddingLeft: '10%',background:
+            ' linear-gradient(to top, rgba(106, 90, 205,0.8), rgba(0,0,0,0) )',width: '100%',
+          height:'60vh',}}>
         <h1>10% Winter Discount Is Going On!</h1>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, voluptatibus.</p>
-        <Button variant="contained" size="large">
+        <Button variant="contained" size="large" sx={{mt:5}}>
           Register/Sign In
         </Button>
       </div>

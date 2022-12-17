@@ -29,7 +29,7 @@ function Header(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Easy Bus
       </Typography>
       <Divider />
       <List>
@@ -61,7 +61,16 @@ function Header(props) {
           >
             <MenuIcon />
           </IconButton>
-
+          <Box
+        component="img"
+        sx={{
+          width: '50px',
+          height:'50px',
+          
+        }}
+        alt="The house from the offer."
+        src="https://i.ibb.co/2Sdh0rv/icon-Pixcleaner.png"
+      />
           <Typography variant="h4" color="white" component="div" sx={{ flexGrow: 1 }}>
             Easy Bus
           </Typography>
