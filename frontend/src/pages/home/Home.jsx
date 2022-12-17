@@ -13,7 +13,6 @@ const Home = () => {
       <Brands />
       <ServiceOptions />
       <Destination />
-
     </div>
   );
 };
