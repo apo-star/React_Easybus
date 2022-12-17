@@ -1,5 +1,4 @@
-
-import Hero from "./sections/Hero";
+import OfferDeals from "./sections/OfferDeals/OfferDeals";
 import Destination from './sections/destination/destination';
 import Hero from "./sections/Hero/Hero";
 import Brands from "./sections/Brands/Brands";
@@ -10,6 +9,7 @@ const Home = () => {
   return (
     <div>
       <Hero />
+      <OfferDeals></OfferDeals>
       <Brands />
       <ServiceOptions />
       <Destination />
