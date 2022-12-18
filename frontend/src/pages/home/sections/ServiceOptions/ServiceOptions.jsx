@@ -9,32 +9,37 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import style from "./ServiceOptions.module.css";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
+import DepartureBoardIcon from "@mui/icons-material/DepartureBoard";
+import DiscountIcon from "@mui/icons-material/Discount";
+import { IconButton } from "@mui/material";
 
 const options = [
   {
-    img: "https://themehut.co/html/geair/assets/img/icon/service_icon03.png",
+    icon: DepartureBoardIcon,
     serviceName: "Enjoy stress free travel",
     description:
-      "Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Vivamus suscipit tortor eget felis porttitor volutpat.",
+      "If the goal is for stress-free travel, you can make use of various techniques both before and during your trip. Some of these require anticipating what factors might trigger your travel stress.",
   },
   {
-    img: "https://themehut.co/html/geair/assets/img/icon/service_icon01.png",
-    serviceName: "Enjoy stress free travel",
+    icon: HealthAndSafetyIcon,
+    serviceName: "Safety Guarantee!",
     description:
-      "Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Vivamus suscipit tortor eget felis porttitor volutpat.",
+      "Travelling with Easy Bus means having a reliable partner you can count on to take care of things that are truly important from planning to returning.",
   },
 
   {
-    img: "https://themehut.co/html/geair/assets/img/icon/service_icon02.png",
-    serviceName: "Enjoy stress free travel",
+    icon: AccessTimeIcon,
+    serviceName: "Schedule On Time",
     description:
-      "Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Vivamus suscipit tortor eget felis porttitor volutpat.",
+      "Get bus time table and bus route with bus times on arrival, departure & halt timings. Number of stops before bus reaches your destination. Get bus average delay, halt bus times and plan your trip accordingly",
   },
   {
-    img: "https://themehut.co/html/geair/assets/img/icon/service_icon01.png",
-    serviceName: "Enjoy stress free travel",
+    icon: DiscountIcon,
+    serviceName: "Discount & Promo",
     description:
-      "Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Vivamus suscipit tortor eget felis porttitor volutpat.",
+      "“Apply 5% Discount For Your ticket”. The same principle of urgency applies, however, the effectiveness now becomes relative because of the customer’s perception.",
   },
 ];
 
@@ -44,10 +49,10 @@ const ServiceOptions = () => {
       <Box py={10} sx={{ bgcolor: "#FBF9F2" }}>
         <Stack maxWidth={"90%"} mx={"auto"}>
           <Typography variant="h6" fontSize={18} color={"#FFA903"}>
-            WHY AIR GEAIR
+            WHY EASY BUS
           </Typography>
           <Typography variant="h4" fontWeight={600} marginBottom={4}>
-            Our Great Flight Options
+            Our Great Service Options
           </Typography>
           <Swiper
             slidesPerView={1}
@@ -85,23 +90,29 @@ const ServiceOptions = () => {
                       ":hover": {
                         boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.25)",
                         cursor: "pointer",
-                        "& .card-img": {
+                        "& .service-icon": {
                           rotate: "360deg",
                           transition: "all 1s",
                         },
                       },
                     }}
                   >
-                    <CardMedia
-                      component="img"
+                    <IconButton
+                      aria-label="add to favorites"
                       sx={{
-                        textAlign: "left",
-                        marginX: "15px",
+                        display: "flex",
+                        paddingX: "12px",
+                        paddingBottom: 0,
+                        ":hover": {
+                          background: "transparent",
+                        },
                       }}
-                      image={option.img}
-                      alt="Paella dish"
-                      className="card-img"
-                    />
+                    >
+                      <option.icon
+                        sx={{ fontSize: "2.5em", color: "#763F5B" }}
+                        className="service-icon"
+                      />
+                    </IconButton>
                     <CardContent sx={{ marginBottom: "0" }}>
                       <Typography
                         variant="h6"
