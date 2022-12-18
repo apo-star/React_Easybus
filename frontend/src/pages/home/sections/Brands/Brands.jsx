@@ -55,7 +55,13 @@ const Brands = () => {
         >
           {brands.map((brand) => (
             <SwiperSlide className={style.brandSlide} key={Math.random()}>
-              <Box>
+              <Box
+                sx={{
+                  ":hover": {
+                    cursor: "pointer",
+                  },
+                }}
+              >
                 <img src={brand}></img>
               </Box>
             </SwiperSlide>
