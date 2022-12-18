@@ -51,58 +51,18 @@ const OfferDeals = () => {
         },
     ]
     return (
-      <Container>
-        <Grid container spacing={2} maxWidth={{sm:'100%', md:"80%", lg:"100%"}} marginX={"auto"} >
-            <Grid item lg={6} xs={12} height="full">
+      <Container sx={{py:"30px"}}>
+        <Grid container maxWidth={{sm:'100%', md:"80%", lg:"100%"}} marginX={"auto"} spacing={2}>
+            <Grid item lg={6} xs={12} height="full" sm={{p:0}}>
                 {
-                    deals.slice(0,1).map(deal=>(
-                       <Grid item >
-                            <Card sx={{
-                                boxShadow:"0 5px 10px 2px #0000002e",
-                                borderRadius:"15px"
-                                }
-                                }>
-                                <CardMedia
-                                component="img"
-                                image={deal.picture}
-                                />
-                                <CardContent sx={{
-                                p:2,
-                                pb:0,
-                                pt:2,
-                                '&:last-child':{
-                                    pb:0
-                                }
-                                }}>
-                                <Typography 
-                                gutterBottom 
-                                variant="h5" 
-                                component="div"
-                                fontSize={22}
-                                fontWeight={700}
-                                >
-                                    {deal.place}
-                                </Typography>
-                                <Typography  color={"#622243"}>
-                                    {deal.date}
-                                </Typography>
-                                <Typography fontWeight={600} marginTop={"22px"}>
-                                    {deal.from}
-                                </Typography>
-                                <Typography fontWeight={600} paddingBottom={"25px"} >
-                                    ${deal.price}
-                                </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    ))
+                    deals.slice(0,1).map(deal=><OfferDealCard deal={deal} key={deal._id}></OfferDealCard>)
                 }
             </Grid>
-            <Grid item lg={6} xs={12} maxWidth="100%" marginX={"auto"}>
-                <Grid container spacing={2} marginX={"auto"}>
+            <Grid item lg={6} xs={12} Width="100%" marginX={"auto"}>
+                <Grid container lg:spacing={2} marginX={"auto"} Width="100%" paddingLeft={0}>
                         {
                         deals.slice(1,5).map(deal=>(
-                            <Grid item lg={6}><OfferDealCard key={deal._id} deal={deal}></OfferDealCard></Grid>
+                            <Grid item xs={12} sm={6}><OfferDealCard key={deal._id} deal={deal}></OfferDealCard></Grid>
                         ))
                         }
                 </Grid>

@@ -4,11 +4,14 @@ import Hero from "./sections/Hero/Hero";
 import Brands from "./sections/Brands/Brands";
 import ServiceOptions from "./sections/ServiceOptions/ServiceOptions";
 import Routes from "./sections/Routes";
+import Informations from "./sections/Informations/Informations";
+
 
 const Home = () => {
   return (
     <div>
       <Hero />
+      <Informations />
       <OfferDeals />
       <Routes />
       <Brands />
