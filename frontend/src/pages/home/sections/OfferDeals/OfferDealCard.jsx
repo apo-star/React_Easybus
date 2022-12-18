@@ -17,7 +17,8 @@ const OfferDealCard = ({deal}) => {
           <Card sx={{
             width: '100%',
             height:'auto',
-            p:_id==="1"?0:2,
+            p:_id==="1"?0:1.5,
+            pb:_id=="1" && 2,
             boxShadow:"0 5px 10px 2px #0000002e",
             borderRadius:"15px"
             }
@@ -54,7 +55,7 @@ const OfferDealCard = ({deal}) => {
               <Typography marginTop={"13px"}>
                 {from}
               </Typography>
-              <Typography fontWeight={600} fontSize={18}  paddingBottom={_id=="1" && "35px"}>
+              <Typography fontWeight={600} fontSize={18}  paddingBottom={_id=="1" ? "55px" : "20px"}>
                 ${price}
               </Typography>
             </CardContent>
@@ -113,8 +114,7 @@ const OfferDealCard = ({deal}) => {
                   {from}
                 </Typography>
                 <Typography 
-                  fontWeight={600}  
-                  paddingBottom={_id=="1" && "35px"}
+                  fontWeight={600} 
                   color="#FFA903"
                   fontSize={18}
                   >

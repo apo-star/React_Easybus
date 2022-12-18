@@ -16,6 +16,7 @@ const Information = ({info}) => {
     return (
         <Card 
             sx={{ 
+            width:"100%",
             display: 'flex' ,
             py:1,
             px:2,
