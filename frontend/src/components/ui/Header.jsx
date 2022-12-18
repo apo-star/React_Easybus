@@ -14,10 +14,27 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Pages", "Contact"];
+const navItems = [
+  {
+    route: "Home",
+    link: "",
+  },
+  {
+    route: "Search Bus",
+    link: "search-bus",
+  },
+  {
+    route: "About",
+    link: "about",
+  },
+  {
+    route: "Contact",
+    link: "contact",
+  },
+];
 
 function Header(props) {
   const { window } = props;
@@ -35,9 +52,13 @@ function Header(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+          <ListItem key={item.route} disablePadding>
+            <ListItemButton
+              component={RouterLink}
+              to={`/${item.link}`}
+              sx={{ textAlign: "center" }}
+            >
+              <ListItemText primary={item.route} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -80,21 +101,16 @@ function Header(props) {
             Easy Bus
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <Link to="/">
-              <Button sx={{ color: "#fff" }}>Home</Button>
-            </Link>
-            <Link to="/search-bus">
-              <Button sx={{ color: "#fff" }}>Search Bus</Button>
-            </Link>
-            <Link to="/about">
-              <Button sx={{ color: "#fff" }}>About</Button>
-            </Link>
-            <Link to="/contact">
-              <Button sx={{ color: "#fff" }}>Contact</Button>
-            </Link>
-            <Button variant="outlined" sx={{ mr: 3 }} color="success">
-              Register
-            </Button>
+            {navItems.map((item) => (
+              <Button
+                component={RouterLink}
+                to={`/${item.link}`}
+                sx={{ color: "#fff" }}
+              >
+                {item.route}
+              </Button>
+            ))}
+
             <Button variant="contained">Sign In</Button>
           </Box>
         </Toolbar>
