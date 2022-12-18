@@ -13,6 +13,10 @@ const theme = createTheme({
       main: "#622243",
     },
   },
+  typography: {
+    fontWeightRegular: 400,
+    fontWeightBold: 700,
+  },
 });
 
 function App() {
