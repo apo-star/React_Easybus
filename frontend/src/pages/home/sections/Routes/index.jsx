@@ -69,13 +69,15 @@ const Routes = () => {
       <Typography
         align="center"
         variant="h1"
-        sx={{ fontSize: 40, fontWeight: "bold", my: 6 }}
+        sx={{ fontSize: 40, fontWeight: "bold", my: 3 }}
       >
         Routes You can Have Us with You along
       </Typography>
 
       <Filter
-        {...{ categories, selectedCategories, setSelectedCategories }}
+        categories={categories}
+        selectedCategories={selectedCategories}
+        setSelectedCategories={setSelectedCategories}
         sx={{ mx: "auto" }}
       />
 
