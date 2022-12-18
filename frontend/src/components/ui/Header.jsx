@@ -14,6 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Pages", "Contact"];
@@ -79,16 +80,23 @@ function Header(props) {
             Easy Bus
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
-                {item}
-              </Button>
-            ))}
+            <Link to="/">
+              <Button sx={{ color: "#fff" }}>Home</Button>
+            </Link>
+            <Link to="/search-bus">
+              <Button sx={{ color: "#fff" }}>Search Bus</Button>
+            </Link>
+            <Link to="/about">
+              <Button sx={{ color: "#fff" }}>About</Button>
+            </Link>
+            <Link to="/contact">
+              <Button sx={{ color: "#fff" }}>Contact</Button>
+            </Link>
+            <Button variant="outlined" sx={{ mr: 3 }} color="success">
+              Register
+            </Button>
+            <Button variant="contained">Sign In</Button>
           </Box>
-          <Button variant="outlined" sx={{ mr: 3 }} color="success">
-            Register
-          </Button>
-          <Button variant="contained">Sign In</Button>
         </Toolbar>
       </AppBar>
       <Box component="nav">
