@@ -56,7 +56,7 @@ const ServiceOptions = () => {
             speed={1500}
             autoplay={{
               delay: 2500,
-              disableOnInteraction: false,
+              disableOnInteraction: true,
             }}
             breakpoints={{
               640: {
@@ -82,6 +82,14 @@ const ServiceOptions = () => {
                     sx={{
                       paddingTop: "20px",
                       boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.05)",
+                      ":hover": {
+                        boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.25)",
+                        cursor: "pointer",
+                        "& .card-img": {
+                          rotate: "360deg",
+                          transition: "all 1s",
+                        },
+                      },
                     }}
                   >
                     <CardMedia
@@ -92,6 +100,7 @@ const ServiceOptions = () => {
                       }}
                       image={option.img}
                       alt="Paella dish"
+                      className="card-img"
                     />
                     <CardContent sx={{ marginBottom: "0" }}>
                       <Typography
