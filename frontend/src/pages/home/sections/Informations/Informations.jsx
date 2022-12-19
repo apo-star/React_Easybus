@@ -31,11 +31,13 @@ const Informations = () => {
       <Box sx={{backgroundColor:"#FBF9F2"}}>
         <Container sx={{
         py:"30px"
-        }}>
-         <Grid container spacing={3}>
+        }}
+        marginX={"auto"}
+        >
+         <Grid container spacing={3} >
                 {
                 informations.map(info=>(
-                    <Grid item key={info._id} lg={4}>
+                    <Grid item key={info._id} md={6} lg={4} width={"100%"}>
                         <Information info={info}></Information>
                     </Grid>
                 ))
