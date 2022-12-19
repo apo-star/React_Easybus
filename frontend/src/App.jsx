@@ -1,8 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/router";
-import { createTheme } from "@mui/material/styles";
-import { purple } from "@mui/material/colors";
-import { ThemeProvider } from "@emotion/react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
@@ -12,6 +10,10 @@ const theme = createTheme({
     secondary: {
       main: "#622243",
     },
+  },
+  typography: {
+    fontWeightRegular: 400,
+    fontWeightBold: 700,
   },
 });
 
