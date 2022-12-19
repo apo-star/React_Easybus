@@ -15,7 +15,7 @@ const Home = () => {
       <Routes />
       <Brands />
       <ServiceOptions />
-      {/* <Destination /> */}
+      <Destination />
     </div>
   );
 };
