@@ -15,6 +15,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
+import AuthModal from "./modals/AuthModal";
 
 const drawerWidth = 240;
 const navItems = [
@@ -68,6 +69,10 @@ function Header(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -111,7 +116,9 @@ function Header(props) {
               </Button>
             ))}
 
-            <Button variant="contained">Sign In</Button>
+            <Button variant="contained" onClick={handleClickOpen}>
+              Sign In
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
@@ -135,6 +142,7 @@ function Header(props) {
           {drawer}
         </Drawer>
       </Box>
+      <AuthModal open={open} setOpen={setOpen} />
     </Box>
   );
 }
