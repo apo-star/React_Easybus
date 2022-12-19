@@ -28,7 +28,10 @@ const Informations = () => {
         },
     ]
     return (
-      <Container sx={{py:"30px"}}>
+      <Box sx={{backgroundColor:"#FBF9F2"}}>
+        <Container sx={{
+        py:"30px"
+        }}>
          <Grid container spacing={3}>
                 {
                 informations.map(info=>(
@@ -38,7 +41,8 @@ const Informations = () => {
                 ))
                 }
             </Grid>
-      </Container>
+        </Container>
+      </Box>
     );
 };
 
