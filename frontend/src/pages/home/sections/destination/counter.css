@@ -1,3 +1,8 @@
 .counter{
     border-radius: 5px;
 }
+.destination-bg{
+    background-image: url("../../../../assets/destination_bg.jpg");
+    width: 100%;
+    background-size: cover;
+}
