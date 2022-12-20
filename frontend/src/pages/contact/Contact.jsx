@@ -1,4 +1,4 @@
-import { Box, Typography, FormControl, TextField,Button,Input  } from "@mui/material";
+import { Box, Typography,TextField,Button,} from "@mui/material";
 
 
 const Contact = () => {
@@ -16,15 +16,15 @@ const Contact = () => {
         </Box>
         <Box sx={{display:"flex",justifyContent:"center"}}>
           <form onSubmit={handleSubmit}>
-            <Box>
-              <TextField name="name" id="outlined" placeholder="Your Name" variant="outlined" />
-              <TextField id="outlined-basic" placeholder="Your Email" variant="outlined" />
+            <Box sx={{marginBottom:"10px"}}>
+              <TextField sx={{marginRight:"10px"}} name="name" id="outlined" placeholder="Your Name" variant="outlined" />
+              <TextField sx={{marginRight:"10px"}} id="outlined-basic" placeholder="Your Email" variant="outlined" />
             </Box>
-            <Box>
-              <TextField id="outlined-basic" placeholder="Subject" variant="outlined" />
-              <TextField id="outlined-basic" placeholder="Your Mobile" variant="outlined" />
+            <Box sx={{marginBottom:"10px",width:"100%"}}>
+              <TextField sx={{marginRight:"10px"}} id="outlined-basic" placeholder="Subject" variant="outlined" />
+              <TextField sx={{marginRight:"10px"}} id="outlined-basic" placeholder="Your Mobile" variant="outlined" />
             </Box>
-            <Box  sx={{display:"flex",justifyContent:"center"}}>
+            <Box  sx={{display:"flex",justifyContent:"center",marginBottom:"10px"}}>
               <TextField id="outlined-basic" placeholder="Message" variant="outlined" />
             </Box>
             <Box  sx={{display:"flex",justifyContent:"center"}}>
