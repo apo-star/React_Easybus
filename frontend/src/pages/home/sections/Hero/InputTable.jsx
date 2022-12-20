@@ -19,15 +19,6 @@ export default function BasicTable() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        {/* <TableHead>
-          <TableRow>
-            <TableCell>From</TableCell>
-            <TableCell align="right">To</TableCell>
-            <TableCell align="right">Depart</TableCell>
-            <TableCell align="right">Return</TableCell>
-            <TableCell align="right">Passenger</TableCell>
-          </TableRow>
-        </TableHead> */}
         <TableBody>
             <TableRow
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -53,7 +44,9 @@ export default function BasicTable() {
           <MenuItem value={'Family Tour'}>Family Tour</MenuItem>
         </Select>
       </FormControl></TableCell>
-              <TableCell align="right"><p>Depart-Return</p></TableCell>
+              <TableCell align="right">
+                
+              </TableCell>
               <TableCell align="right"><TextField id="filled-basic" label="Passengers" variant="filled" /></TableCell>
             </TableRow>
         </TableBody>
