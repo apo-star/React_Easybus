@@ -6,7 +6,6 @@ import ServiceOptions from "./sections/ServiceOptions/ServiceOptions";
 import Routes from "./sections/Routes";
 import Informations from "./sections/Informations/Informations";
 
-
 const Home = () => {
   return (
     <div>
