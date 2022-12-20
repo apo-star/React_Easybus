@@ -1,11 +1,13 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import LanguageIcon from '@mui/icons-material/Language';
 import React from 'react'
 import { useCountUp } from 'react-countup';
 
 import './counter.css';
-import { Container } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Destination = () => {
   useCountUp({
@@ -24,43 +26,48 @@ const Destination = () => {
     duration: 0.9,
     enableScrollSpy: true,
   });
+  const navigate = useNavigate()
   return (
-    <Box sx={{ bgcolor: "#672A4B" }} >
-      <Stack maxWidth={"90%"} mx={"auto"} paddingTop={1}>
+    <Box className="destination-bg">
+      <Stack maxWidth={"90%"} mx={"auto"} paddingTop={4}>
         <Box marginBottom={1}>
-          <Typography variant="h4" sx={{ color: "#FFF" }}>OFFER DEALS</Typography>
-          <Typography variant="h5" sx={{ color: "#FFF" }}>Your Destination awaits for you!</Typography>
-          <Typography variant="p" sx={{ color: "#FFF" }}>The journey of a thousand miles begins with a single step.</Typography>
+          <Typography marginBottom={1} variant="p" sx={{ fontWeight: "bold", backgroundColor: "#FFA903" }}>OFFER DEALS</Typography>
+          <Typography marginBottom={3} variant="h4" sx={{ color: "#FFF", fontWeight: "bold" }}>Your Destination awaits for you!</Typography>
+          <Typography marginBottom={3} variant="p" sx={{ color: "#FFF" }}>The journey of a thousand miles begins with a single step.</Typography>
         </Box>
-        <Box maxWidth={"60%"} display="flex" justifyContent="space-between" >
+        <Box marginTop={3} maxWidth={"50%"} display="flex" justifyContent="space-between" sx={{ flexDirection: { xs: "column", lg: "row" }, }} >
 
-          <Box width={210} height={70} sx={{ bgcolor: "#fff" }} className="counter">
+          <Box width={280} height={85} sx={{ bgcolor: "#fff", marginBottom: { xs: "10px", lg: "0" } }} className="counter">
 
-            <Box margin={1} display="flex" sx={{ flexDirection: 'column' }}>
-              <Container sx={{display:"flex", justifyContent:"space-between",marginBottom:"5px"}} >
+            <Box margin={1} display="flex" sx={{ flexDirection: 'row' }}>
+              <Box sx={{ display: "flex", justifyContent: "space-between", marginBottom: "5px", flexDirection: 'column', width: "100%" }} >
                 <strong><Typography variant="p" id="customerCounter" /></strong>
-                <PeopleAltIcon />
-              </Container>
-              <Container>
-                <Typography variant='p' sx={{fontWeight:"bold",marginTop:"5px"}}>Happy Customer!</Typography>
-              </Container>
+                <Typography variant='p' sx={{ marginTop: "5px", color: "#672a4b" }}>Happy Customer!</Typography>
+              </Box>
+              <Box>
+                <PeopleAltIcon sx={{ color: "#672a4b" }} fontSize="large" />
+
+              </Box>
             </Box>
 
           </Box>
 
-          <Box width={210} height={70} sx={{ bgcolor: "#fff" }} className="counter">
+          <Box width={280} height={85} sx={{ bgcolor: "#fff" }} className="counter">
 
-            <Box margin={1} display="flex" sx={{ flexDirection: 'column' }}>
-              <Container sx={{display:"flex", justifyContent:"space-between",marginBottom:"5px"}} >
+            <Box margin={1} display="flex" sx={{ flexDirection: 'row' }}>
+              <Box sx={{ display: "flex", justifyContent: "space-between", marginBottom: "5px", flexDirection: 'column', width: "100%" }} >
                 <strong><Typography variant="p" id="percentageCounter" /></strong>
-                <LanguageIcon />
-              </Container>
-              <Container>
-                <Typography variant='p' sx={{fontWeight:"bold",marginTop:"5px"}}>Client Setisfied</Typography>
-              </Container>
+                <Typography variant='p' sx={{ marginTop: "5px", color: "#672a4b" }}>Client Setisfied</Typography>
+              </Box>
+              <Box>
+                <LanguageIcon sx={{ color: "#672a4b" }} fontSize="large" />
+              </Box>
             </Box>
 
           </Box>
+        </Box>
+        <Box marginTop={5}>
+          <Typography variant="p" sx={{ fontWeight: "bold", color: "#fff" }}>Discover the latest offers & news and start planning <Button onClick={() => navigate("/contact")}>Contact Us</Button></Typography>
         </Box>
       </Stack>
     </Box>
