@@ -56,7 +56,7 @@ export default function BasicTabs() {
           <Tab label="Check In" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={0} >
         <InputTable></InputTable>
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -65,7 +65,7 @@ export default function BasicTabs() {
       <TabPanel value={value} index={2}>
         <InputTable></InputTable>
       </TabPanel>
-      <Button variant="contained" >Book Now</Button>
+      <Button variant="contained" sx={{":hover":{backgroundColor:'#622243'},color:'white'}}>Book Now</Button>
     </Box>
   );
 }

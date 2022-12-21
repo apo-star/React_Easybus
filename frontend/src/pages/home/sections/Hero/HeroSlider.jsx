@@ -18,28 +18,28 @@ export default function HeroSlider() {
     'https://i.ibb.co/kBfdB3y/chuttersnap-Da-Lstmw0r9-Y-unsplash.jpg'
   ];
   return (
-    <>
+    <Box sx={{
+              width: '100%',
+              height:'95vh',
+            }}>
       <Swiper pagination={false} modules={[Pagination,Autoplay]} className="mySwiper"
       autoplay={{
           delay: 1500,
           disableOnInteraction: false,
         }}
-        navigation={true}
-        
+        navigation={false}
       >{
-        images.map(image => <SwiperSlide><Box
-        component="img"
-        sx={{
-          width: '100%',
-          height:'85vh',
-          
-        }}
-        alt="The house from the offer."
-        src={image}
-      />  </SwiperSlide>)
+        images.map(image => <SwiperSlide>
+          <Box
+            component="img"
+            
+            alt="The house from the offer."
+            src={image}
+          />  
+          </SwiperSlide>)
       }
         
       </Swiper>
-    </>
+    </Box>
   );
 }
