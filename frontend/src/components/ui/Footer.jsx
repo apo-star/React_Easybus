@@ -1,4 +1,4 @@
-import { Button, Grid, Link, Typography } from '@mui/material';
+import { Button, Grid, Link, TextareaAutosize, Typography } from '@mui/material';
 import { Box, Container } from '@mui/system';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -11,7 +11,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <footer>
-            <Box sx={{py:"50px",mt:"40px",backgroundColor:"#171921", color:"#ffffff"}}>
+            <Box sx={{py:"55px",mt:"40px",backgroundColor:"#171921", color:"#ffffff"}}>
                 <Container>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6} md={3}>
@@ -41,13 +41,13 @@ const Footer = () => {
                             flexDirection:"column",
                             gap:1,
                             fontSize:"16px",
-                            fontWeight:"600",
+                            fontWeight:"500",
                            }}>
-                                <Link to="/about" color={"#ffffff"} underline={"none"}>About us</Link>
-                                <Link to="/awards" color={"#ffffff"} underline={"none"}>Awards</Link>
-                                <Link to="/alerts" color={"#ffffff"} underline={"none"}>Travel alerts</Link>
-                                <Link to="/sponsorship" color={"#ffffff"} underline={"none"}>Sponsorship</Link>
-                                <Link to="/pressRelease" color={"#ffffff"} underline={"none"}>Press release</Link>
+                                <Link to="/about" color={"#cbccd0"} underline={"none"}>About us</Link>
+                                <Link to="/awards" color={"#cbccd0"} underline={"none"}>Awards</Link>
+                                <Link to="/alerts" color={"#cbccd0"} underline={"none"}>Travel alerts</Link>
+                                <Link to="/sponsorship" color={"#cbccd0"} underline={"none"}>Sponsorship</Link>
+                                <Link to="/pressRelease" color={"#cbccd0"} underline={"none"}>Press release</Link>
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
@@ -62,13 +62,13 @@ const Footer = () => {
                             flexDirection:"column",
                             gap:1,
                             fontSize:"16px",
-                            fontWeight:"600",
+                            fontWeight:"500",
                             color:"#ffffff"}}>
-                                <Link to="/about" color={"#ffffff"} underline={"none"}>Bus fees</Link>
-                                <Link to="/awards" color={"#ffffff"} underline={"none"}>Bus guides</Link>
-                                <Link to="/alerts" color={"#ffffff"} underline={"none"}>Bus guides</Link>
-                                <Link to="/sponsorship" color={"#ffffff"} underline={"none"}>Low fare tips</Link>
-                                <Link to="/pressRelease" color={"#ffffff"} underline={"none"}>Beyond</Link>
+                                <Link to="/about" color={"#cbccd0"} underline={"none"}>Bus fees</Link>
+                                <Link to="/awards" color={"#cbccd0"} underline={"none"}>Bus guides</Link>
+                                <Link to="/alerts" color={"#cbccd0"} underline={"none"}>Bus guides</Link>
+                                <Link to="/sponsorship" color={"#cbccd0"} underline={"none"}>Low fare tips</Link>
+                                <Link to="/pressRelease" color={"#cbccd0"} underline={"none"}>Beyond</Link>
                           </Box>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
@@ -88,6 +88,33 @@ const Footer = () => {
                     </Grid>
                 </Container>
             </Box>
+            <Box sx={{
+              py:3,
+              backgroundColor:"#13171d"
+              }}>
+                <Container fontWeight={600}>
+                   <Grid container>
+                      <Grid item md={6}>
+                          <Typography 
+                            color={"#ffffff"}
+                            display={"flex"}
+                            >
+                              Copyright © 2022.All Rights Reserved By 
+                              <Typography color={"#FFA903"} marginLeft={1}>EasyBus</Typography>
+                          </Typography>
+                        </Grid>
+                        <Grid item md={6}>
+                          <Box 
+                          sx={{
+                            textAlign:"right"
+                          }}
+                            >
+                            <img src="https://i.ibb.co/5hq7j7j/payment.png" alt="cart" />
+                          </Box>
+                        </Grid>
+                   </Grid>
+                </Container>
+              </Box>
         </footer>
     );
 };
