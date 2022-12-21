@@ -1,61 +1,28 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Slider, Typography } from "@mui/material";
 import ToggleTable from "./ToggleTable";
 import * as React from 'react';
-// import Card from '@mui/joy/Card';
-// import CardCover from '@mui/joy/CardCover';
-// import CardContent from '@mui/joy/CardContent';
-// import Typography from '@mui/joy/Typography';
-// import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
+import HeroSlider from "./HeroSlider";
 
 
 const Hero = () => {
+  
   return <div>
-    <Box
-        component="img"
-        sx={{
-          width: '100%',
-          height:'85vh',
-          
-        }}
-        alt="The house from the offer."
-        src="https://i.ibb.co/kBfdB3y/chuttersnap-Da-Lstmw0r9-Y-unsplash.jpg"
-      />
-        <div style={{position: 'absolute', top:'40%', paddingLeft: '10%',background:
-            ' linear-gradient(to top, rgba(106, 90, 205,0.8), rgba(0,0,0,0) )',width: '100%',
-          height:'60vh',}}>
-        <h1>10% Winter Discount Is Going On!</h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, voluptatibus.</p>
-        <Button variant="contained" size="large" sx={{mt:5}}>
+      <HeroSlider></HeroSlider>
+      <Box sx={{position: 'absolute', top:'7%', paddingLeft: '10%',background:
+            ' linear-gradient(to top, rgba(106, 90, 205,0.5), rgba(0, 0, 255,0.9) )',width: '100%',
+          height:'94vh', zIndex:1000, display:'flex',alignItems:'center'}}>
+        <Box>
+          <Typography variant="h3" component="h1" sx={{color:'white'}}>
+          10% Winter Sale Is Going On!
+        </Typography>
+        <Typography variant="p" component="p" sx={{color:'white'}}>
+          Book and Grab Your Ticket ASAP
+        </Typography>
+        <Button variant="contained" size="large" sx={{mt:5, ":hover":{backgroundColor:'#622243'},color:'white'}} >
           Register/Sign In
         </Button>
-      </div>
-       {/* <Card sx={{ minHeight: '280px', width: 320 }}>
-      <CardCover>
-        <img
-          src="https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320"
-          srcSet="https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320&dpr=2 2x"
-          loading="lazy"
-          alt=""
-        />
-      </CardCover>
-      <CardCover
-        sx={{
-          background:
-            'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)',
-        }}
-      />
-      <CardContent sx={{ justifyContent: 'flex-end' }}>
-        <Typography level="h2" fontSize="lg" textColor="#fff" mb={1}>
-          Yosemite National Park
-        </Typography>
-        <Typography
-          startDecorator={<LocationOnRoundedIcon />}
-          textColor="neutral.300"
-        >
-          California, USA
-        </Typography>
-      </CardContent>
-    </Card> */}
+        </Box>
+      </Box>
       <ToggleTable></ToggleTable>
   </div>
 };
