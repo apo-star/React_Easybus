@@ -7,22 +7,15 @@ import { Button, Dialog, DialogActions } from "@mui/material";
 import Auth from "../../../pages/auth/Auth";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
+  return <Slide direction="bottom" ref={ref} {...props} />;
 });
 
 const AuthModal = ({ open, setOpen }) => {
-  //   const [open, setOpen] = useState(false);
-
-  //   const handleClickOpen = () => {
-  //     setOpen(true);
-  //   };
-
   const handleClose = () => {
     setOpen(false);
   };
   return (
     <div>
-      <Button variant="outlined">Slide in alert dialog</Button>
       <Dialog
         open={open}
         TransitionComponent={Transition}
