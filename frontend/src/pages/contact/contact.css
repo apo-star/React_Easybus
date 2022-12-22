@@ -1,0 +1,21 @@
+.contact-bg {
+    background:linear-gradient(0deg,rgba(0, 53, 128, 1), rgb(0, 0,0,0)), url("../../assets/contact-img.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.link{
+    text-decoration: none;
+    color:#fff;
+    font-weight: 300;
+}
+textarea{
+    width: "400px" !important;
+    height: "100px" !important;
+}
+@media screen and (max-width:1200px) {
+    .text-area{
+        width: "300px" !important;
+    }
+}
