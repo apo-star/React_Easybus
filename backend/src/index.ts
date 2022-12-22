@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import user from "./routes/user";
 import dbConnect from "./config/dbConnect";
+import location from "./routes/location";
 
 const app = express();
 app.use(express.json());
@@ -10,6 +11,7 @@ app.use(cors());
 const port = process.env.PORT || 5000;
 
 app.use("/api/v1", user);
+app.use('/api/v1',location);
 
 dbConnect()
   .then(() => {
