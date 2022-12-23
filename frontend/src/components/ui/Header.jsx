@@ -113,9 +113,10 @@ function Header(props) {
               variant="h4"
               color="#ffffff"
               fontWeight="600"
-              component="div"
+              component={RouterLink}
+              to="/"
               paddingLeft={1}
-              sx={{ flexGrow: 1 }}
+              sx={{ flexGrow: 1, textDecoration: "none"}}
             >
               Easy
               <Typography variant="p" sx={{ color: "#FFA903" }}>
@@ -125,6 +126,7 @@ function Header(props) {
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               {navItems.map((item) => (
                 <Button
+                  key={item}
                   component={RouterLink}
                   to={`/${item.link}`}
                   sx={{
