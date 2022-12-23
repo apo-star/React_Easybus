@@ -7,12 +7,47 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { FormControl, Input, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { useState } from 'react';
 
 
 
 export default function BasicTable() {
-  const [age, setAge] = React.useState('');
-
+  const [age, setAge] = useState('');
+  const districts = [
+  {
+    value:"Please Select Location",
+    label:"Please Select Location"
+  },
+  {
+    value: 'Dhaka',
+    label: 'Dhaka',
+  },
+  {
+    value: 'Chittagong',
+    label: 'Chittagong',
+  },
+  {
+    value: 'Sylhet',
+    label: 'Sylhet',
+  },
+  {
+    value: 'Rajshahi',
+    label: 'Rajshahi',
+  },
+  {
+    value: 'Khulna',
+    label: 'Khulna',
+  },
+  {
+    value: 'Barishal',
+    label: 'Barishal',
+  },
+];
+  const [toLocation, setToLocation] = useState(districts);
+  const handleSelect = (selectedvalue) =>{
+    const remaining = districts.filter(district => district.value !== selectedvalue);
+    setToLocation(remaining);
+  }
   const handleChange = (event) => {
     setAge(event.target.value);
   };
@@ -24,11 +59,38 @@ export default function BasicTable() {
             <TableRow
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                <TextField id="filled-basic" label="From" variant="standard" />
+              <TableCell align="right" sx={{width:'20%'}}>
+                <TextField
+              id="from"
+              select
+              label="From"
+              defaultValue="Please Select Location"
+              variant="standard" 
+              onChange={(e) => handleSelect(e.target.value)}
+            >
+          {districts.map((option,i) => (
+            <MenuItem key={i} value={option.value} >
+              {option.label}
+            </MenuItem>
+          ))}
+                </TextField>
               </TableCell>
-              <TableCell align="right"><TextField id="filled-basic" label="To" variant="standard" /></TableCell>
-              <TableCell align="right">
+              <TableCell align="right" sx={{width:'20%'}}>
+                <TextField
+              id="to"
+              select
+              label="To"
+              defaultValue="Please Select Location"
+              variant="standard" 
+            >
+          {toLocation.map((option,i) => (
+            <MenuItem key={i} value={option.value} >
+              {option.label}
+            </MenuItem>
+          ))}
+                </TextField>
+              </TableCell>
+              <TableCell align="right" sx={{width:'20%'}}>
                 <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
                 <Select
@@ -47,8 +109,10 @@ export default function BasicTable() {
                 </Select>
               </FormControl>
               </TableCell>
-              <TableCell align="right"><TextField id="filled-basic" label="Passengers"variant="standard"/></TableCell>
-              <TableCell align="right">
+              <TableCell align="right" sx={{width:'20%'}}>
+                <TextField id="filled-basic" label="Passengers"variant="standard"/>
+              </TableCell>
+              <TableCell align="right" sx={{width:'20%'}}>
                 <Input id="filled-basic" label="Filled" variant="filled" type='date' />
               </TableCell>
             </TableRow>
