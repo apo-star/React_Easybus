@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import { FormControl, Input, InputAdornment, InputLabel, MenuItem, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -14,7 +16,11 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
-const currencies = [
+const districts = [
+  {
+    value:"Please Select Location",
+    label:"Please Select Location"
+  },
   {
     value: 'Dhaka',
     label: 'Dhaka',
@@ -40,14 +46,15 @@ const currencies = [
     label: 'Barishal',
   },
 ];
-
 export default function SearchBus() {
-  const handleSearch = event =>{
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const from = data.get("from");
-    const to = data.get("to");
+  const [toLocation, setToLocation] = useState(districts);
+  const {register, handleSubmit} = useForm();
+  const handleSearch = data =>{
     console.log(data);
+  }
+  const handleSelect = (selectedvalue) =>{
+    const remaining = districts.filter(district => district.value !== selectedvalue);
+    setToLocation(remaining);
   }
   return (
     <Box
@@ -66,18 +73,21 @@ export default function SearchBus() {
           />  
         </Grid>
         <Grid item xs={12} lg={6} md={12} sx={{display:'flex', alignItems:'center', margin:'auto'}}>
-          <Box component="form" noValidate
+          <form onSubmit={handleSubmit(handleSearch)}>
+            <Box noValidate
             autoComplete="off" sx={{maxWidth: '100%',}}
-            onSubmit={handleSearch}>
+            >
             <TextField
               id="from"
               select
               label="From"
-              defaultValue="Dhaka"
+              defaultValue="Please Select Location"
               variant="standard" 
+              {...register("from", { required: true})}
+              onChange={(e) => handleSelect(e.target.value)}
             >
-          {currencies.map((option) => (
-            <MenuItem key={option.value} name='from' value={option.value}>
+          {districts.map((option,i) => (
+            <MenuItem key={i} value={option.value} >
               {option.label}
             </MenuItem>
           ))}
@@ -86,12 +96,12 @@ export default function SearchBus() {
               id="to"
               select
               label="To"
-              defaultValue="Dhaka"
+              defaultValue="Please Select Location"
               variant="standard"
-              
+               {...register("to", { required: true})}
             >
-              {currencies.map((option) => (
-                <MenuItem key={option.value} name='to' value={option.value}>
+              {toLocation.map((option,i) => (
+                <MenuItem key={i} value={option.value}>
                   {option.label}
                 </MenuItem>
               ))}
@@ -102,6 +112,7 @@ export default function SearchBus() {
                 id="standard-adornment-amount"
                 startAdornment={<InputAdornment position="start"></InputAdornment>}
                 type='date'
+                 {...register("date", { required: true})}
               />
             </FormControl>
           <Box>
@@ -110,6 +121,7 @@ export default function SearchBus() {
             </Button>
           </Box>
           </Box>
+          </form>
         </Grid>
       </Grid>
     </Box>

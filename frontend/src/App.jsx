@@ -1,4 +1,4 @@
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider, useLocation } from "react-router-dom";
 import router from "./routes/router";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -6,6 +6,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#FFA903",
+      bg: "#FBF9F2",
     },
     secondary: {
       main: "#622243",

@@ -7,10 +7,12 @@ const Filter = ({ categories, selectedCategories, setSelectedCategories }) => {
     <Stack justifyContent="center" direction="row" spacing={1} sx={{ my: 3 }}>
       {categories.map((cat, index) => (
         <Chip
+          sx={{padding:'10px 10px',borderRadius:"5px",fontWeight:600,marginBottom:2}}
           clickable
           key={index}
           label={cat.toUpperCase()}
           color={selectedCategories.includes(cat) ? "primary" : "default"}
+       
           onClick={() => {
             const set = new Set(selectedCategories);
             if (set.has(cat)) {

@@ -14,8 +14,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import AuthModal from "./modals/AuthModal";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useEffect } from "react";
+import Auth from "../../pages/auth/Auth";
 
 const drawerWidth = 240;
 const navItems = [
@@ -38,8 +41,21 @@ const navItems = [
 ];
 
 function Header(props) {
-  const { window } = props;
+  const { windows } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const [fixed, setFixed] = useState(false);
+
+  function setFixedFunc() {
+    if (window.scrollY >= 80) {
+      setFixed(true);
+    } else {
+      setFixed(false);
+    }
+  }
+  useEffect(() => {
+    window.addEventListener("scroll", setFixedFunc);
+  }, [window.scroll]);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -68,81 +84,97 @@ function Header(props) {
   );
 
   const container =
-    window !== undefined ? () => window().document.body : undefined;
+    windows !== undefined ? () => windows().document.body : undefined;
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar component="nav">
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Box
-            component="img"
-            sx={{
-              width: "50px",
-              height: "50px",
-            }}
-            alt="The house from the offer."
-            src="https://i.ibb.co/2Sdh0rv/icon-Pixcleaner.png"
-          />
-          <Typography
-            variant="h4"
-            color="white"
-            component="div"
-            sx={{ flexGrow: 1 }}
-          >
-            Easy Bus
-          </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button
-                component={RouterLink}
-                to={`/${item.link}`}
-                sx={{ color: "#fff" }}
-              >
-                {item.route}
-              </Button>
-            ))}
-
-            <Button variant="contained" onClick={handleClickOpen}>
-              Sign In
-            </Button>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <Box component="nav">
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
+    <Box sx={{ position: "absolute", left: "0", top: "0" }}>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <AppBar
+          component="nav"
           sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
+            backgroundColor: `${
+              fixed || location.pathname !== "/" ? "#212529" : "transparent"
+            }`,
+            color: "#000000",
+            py: "10px",
+            px: "32px",
           }}
         >
-          {drawer}
-        </Drawer>
+          <Toolbar>
+            <Box>
+              <img src="https://i.ibb.co/VVDbGDv/bus.png" alt="" />
+            </Box>
+            <Typography
+              variant="h4"
+              color="#ffffff"
+              fontWeight="600"
+              component="div"
+              paddingLeft={1}
+              sx={{ flexGrow: 1 }}
+            >
+              Easy
+              <Typography variant="p" sx={{ color: "#FFA903" }}>
+                Bus
+              </Typography>
+            </Typography>
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+              {navItems.map((item) => (
+                <Button
+                  component={RouterLink}
+                  to={`/${item.link}`}
+                  sx={{
+                    color: "#fff",
+                    px: 3,
+                    gap: 0.5,
+                    ":hover": {
+                      color: "#FFA903",
+                    },
+                  }}
+                >
+                  {item.route}
+                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
+                </Button>
+              ))}
+
+              <Button
+                variant="contained"
+                onClick={handleClickOpen}
+                sx={{ fontWeight: 600 }}
+              >
+                Sign In
+              </Button>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        <Box component="nav">
+          <Drawer
+            container={container}
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+            sx={{
+              display: { xs: "block", sm: "none" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Box>
+        <AuthModal open={open} setOpen={setOpen}>
+          <Auth setOpen={setOpen} />
+        </AuthModal>
       </Box>
-      <AuthModal open={open} setOpen={setOpen} />
     </Box>
   );
 }
@@ -152,7 +184,7 @@ Header.propTypes = {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
-  window: PropTypes.func,
+  windows: PropTypes.func,
 };
 
 export default Header;
