@@ -12,7 +12,7 @@ const Contact = () => {
     color: "#ffa903"
   }
   return (
-    <Box>
+    <Box marginTop={10} marginBottom={5}>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Box className="contact-bg" sx={{ width: "100%", height: "243px", display: "flex", justifyContent: "center", }}>
           <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column", justifyContent: "center" }}>
@@ -39,7 +39,7 @@ const Contact = () => {
                 <TextField sx={{ marginRight: "10px", width: { xs: "300px", lg: "450px" }, marginBottom: "15px" }} id="outlined-basic" label="Your Mobile" placeholder="Your Mobile" variant="outlined" /><br />
               </Box>
               <Box sx={{ marginBottom: "10px" }}>
-                <TextareaAutosize className="text-area" style={{ height: 100 }} name="Message" id="outlined-basic" label="Message" placeholder="Message" variant="outlined" />
+                <TextareaAutosize minRows={1} className="text-area" style={{ height: 100, }} name="Message" id="outlined-basic"  placeholder="Message" variant="outlined" />
               </Box>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Button type="submit" variant="contained">Submit</Button>
