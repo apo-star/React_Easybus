@@ -161,7 +161,7 @@ const Auth = ({ setOpen }) => {
             fullWidth
             sx={{
               fontWeight: "bold",
-              backgroundColor: "secondary.main",
+              backgroundColor: "primary.main",
               color: "#fff",
               borderRadius: "7px",
               textTransform: "inherit",
@@ -169,9 +169,9 @@ const Auth = ({ setOpen }) => {
               border: "1px solid transparent",
               ":hover": {
                 backgroundColor: "transparent",
-                color: "secondary.main",
+                color: "primary.main",
                 boxShadow: "none",
-                border: "1px solid #6F66F8",
+                border: "1px solid #FFA903",
               },
               marginY: "1rem",
             }}

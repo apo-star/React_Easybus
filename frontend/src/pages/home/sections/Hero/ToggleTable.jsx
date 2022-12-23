@@ -48,7 +48,16 @@ export default function BasicTabs() {
   };
 
   return (
-    <Box sx={{ width: '70%', m: 'auto',position:"relative", top:"-85px", backgroundColor: 'white', borderRadius: 5, padding: "20px", zIndex:1000 }}>
+    <Box sx={{ 
+      width: '70%',
+      m: 'auto',
+      position:"relative",
+      top:"-85px",
+      backgroundColor: 'white',
+      boxShadow:"0 5px 10px 2px #0000002e", 
+      borderRadius: 5, 
+      padding: "20px",
+      zIndex:1000 }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" >
           <Tab label="Ticket Booking" {...a11yProps(0)} />
@@ -65,7 +74,7 @@ export default function BasicTabs() {
       <TabPanel value={value} index={2}>
         <InputTable></InputTable>
       </TabPanel>
-      <Button variant="contained" sx={{":hover":{backgroundColor:'#622243'},color:'white'}}>Book Now</Button>
+      <Button variant="contained" sx={{":hover":{backgroundColor:'#622243',color:'#ffffff'}}}>Book Now</Button>
     </Box>
   );
 }

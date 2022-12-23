@@ -15,7 +15,7 @@ export default function HeroSlider() {
   const images = [
     'https://i.ibb.co/jyxGVJf/flor-najera-q-LU1wz9nq-BI-unsplash.jpg',
     'https://i.ibb.co/sJjgKRp/valentyn-chernetskyi-zko-CS4u3-Co-unsplash.jpg',
-    'https://i.ibb.co/kBfdB3y/chuttersnap-Da-Lstmw0r9-Y-unsplash.jpg'
+    'https://i.ibb.co/GQ7KZV6/jonathan-borba-T5jzp-RTVF1-U-unsplash.jpg'
   ];
   return (
     <Box sx={{
