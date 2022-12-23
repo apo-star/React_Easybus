@@ -16,7 +16,6 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
 import AuthModal from "./modals/AuthModal";
-import Auth from "../../pages/auth/Auth";
 
 const drawerWidth = 240;
 const navItems = [
@@ -130,7 +129,7 @@ function Header(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -144,7 +143,7 @@ function Header(props) {
         </Drawer>
       </Box>
       <AuthModal open={open} setOpen={setOpen}>
-        <Auth />
+        <Auth setOpen={setOpen} />
       </AuthModal>
     </Box>
   );

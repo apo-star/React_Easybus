@@ -11,8 +11,9 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { Stack } from "@mui/system";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import { Chip, Divider } from "@mui/material";
+import toast from "react-hot-toast";
 
-const Auth = () => {
+const Auth = ({ setOpen }) => {
   const [isLogin, setIsLogin] = useState(true);
   const {
     register,
@@ -23,6 +24,18 @@ const Auth = () => {
   const onSubmit = (data) => {
     const { name, mail, password, photoURL } = data;
     console.log(data);
+    if (isLogin) {
+      setOpen(false);
+      toast.success("Login Successful");
+    } else {
+      setOpen(false);
+      const toastId = toast.loading("Account Creating...");
+      setTimeout(function () {
+        toast.success("Account Successfully Created", {
+          id: toastId,
+        });
+      }, 2000);
+    }
   };
 
   return (
@@ -163,7 +176,7 @@ const Auth = () => {
               marginY: "1rem",
             }}
           >
-            {!isLogin ? "Sign up" : "Login"}
+            {!isLogin ? "Create Account" : "Login"}
           </Button>
           <Divider>
             <Chip
