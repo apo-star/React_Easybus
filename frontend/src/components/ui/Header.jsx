@@ -16,6 +16,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
 import AuthModal from "./modals/AuthModal";
+import Auth from "../../pages/auth/Auth";
 
 const drawerWidth = 240;
 const navItems = [
@@ -142,7 +143,9 @@ function Header(props) {
           {drawer}
         </Drawer>
       </Box>
-      <AuthModal open={open} setOpen={setOpen} />
+      <AuthModal open={open} setOpen={setOpen}>
+        <Auth />
+      </AuthModal>
     </Box>
   );
 }
