@@ -14,8 +14,11 @@
     width: 450px;
    
 }
-.text-area::placeholder{
-    margin: "10px" !important;
+textarea::placeholder{
+    padding: 15px !important;
+    font-size: 18px;
+    line-height: 10px;
+
 }
 @media screen and (max-width:1200px) {
     .text-area{

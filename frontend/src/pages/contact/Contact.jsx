@@ -39,7 +39,7 @@ const Contact = () => {
                 <TextField sx={{ marginRight: "10px", width: { xs: "300px", lg: "450px" }, marginBottom: "15px" }} id="outlined-basic" label="Your Mobile" placeholder="Your Mobile" variant="outlined" /><br />
               </Box>
               <Box sx={{ marginBottom: "10px" }}>
-                <TextareaAutosize className="text-area" style={{ height: 100 }} name="Message" id="outlined-basic"  placeholder="Message" variant="outlined" />
+                <TextareaAutosize minRows={1} className="text-area" style={{ height: 100, }} name="Message" id="outlined-basic"  placeholder="Message" variant="outlined" />
               </Box>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Button type="submit" variant="contained">Submit</Button>
