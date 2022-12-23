@@ -16,8 +16,9 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import AuthModal from "./modals/AuthModal";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useEffect } from "react";
+import Auth from "../../pages/auth/Auth";
 
 const drawerWidth = 240;
 const navItems = [
@@ -42,24 +43,24 @@ const navItems = [
 function Header(props) {
   const { windows } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation()
-  const [fixed,setFixed] = useState(false)
+  const location = useLocation();
+  const [fixed, setFixed] = useState(false);
 
-  function setFixedFunc(){
-     if(window.scrollY>=80){
-        setFixed(true)
-     }else{
-        setFixed(false)
-     }
+  function setFixedFunc() {
+    if (window.scrollY >= 80) {
+      setFixed(true);
+    } else {
+      setFixed(false);
+    }
   }
-  useEffect(()=>{
-    window.addEventListener("scroll",setFixedFunc)
-  },[window.scroll])
+  useEffect(() => {
+    window.addEventListener("scroll", setFixedFunc);
+  }, [window.scroll]);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-  
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
@@ -90,10 +91,20 @@ function Header(props) {
   };
 
   return (
-   <Box sx={{position:'absolute',left:'0',top:'0'}}>
-      <Box sx={{ display: "flex"}}>
+    <Box sx={{ position: "absolute", left: "0", top: "0" }}>
+      <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar component="nav" sx={{backgroundColor:`${fixed || location.pathname!=='/' ?"#212529" : "transparent"}`,color:'#000000',py:"10px",px:"32px"}}>
+        <AppBar
+          component="nav"
+          sx={{
+            backgroundColor: `${
+              fixed || location.pathname !== "/" ? "#212529" : "transparent"
+            }`,
+            color: "#000000",
+            py: "10px",
+            px: "32px",
+          }}
+        >
           <Toolbar>
             <Box>
               <img src="https://i.ibb.co/VVDbGDv/bus.png" alt="" />
@@ -106,7 +117,10 @@ function Header(props) {
               paddingLeft={1}
               sx={{ flexGrow: 1 }}
             >
-              Easy<Typography variant="p" sx={{color:"#FFA903"}}>Bus</Typography>
+              Easy
+              <Typography variant="p" sx={{ color: "#FFA903" }}>
+                Bus
+              </Typography>
             </Typography>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               {navItems.map((item) => (
@@ -115,19 +129,23 @@ function Header(props) {
                   to={`/${item.link}`}
                   sx={{
                     color: "#fff",
-                    px:3,
-                    gap:.5,
-                    ':hover':{
-                      color:"#FFA903"
-                    }
-                    }}
+                    px: 3,
+                    gap: 0.5,
+                    ":hover": {
+                      color: "#FFA903",
+                    },
+                  }}
                 >
                   {item.route}
-                  <ArrowForwardIosIcon fontSize={"2px"} ></ArrowForwardIosIcon>
+                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
                 </Button>
               ))}
 
-              <Button variant="contained" onClick={handleClickOpen} sx={{fontWeight:600}}>
+              <Button
+                variant="contained"
+                onClick={handleClickOpen}
+                sx={{ fontWeight: 600 }}
+              >
                 Sign In
               </Button>
             </Box>
@@ -153,9 +171,11 @@ function Header(props) {
             {drawer}
           </Drawer>
         </Box>
-        <AuthModal open={open} setOpen={setOpen} />
+        <AuthModal open={open} setOpen={setOpen}>
+          <Auth setOpen={setOpen} />
+        </AuthModal>
       </Box>
-   </Box>
+    </Box>
   );
 }
 

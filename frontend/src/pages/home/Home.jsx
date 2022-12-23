@@ -9,17 +9,15 @@ import { Box } from "@mui/system";
 
 const Home = () => {
   return (
-    <div>
-      <Box sx={{backgroundColor:"#FBF9F2"}}>
-        <Hero />
-        <Informations />
-        <OfferDeals />
-        <Destination />
-        <Routes />
-        <Brands />
-        <ServiceOptions />
-      </Box>
-    </div>
+    <Box sx={{ backgroundColor: "#FBF9F2" }}>
+      <Hero />
+      <Informations />
+      <OfferDeals />
+      <Destination />
+      <Routes />
+      <Brands />
+      <ServiceOptions />
+    </Box>
   );
 };
 
