@@ -15,7 +15,7 @@ const OfferDeals = () => {
             place:'Dhaka to Barishal',
             date:'09 Jun 2022 - 16 Jun 2022',
             from:'Economy from',
-            price:'290'
+            price:'৳ 1200'
         },
         {
             _id:'2',
@@ -23,7 +23,7 @@ const OfferDeals = () => {
             place:'Dhaka to Rajshahi',
             date:'09 Jun 2022 - 16 Jun 2022',
             from:'Economy from',
-            price:'290'
+            price:'৳ 890'
         },
         {
             _id:'3',
@@ -31,7 +31,7 @@ const OfferDeals = () => {
             place:"Dhaka to Cox's Bazar",
             date:'09 Jun 2022 - 16 Jun 2022',
             from:'Economy from',
-            price:'792'
+            price:'৳ 792'
         },
         {
             _id:'4',
@@ -39,7 +39,7 @@ const OfferDeals = () => {
             place:'Dhaka to sylhet',
             date:'09 Jun 2022 - 16 Jun 2022',
             from:'Economy from',
-            price:'980'
+            price:'৳ 980'
         },
         {
             _id:'5',
@@ -47,18 +47,18 @@ const OfferDeals = () => {
             place:'Dhaka to Chittagong',
             date:'09 Jun 2022 - 16 Jun 2022',
             from:'Economy from',
-            price:'350'
+            price:'৳ 1350'
         },
     ]
     return (
-     <Box sx={{backgroundColor:"#FBF9F2"}}>
+     <Box>
         <Container sx={{py:"30px",backgroundColor:"#FBF9F2"}} >
             <Box>
                 <Typography variant="h6" fontSize={16} color={"#FFA903"}>
                     OFFER DEALS
                 </Typography>
                 <Typography variant="h4" fontWeight={600} marginBottom={4}>
-                    Flight Offer Deals
+                    Bus Offer Deals
                 </Typography>
             </Box>
             <Grid container maxWidth={{sm:'100%', md:"80%", lg:"100%"}} marginX={"auto"}>
@@ -69,11 +69,11 @@ const OfferDeals = () => {
                 </Grid>
                 <Grid item lg={6} xs={12} Width="100%" marginX={"auto"}>
                     <Grid container lg:spacing={2} marginX={"auto"} Width="100%" paddingLeft={0}>
-                            {
-                            deals.slice(1,5).map(deal=>(
-                                <Grid item xs={12} sm={6}><OfferDealCard key={deal._id} deal={deal}></OfferDealCard></Grid>
-                            ))
-                            }
+                        {
+                        deals.slice(1,5).map(deal=>(
+                            <Grid item xs={12} sm={6}><OfferDealCard key={deal._id} deal={deal}></OfferDealCard></Grid>
+                        ))
+                        }
                     </Grid>
                 </Grid>
             </Grid>

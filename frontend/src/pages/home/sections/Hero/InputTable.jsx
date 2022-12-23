@@ -18,8 +18,8 @@ export default function BasicTable() {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 750 }} aria-label="simple table">
+    <TableContainer component={Paper} sx={{boxShadow:"0px 0px 0px 12px #0000000d" }}>
+      <Table sx={{ minWidth: 750}} aria-label="simple table">
         <TableBody>
             <TableRow
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
