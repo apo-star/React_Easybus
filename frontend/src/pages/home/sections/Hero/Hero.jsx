@@ -8,9 +8,9 @@ const Hero = () => {
   
   return <Box backgroundColor={'#FBF9F2'} sx={{position:'relative'}}>
       <HeroSlider></HeroSlider>
-      <Box sx={{position: 'absolute', top:'0%', paddingLeft: '10%',background:
+      <Box sx={{position: 'absolute', top:'0%', bottom:'0%', paddingLeft: '10%',background:
             'linear-gradient(to top, rgb(0 0 0 / 58%), rgb(0 0 0 / 90%) )',width: '100%',
-          height:'94vh', zIndex:1000, display:'flex',alignItems:'center'}}>
+          height:'95vh', zIndex:1000, display:'flex',alignItems:'center'}}>
         <Box>
           <Typography variant="h3" component="h1" sx={{color:'white'}}>
           10% Winter Sale Is Going On!
