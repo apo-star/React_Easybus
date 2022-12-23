@@ -7,25 +7,45 @@ const About = () => {
     <>
       <Box
         sx={{
-          height: "250px",
-          backgroundImage: "url('/about-poster.jpg')",
+          height: "300px",
+          background:
+            'linear-gradient(0deg,rgba(0, 53, 128, 1), rgb(0, 0,0,0)), url("/contact-img.jpg")',
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
           justifyContent: "center",
-          alignItems: "flex-end",
-          paddingBottom: "50px",
+          alignItems: "center",
+          paddingTop: "50px",
         }}
       >
         <Typography
           variant="h5"
-          sx={{ fontSize: 40, color: "white", fontWeight: "bold" }}
+          sx={{ fontSize: "24px", color: "white", fontWeight: "bold" }}
         >
-          About EasyBus
+          About
         </Typography>
       </Box>
       <Container sx={{ marginY: "70px" }}>
-        <Grid container spacing={3} justifyContent="center">
+        <Grid container spacing={5} justifyContent="center">
+          <Grid
+            item
+            sm={12}
+            md={6}
+            sx={{
+              backgroundImage: "url('/about-banner.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              borderRadius: "10px",
+              height: {
+                sm: "300px",
+                md: "auto",
+              },
+              width: {
+                sm: "90%",
+                md: "auto",
+              },
+            }}
+          ></Grid>
           <Grid item sm={12} md={6} sx={{ p: "40px" }}>
             <Typography
               variant="p"
@@ -94,17 +114,6 @@ const About = () => {
               </Link>
             </Box>
           </Grid>
-          <Grid
-            item
-            sm={12}
-            md={6}
-            sx={{
-              backgroundImage: "url('/about-banner.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              borderRadius: "10px",
-            }}
-          ></Grid>
         </Grid>
       </Container>
     </>
