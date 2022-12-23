@@ -69,7 +69,7 @@ export default function SearchBus() {
             component="img"
             sx={{width: "90%", height: '75vh'}}
             alt="The house from the offer."
-            src="https://i.ibb.co/z4BW7vL/photo-1564694202883-46e7448c1b26-ixlib-rb-4-0.jpg"
+            src="../../../public/busImage.PNG"
           />  
         </Grid>
         <Grid item xs={12} lg={6} md={12} sx={{display:'flex', alignItems:'center', margin:'auto'}}>
