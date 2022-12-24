@@ -6,9 +6,9 @@ import HeroSlider from "./HeroSlider";
 
 const Hero = () => {
   
-  return <Box backgroundColor={'#FBF9F2'}>
+  return <Box backgroundColor={'#FBF9F2'} sx={{position:'relative'}}>
       <HeroSlider></HeroSlider>
-      <Box sx={{position: 'absolute', top:'7%', paddingLeft: '10%',background:
+      <Box sx={{position: 'absolute', top:'0%', paddingLeft: '10%',background:
             'linear-gradient(to top, rgb(0 0 0 / 58%), rgb(0 0 0 / 90%) )',width: '100%',
           height:'94vh', zIndex:1000, display:'flex',alignItems:'center'}}>
         <Box>
@@ -19,7 +19,7 @@ const Hero = () => {
           Book and Grab Your Ticket ASAP
         </Typography>
         <Button variant="contained" size="large" 
-          sx={{mt:5 ,fontWeight:600, ":hover":{backgroundColor:'#622243',color:'#ffffff'},color:'#2a2a2a'}} >
+          sx={{mt:5 ,fontWeight:600, ":hover":{backgroundColor:'#622243',color:'#ffffff'},color:'#2a2a2a',paddingY:'12px'}} >
           Register / Sign In
         </Button>
         </Box>

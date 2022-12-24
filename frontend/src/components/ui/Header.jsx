@@ -16,6 +16,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
 import AuthModal from "./modals/AuthModal";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useEffect } from "react";
 
 const drawerWidth = 240;
 const navItems = [
@@ -41,10 +43,28 @@ function Header(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // const [fixed,setFixed] = useState(false)
+
+  // function setFixedFunc(){
+  //    console.log(window.scrollY)
+  //    if(window.scrollY>=100){
+  //       setFixed(true)
+  //    }else{
+  //       setFixed(false)
+  //    }
+  // }
+  // window.addEventListener("scroll",setFixedFunc)
+
+  // useEffect(()=>{
+    
+  // },window.scrollY)
+  
+
+
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-
+  
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
@@ -75,75 +95,72 @@ function Header(props) {
   };
 
   return (
-    <Box sx={{ display: "flex",backgroundColor:"#ffffff"}}>
-      <CssBaseline />
-      <AppBar component="nav">
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Box
-            component="img"
-            sx={{
-              width: "50px",
-              height: "50px",
-            }}
-            alt="The house from the offer."
-            src="https://i.ibb.co/2Sdh0rv/icon-Pixcleaner.png"
-          />
-          <Typography
-            variant="h4"
-            color="white"
-            component="div"
-            sx={{ flexGrow: 1 }}
-          >
-            Easy<span>Bus</span>
-          </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button
-                component={RouterLink}
-                to={`/${item.link}`}
-                sx={{ color: "#fff" }}
-              >
-                {item.route}
-              </Button>
-            ))}
+   <Box sx={{position:'absolute',left:'0',top:'0'}}>
+      <Box sx={{ display: "flex"}}>
+        <CssBaseline />
+        <AppBar component="nav" sx={{backgroundColor:"transparent",color:'#000000',py:"10px",px:"32px"}}>
+          <Toolbar>
+            <Box>
+              <img src="https://i.ibb.co/VVDbGDv/bus.png" alt="" />
+            </Box>
+            <Typography
+              variant="h4"
+              color="#ffffff"
+              fontWeight="600"
+              component="div"
+              paddingLeft={1}
+              sx={{ flexGrow: 1 }}
+            >
+              Easy<Typography variant="p" sx={{color:"#FFA903"}}>Bus</Typography>
+            </Typography>
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+              {navItems.map((item) => (
+                <Button
+                  component={RouterLink}
+                  to={`/${item.link}`}
+                  sx={{
+                    color: "#fff",
+                    px:3,
+                    gap:.5,
+                    ':hover':{
+                      color:"#FFA903"
+                    }
+                    }}
+                >
+                  {item.route}
+                  <ArrowForwardIosIcon fontSize={"2px"} ></ArrowForwardIosIcon>
+                </Button>
+              ))}
 
-            <Button variant="contained" onClick={handleClickOpen}>
-              Sign In
-            </Button>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <Box component="nav">
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
+              <Button variant="contained" onClick={handleClickOpen} sx={{fontWeight:600}}>
+                Sign In
+              </Button>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        <Box component="nav">
+          <Drawer
+            container={container}
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+            sx={{
+              display: { xs: "block", sm: "none" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Box>
+        <AuthModal open={open} setOpen={setOpen} />
       </Box>
-      <AuthModal open={open} setOpen={setOpen} />
-    </Box>
+   </Box>
   );
 }
 
