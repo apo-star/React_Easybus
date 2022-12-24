@@ -75,7 +75,7 @@ function Header(props) {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex",backgroundColor:"#ffffff"}}>
       <CssBaseline />
       <AppBar component="nav">
         <Toolbar>
@@ -103,7 +103,7 @@ function Header(props) {
             component="div"
             sx={{ flexGrow: 1 }}
           >
-            Easy Bus
+            Easy<span>Bus</span>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (

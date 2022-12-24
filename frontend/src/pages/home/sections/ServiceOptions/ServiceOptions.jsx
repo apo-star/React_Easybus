@@ -86,9 +86,10 @@ const ServiceOptions = () => {
                   <Card
                     sx={{
                       paddingTop: "20px",
-                      boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.05)",
+                      borderRadius:"20px",
+                      boxShadow: "0px 0px 10px 2px rgba(0,0,0,0.05)",
                       ":hover": {
-                        boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.25)",
+                        boxShadow:"0px 0px 20px #0000002e",
                         cursor: "pointer",
                         "& .service-icon": {
                           rotate: "360deg",
@@ -113,7 +114,7 @@ const ServiceOptions = () => {
                         className="service-icon"
                       />
                     </IconButton>
-                    <CardContent sx={{ marginBottom: "0" }}>
+                    <CardContent sx={{ marginBottom: "0" ,minHeight:"180px"}}>
                       <Typography
                         variant="h6"
                         color={"#763F5B"}

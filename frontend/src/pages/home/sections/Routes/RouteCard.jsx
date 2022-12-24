@@ -8,34 +8,67 @@ import Typography from "@mui/material/Typography";
 
 const RouteCard = ({ route: { image, startPoint, destPoint, fair } }) => {
   return (
-    <Card sx={{ maxWidth: 345, pb: 1 }}>
+    <>
+    <Card sx={{
+      width: '100%',
+      height:'auto',
+      p:1.5,
+      pb:2,
+      boxShadow:"0 5px 10px 2px #0000002e",
+      borderRadius:"15px"
+      }
+      } marginX={"auto"}>
       <CardMedia
         component="img"
-        height="140"
         image={image}
         alt="green iguana"
+        style={{
+          borderRadius:"15px",
+          width:'full',
+          height:'200px'
+      }}
+
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+      <CardContent sx={{
+        p:0,
+        pt:2,
+        px:1,
+        pb:1,
+        '&:last-child':{
+            pb:0
+        }
+      }}>
+        <Typography 
+        gutterBottom 
+        variant="h5" 
+        component="div"
+        fontSize={19}
+        fontWeight={700}
+        >
           {startPoint} to {destPoint}
         </Typography>
-        <Typography variant="body2" color="text.secondary" mt={3}>
+        <Typography >
           {`${fair.label}`}
         </Typography>
-        <Typography variant="h5" color="text.primary">
-          {`${fair.currencySign}${fair.amount}`}
+        <Typography variant="h5" color="text.primary" marginTop={'23px'}>
+          <span fontSize={"12px"}>{fair.currencySign} </span>{`${fair.amount}`}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button
-          variant="contained"
-          fullWidth
-          sx={{ color: "white", fontWeight: "bold" }}
-        >
-          Book a Seat
+        <Button variant='contained'
+          sx={{
+            color:"#622243",
+            backgroundColor:"#FFA903",
+            borderRadius:"70px",
+            padding:"12px",
+            fontWeight:"600",
+            width:"100%"
+            }}>
+              Book a Seat
         </Button>
       </CardActions>
     </Card>
+    </>
   );
 };
 

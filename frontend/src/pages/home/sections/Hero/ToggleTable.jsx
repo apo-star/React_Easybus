@@ -48,7 +48,16 @@ export default function BasicTabs() {
   };
 
   return (
-    <Box sx={{ width: '70%', m: 'auto',position:"relative", top:"-85px", backgroundColor: 'white', borderRadius: 5, padding: "20px", zIndex:1000 }}>
+    <Box sx={{ 
+      width: '70%',
+      m: 'auto',
+      position:"relative",
+      top:"-85px",
+      backgroundColor: 'white',
+      boxShadow:"0 5px 10px 2px #0000002e", 
+      borderRadius: 5, 
+      padding: "20px",
+      zIndex:1000 }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" >
           <Tab label="Ticket Booking" {...a11yProps(0)} />

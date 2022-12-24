@@ -15,7 +15,7 @@ const OfferDeals = () => {
             place:'Dhaka to Barishal',
             date:'09 Jun 2022 - 16 Jun 2022',
             from:'Economy from',
-            price:'290'
+            price:'৳ 1200'
         },
         {
             _id:'2',
@@ -23,7 +23,7 @@ const OfferDeals = () => {
             place:'Dhaka to Rajshahi',
             date:'09 Jun 2022 - 16 Jun 2022',
             from:'Economy from',
-            price:'290'
+            price:'৳ 890'
         },
         {
             _id:'3',
@@ -31,7 +31,7 @@ const OfferDeals = () => {
             place:"Dhaka to Cox's Bazar",
             date:'09 Jun 2022 - 16 Jun 2022',
             from:'Economy from',
-            price:'792'
+            price:'৳ 792'
         },
         {
             _id:'4',
@@ -39,7 +39,7 @@ const OfferDeals = () => {
             place:'Dhaka to sylhet',
             date:'09 Jun 2022 - 16 Jun 2022',
             from:'Economy from',
-            price:'980'
+            price:'৳ 980'
         },
         {
             _id:'5',
@@ -47,11 +47,11 @@ const OfferDeals = () => {
             place:'Dhaka to Chittagong',
             date:'09 Jun 2022 - 16 Jun 2022',
             from:'Economy from',
-            price:'350'
+            price:'৳ 1350'
         },
     ]
     return (
-     <Box sx={{backgroundColor:"#FBF9F2"}}>
+     <Box>
         <Container sx={{py:"30px",backgroundColor:"#FBF9F2"}} >
             <Box>
                 <Typography variant="h6" fontSize={16} color={"#FFA903"}>

@@ -29,10 +29,11 @@ const Destination = () => {
   const navigate = useNavigate()
   return (
     <Box className="destination-bg">
-      <Stack maxWidth={"90%"} mx={"auto"} paddingTop={4}>
+      <Stack maxWidth={"90%"} mx={"auto"} paddingTop={4} paddingY={'70px'}>
         <Box marginBottom={1}>
-          <Typography marginBottom={1} variant="p" sx={{ fontWeight: "bold", backgroundColor: "#FFA903" }}>OFFER DEALS</Typography>
-          <Typography marginBottom={3} variant="h4" sx={{ color: "#FFF", fontWeight: "bold" }}>Your Destination awaits for you!</Typography>
+          <Typography marginBottom={1} variant="p"
+           sx={{ backgroundColor: "#cd7e0f",borderRadius:"30px",px:'10px',py:"8px",color:'#ffffff',fontSize:"15px" }}>OFFER DEALS</Typography>
+          <Typography marginBottom={3} variant="h4" sx={{ color: "#FFF", fontWeight: "bold",mt:"10px" }}>Your Destination awaits for you!</Typography>
           <Typography marginBottom={3} variant="p" sx={{ color: "#FFF" }}>The journey of a thousand miles begins with a single step.</Typography>
         </Box>
         <Box marginTop={3} maxWidth={"50%"} display="flex" justifyContent="space-between" sx={{ flexDirection: { xs: "column", lg: "row" }, }} >

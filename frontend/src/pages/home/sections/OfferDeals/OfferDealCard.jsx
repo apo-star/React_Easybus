@@ -56,7 +56,7 @@ const OfferDealCard = ({deal}) => {
                 {from}
               </Typography>
               <Typography fontWeight={600} fontSize={18}  paddingBottom={_id=="1" ? "55px" : "20px"}>
-                ${price}
+                {price}
               </Typography>
             </CardContent>
           </Card>
@@ -118,7 +118,7 @@ const OfferDealCard = ({deal}) => {
                   color="#FFA903"
                   fontSize={18}
                   >
-                  ${price}
+                  {price}
                 </Typography>
                 <Box sx={{
                   display:"flex",
