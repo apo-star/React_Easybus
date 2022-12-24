@@ -89,11 +89,11 @@ const ServiceOptions = () => {
                       borderRadius:"20px",
                       boxShadow: "0px 0px 10px 2px rgba(0,0,0,0.05)",
                       ":hover": {
-                        boxShadow:"0px 0px 20px #0000002e",
+                        boxShadow:"0px 0px 20px 5px #0000002e",
                         cursor: "pointer",
                         "& .service-icon": {
                           rotate: "360deg",
-                          transition: "all 1s",
+                          transition: "all 3s",
                         },
                       },
                     }}

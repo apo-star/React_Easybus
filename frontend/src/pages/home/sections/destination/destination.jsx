@@ -28,7 +28,7 @@ const Destination = () => {
   });
   const navigate = useNavigate()
   return (
-    <Box className="destination-bg">
+    <Box className="destination-bg" sx={{marginY:"30px"}}>
       <Stack maxWidth={"90%"} mx={"auto"} paddingTop={4} paddingY={'70px'}>
         <Box marginBottom={1}>
           <Typography marginBottom={1} variant="p"

@@ -58,7 +58,7 @@ const OfferDeals = () => {
                     OFFER DEALS
                 </Typography>
                 <Typography variant="h4" fontWeight={600} marginBottom={4}>
-                    Flight Offer Deals
+                    Bus Offer Deals
                 </Typography>
             </Box>
             <Grid container maxWidth={{sm:'100%', md:"80%", lg:"100%"}} marginX={"auto"}>
@@ -69,11 +69,11 @@ const OfferDeals = () => {
                 </Grid>
                 <Grid item lg={6} xs={12} Width="100%" marginX={"auto"}>
                     <Grid container lg:spacing={2} marginX={"auto"} Width="100%" paddingLeft={0}>
-                            {
-                            deals.slice(1,5).map(deal=>(
-                                <Grid item xs={12} sm={6}><OfferDealCard key={deal._id} deal={deal}></OfferDealCard></Grid>
-                            ))
-                            }
+                        {
+                        deals.slice(1,5).map(deal=>(
+                            <Grid item xs={12} sm={6}><OfferDealCard key={deal._id} deal={deal}></OfferDealCard></Grid>
+                        ))
+                        }
                     </Grid>
                 </Grid>
             </Grid>

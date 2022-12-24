@@ -15,7 +15,10 @@ const RouteCard = ({ route: { image, startPoint, destPoint, fair } }) => {
       p:1.5,
       pb:2,
       boxShadow:"0 5px 10px 2px #0000002e",
-      borderRadius:"15px"
+      borderRadius:"15px",
+      ":hover": {
+        boxShadow:"0px 0px 20px 5px #0000002e"
+      },
       }
       } marginX={"auto"}>
       <CardMedia
@@ -25,9 +28,9 @@ const RouteCard = ({ route: { image, startPoint, destPoint, fair } }) => {
         style={{
           borderRadius:"15px",
           width:'full',
-          height:'200px'
+          height:'200px',
       }}
-
+      className="image"
       />
       <CardContent sx={{
         p:0,

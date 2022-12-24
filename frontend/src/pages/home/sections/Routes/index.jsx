@@ -110,7 +110,7 @@ const Routes = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ my: 8 }}>
+    <Container maxWidth="lg" sx={{ my: 10 }}>
        <Box sx={{textAlign:"center"}}>
           <Typography variant="h6" fontSize={16} color={"#FFA903"}>
           PACKAGE

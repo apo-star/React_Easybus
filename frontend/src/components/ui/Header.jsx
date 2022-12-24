@@ -14,7 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import AuthModal from "./modals/AuthModal";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useEffect } from "react";
@@ -40,26 +40,21 @@ const navItems = [
 ];
 
 function Header(props) {
-  const { window } = props;
+  const { windows } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation()
+  const [fixed,setFixed] = useState(false)
 
-  // const [fixed,setFixed] = useState(false)
-
-  // function setFixedFunc(){
-  //    console.log(window.scrollY)
-  //    if(window.scrollY>=100){
-  //       setFixed(true)
-  //    }else{
-  //       setFixed(false)
-  //    }
-  // }
-  // window.addEventListener("scroll",setFixedFunc)
-
-  // useEffect(()=>{
-    
-  // },window.scrollY)
-  
-
+  function setFixedFunc(){
+     if(window.scrollY>=80){
+        setFixed(true)
+     }else{
+        setFixed(false)
+     }
+  }
+  useEffect(()=>{
+    window.addEventListener("scroll",setFixedFunc)
+  },[window.scroll])
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -88,7 +83,7 @@ function Header(props) {
   );
 
   const container =
-    window !== undefined ? () => window().document.body : undefined;
+    windows !== undefined ? () => windows().document.body : undefined;
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -98,7 +93,7 @@ function Header(props) {
    <Box sx={{position:'absolute',left:'0',top:'0'}}>
       <Box sx={{ display: "flex"}}>
         <CssBaseline />
-        <AppBar component="nav" sx={{backgroundColor:"transparent",color:'#000000',py:"10px",px:"32px"}}>
+        <AppBar component="nav" sx={{backgroundColor:`${fixed || location.pathname!=='/' ?"#212529" : "transparent"}`,color:'#000000',py:"10px",px:"32px"}}>
           <Toolbar>
             <Box>
               <img src="https://i.ibb.co/VVDbGDv/bus.png" alt="" />
@@ -169,7 +164,7 @@ Header.propTypes = {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
-  window: PropTypes.func,
+  windows: PropTypes.func,
 };
 
 export default Header;

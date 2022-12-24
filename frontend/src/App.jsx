@@ -1,4 +1,4 @@
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider, useLocation } from "react-router-dom";
 import router from "./routes/router";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
