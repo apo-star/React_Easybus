@@ -39,6 +39,10 @@ const navItems = [
     link: "contact",
   },
   {
+    route: "My Bookings",
+    link: "my-bookings",
+  },
+  {
     route: "Dashboard",
     link: "dashboard",
   },
