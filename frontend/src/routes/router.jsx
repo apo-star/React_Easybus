@@ -8,6 +8,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import ErrorPage from "../pages/error/ErrorPage";
 import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
+import MyBookings from "../pages/myBookings/MyBookings";
 import Register from "../pages/register/Register";
 import SearchBus from "../pages/searchBus/SearchBus";
 
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/booking",
         element: <Booking />,
+      },
+      {
+        path: "/my-bookings",
+        element: <MyBookings />,
       },
     ],
   },
