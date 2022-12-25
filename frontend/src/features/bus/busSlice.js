@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-export const seatApi = createApi({
-  reducerPath: "seatApi",
+export const busApi = createApi({
+  reducerPath: "busApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1/" }),
   endpoints: (builder) => ({
     getAllSeat: builder.query({
@@ -9,4 +9,4 @@ export const seatApi = createApi({
   }),
 });
 
-export const { useGetAllSeatQuery } = seatApi;
+export const { useGetAllSeatQuery } = busApi;

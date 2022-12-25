@@ -6,7 +6,6 @@ import ServiceOptions from "./sections/ServiceOptions/ServiceOptions";
 import Routes from "./sections/Routes";
 import Informations from "./sections/Informations/Informations";
 import { Box } from "@mui/system";
-import SeatLayout from "../seatLayout/SeatLayout";
 
 const Home = () => {
   return (
@@ -17,7 +16,6 @@ const Home = () => {
       <Destination />
       <Routes />
       <Brands />
-      <SeatLayout />
       <ServiceOptions />
     </Box>
   );
