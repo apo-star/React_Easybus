@@ -25,8 +25,13 @@ const About = () => {
           About
         </Typography>
       </Box>
-      <Container sx={{ marginY: "70px" }}>
-        <Grid container spacing={5} justifyContent="center">
+      <Container sx={{ marginY: "70px", mx: "auto" }}>
+        <Grid
+          container
+          spacing={{ xs: 0, md: 5 }}
+          justifyContent="center"
+          sx={{ m: "4" }}
+        >
           <Grid
             item
             sm={12}
@@ -36,12 +41,13 @@ const About = () => {
               backgroundSize: "cover",
               backgroundPosition: "center",
               borderRadius: "10px",
+              p: "0",
               height: {
-                sm: "300px",
+                xs: "300px",
                 md: "auto",
               },
               width: {
-                sm: "90%",
+                xs: "100%",
                 md: "auto",
               },
             }}
@@ -60,7 +66,7 @@ const About = () => {
             <Typography variant="body1" component="p" sx={{ my: "25px" }}>
               Our mission is to ensure 'Hassle-free' and Easy Bus Journey in
               Bangladesh. Our first goal is that our users must be able to book
-              a ticket in a fex minutes, away from all the hassle at a bus
+              a ticket in a few minutes, away from all the hassle at a bus
               counter, while enjoying the warmth of home, or while in some off
               minutes among the busy hours of office.
             </Typography>
@@ -91,8 +97,12 @@ const About = () => {
             ))}
             <Box
               sx={{
-                display: "block",
+                display: {
+                  xs: "flex",
+                  md: "block",
+                },
                 marginTop: "40px",
+                justifyContent: "center",
               }}
             >
               <Link to="/booking" style={{ textDecoration: "none" }}>
