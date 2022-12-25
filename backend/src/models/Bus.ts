@@ -1,39 +1,54 @@
 import mongoose, { Schema } from "mongoose";
 
-const busSchema = new Schema({
-  name: {
-    type: String,
-    required: [true, "Bus name is required"],
+const busSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Bus name is required"],
+    },
+    fare: {
+      type: Number,
+      required: [true, "Fare is required"],
+    },
+    departureLocation: {
+      type: String,
+      required: [true, "Departure Location is required"],
+    },
+    arrivalLocation: {
+      type: String,
+      required: [true, "Departure Location is required"],
+    },
+    departureTime: {
+      type: String,
+      required: [true, "Departure Time is required"],
+    },
+    arrivalTime: {
+      type: String,
+      required: [true, "Departure Time is required"],
+    },
+    totalSeats: {
+      type: Number,
+      required: [true, "Total Seat is required"],
+    },
+    category: {
+      type: String,
+      required: [true, "Category is required"],
+    },
+    seats: [
+      {
+        seatNo: {
+          type: String,
+          required: [true, "SeatNo is required"],
+        },
+        isBooked: {
+          type: Boolean,
+          required: [true, "Required"],
+          default: false,
+        },
+      },
+    ],
   },
-  fare: {
-    type: Number,
-    required: [true, "Fare is required"],
-  },
-  departureLocation: {
-    type: String,
-    required: [true, "Departure Location is required"],
-  },
-  arrivalLocation: {
-    type: String,
-    required: [true, "Departure Location is required"],
-  },
-  departureTime: {
-    type: String,
-    required: [true, "Departure Time is required"],
-  },
-  arrivalTime: {
-    type: String,
-    required: [true, "Departure Time is required"],
-  },
-  totalSeats: {
-    type: Number,
-    required: [true, "Total Seat is required"],
-  },
-  category: {
-    type: String,
-    required: [true, "Category is required"],
-  },
-  seats: [],
-});
+  { timestamps: true }
+);
 
 export default mongoose.model("Bus", busSchema);
