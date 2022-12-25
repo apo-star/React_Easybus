@@ -38,6 +38,10 @@ const navItems = [
     route: "Contact",
     link: "contact",
   },
+  {
+    route: "Dashboard",
+    link: "dashboard",
+  },
 ];
 
 function Header(props) {
@@ -116,7 +120,7 @@ function Header(props) {
               component={RouterLink}
               to="/"
               paddingLeft={1}
-              sx={{ flexGrow: 1, textDecoration: "none"}}
+              sx={{ flexGrow: 1, textDecoration: "none" }}
             >
               Easy
               <Typography variant="p" sx={{ color: "#FFA903" }}>
