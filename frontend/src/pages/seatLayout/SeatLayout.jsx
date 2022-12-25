@@ -6,6 +6,7 @@ import ChairIcon from "@mui/icons-material/Chair";
 import ChairOutlinedIcon from "@mui/icons-material/ChairOutlined";
 import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import { useGetAllSeatQuery } from "../../features/user/bus/seatSlice";
 
 const seatLeft = [
   "A1",
@@ -52,68 +53,79 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
   },
 }));
 const SeatLayout = () => {
+  const { data } = useGetAllSeatQuery();
+  const allSeats = data.data;
   return (
-    <Stack
-      width={220}
-      border={"2px solid #ccc"}
-      padding={1}
-      paddingY={2}
-      margin={5}
-      borderRadius={1}
-    >
-      <Box className="driver-seat" textAlign={"right"}>
-        <Box marginBottom={1} marginRight={1} sx={{ filter: "contrast(20%)" }}>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/950/950497.png"
-            alt=""
-            width={"25px"}
-          />
-        </Box>
-      </Box>
+    <Box>
+      {allSeats.map((eachSeat) => (
+        <Stack
+          width={220}
+          border={"2px solid #ccc"}
+          padding={1}
+          paddingY={2}
+          margin={5}
+          borderRadius={1}
+          key={Math.random()}
+        >
+          <Box className="driver-seat" textAlign={"right"}>
+            <Box
+              marginBottom={1}
+              marginRight={1}
+              sx={{ filter: "contrast(20%)" }}
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/950/950497.png"
+                alt=""
+                width={"25px"}
+              />
+            </Box>
+          </Box>
 
-      <Stack direction={"row"} spacing={5}>
-        <Box>
-          <Grid container columns={{ xs: 12 }} spacing={1}>
-            {seatLeft.map((seat) => (
-              <Grid item xs={6} key={Math.random()}>
-                <BootstrapTooltip
-                  TransitionComponent={Zoom}
-                  title={seat}
-                  arrow
-                  placement="top"
-                >
-                  <Checkbox
-                    {...label}
-                    icon={<ChairOutlinedIcon sx={{ color: "#999" }} />}
-                    checkedIcon={<ChairIcon />}
-                  />
-                </BootstrapTooltip>
+          <Stack direction={"row"} spacing={5}>
+            <Box>
+              <Grid container columns={{ xs: 12 }} spacing={1}>
+                {eachSeat?.seats?.slice(0, 10).map((seat) => (
+                  <Grid item xs={6} key={Math.random()}>
+                    <BootstrapTooltip
+                      TransitionComponent={Zoom}
+                      title={seat.seatNo}
+                      arrow
+                      placement="top"
+                    >
+                      <Checkbox
+                        {...label}
+                        icon={<ChairOutlinedIcon sx={{ color: "#999" }} />}
+                        checkedIcon={<ChairIcon />}
+                      />
+                    </BootstrapTooltip>
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-        </Box>
-        <Box>
-          <Grid container columns={{ xs: 12 }} spacing={1}>
-            {seatRight.map((seat) => (
-              <Grid item xs={6} key={Math.random()}>
-                <BootstrapTooltip
-                  TransitionComponent={Zoom}
-                  title={seat}
-                  arrow
-                  placement="top"
-                >
-                  <Checkbox
-                    {...label}
-                    icon={<ChairOutlinedIcon sx={{ color: "#999" }} />}
-                    checkedIcon={<ChairIcon />}
-                  />
-                </BootstrapTooltip>
+            </Box>
+            <Box>
+              <Grid container columns={{ xs: 12 }} spacing={1}>
+                {eachSeat?.seats?.slice(0, 10).map((seat) => (
+                  <Grid item xs={6} key={Math.random()}>
+                    <BootstrapTooltip
+                      TransitionComponent={Zoom}
+                      title={seat.seatNo}
+                      arrow
+                      placement="top"
+                    >
+                      <Checkbox
+                        {...label}
+                        icon={<ChairOutlinedIcon sx={{ color: "#999" }} />}
+                        checkedIcon={<ChairIcon />}
+                      />
+                    </BootstrapTooltip>
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Stack>
-    </Stack>
+            </Box>
+          </Stack>
+        </Stack>
+      ))}
+    </Box>
   );
 };
 
