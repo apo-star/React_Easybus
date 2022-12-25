@@ -1,6 +1,7 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import FAQ from "./FAQ";
 
 const About = () => {
   return (
@@ -126,6 +127,7 @@ const About = () => {
           </Grid>
         </Grid>
       </Container>
+      <FAQ />
     </>
   );
 };
