@@ -23,14 +23,13 @@ const offerDealsSchema = new Schema({
         required:[true,"From is required"],
     },
     price:{
-        type:Number,
+        type:String,
         required:[true,"Price is required"]
     },
     picture:{
         type:String,
         required:[true,"Picture is required"]
     }
-    
 },
 {timestamps:true}
 )
