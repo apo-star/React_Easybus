@@ -6,7 +6,7 @@ import "./mybookings.css"
 
 const MyBookings = () => {
   return (
-    <Container sx={{marginTop:"110px",marginBottom:"10px"}}>
+    <Container sx={{marginTop:"110px",marginBottom:"20px"}}>
       <table>
         <caption>My Booking</caption>
         <thead>
