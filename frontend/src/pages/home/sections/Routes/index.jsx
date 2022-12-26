@@ -10,7 +10,7 @@ const categories = ["ac", "non-ac"];
 const routes = [
   {
     image: "/khulna.jpg",
-    categories: ["ac"],
+    categories: ["non-ac"],
     startPoint: "Dhaka",
     destPoint: "Khulna",
     fair: {
@@ -43,7 +43,7 @@ const routes = [
   },
   {
     image: "/dhaka.jpg",
-    categories: ["non-ac"],
+    categories: ["ac"],
     startPoint: "Cumilla",
     destPoint: "Dhaka",
     fair: {
@@ -54,7 +54,7 @@ const routes = [
   },
   {
     image: "https://i.ibb.co/31NmXsC/barisal.jpg",
-    categories: ["ac"],
+    categories: ["non-ac"],
     startPoint: "Dhaka",
     destPoint: "Rajshahi",
     fair: {
@@ -87,17 +87,16 @@ const routes = [
   },
   {
     image: "https://i.ibb.co/1J2hqnr/chittagong.jpg",
-    categories: ["ac"],
+    categories: ["non-ac"],
     startPoint: "Dhaka",
     destPoint: "Chittagong",
     fair: {
-      label: "Business Class",
+      label: "Economy from",
       currencySign: "৳",
-      amount: "2100",
+      amount: "900",
     },
   },
 ];
-
 
 const Routes = () => {
   const [selectedCategories, setSelectedCategories] = useState(categories);
@@ -111,14 +110,14 @@ const Routes = () => {
 
   return (
     <Container maxWidth="lg" sx={{ my: 10 }}>
-       <Box sx={{textAlign:"center"}}>
-          <Typography variant="h6" fontSize={16} color={"#FFA903"}>
+      <Box sx={{ textAlign: "center" }}>
+        <Typography variant="h6" fontSize={16} color={"#FFA903"}>
           PACKAGE
-          </Typography>
-          <Typography variant="h4" fontWeight={600} marginBottom={4}>
+        </Typography>
+        <Typography variant="h4" fontWeight={600} marginBottom={4}>
           Your Great Destination
-          </Typography>
-        </Box>
+        </Typography>
+      </Box>
       <Filter
         categories={categories}
         selectedCategories={selectedCategories}
