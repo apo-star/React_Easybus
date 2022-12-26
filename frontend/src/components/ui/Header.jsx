@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -10,7 +10,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -19,6 +18,8 @@ import AuthModal from "./modals/AuthModal";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useEffect } from "react";
 import Auth from "../../pages/auth/Auth";
+import { AuthContext } from "../../context/AuthProvider";
+import { Avatar, Menu, MenuItem, Stack } from "@mui/material";
 
 const drawerWidth = 240;
 const navItems = [
@@ -97,7 +98,23 @@ function Header(props) {
   const handleClickOpen = () => {
     setOpen(true);
   };
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const { user, userSignOut } = useContext(AuthContext);
 
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
   return (
     <Box sx={{ position: "absolute", left: "0", top: "0" }}>
       <Box sx={{ display: "flex" }}>
@@ -151,13 +168,48 @@ function Header(props) {
                 </Button>
               ))}
 
-              <Button
-                variant="contained"
-                onClick={handleClickOpen}
-                sx={{ fontWeight: 600 }}
-              >
-                Sign In
-              </Button>
+              {!user?.uid ? (
+                <Button
+                  variant="contained"
+                  onClick={handleClickOpen}
+                  sx={{ fontWeight: 600 }}
+                >
+                  Sign In
+                </Button>
+              ) : (
+                <>
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      src={user.photoURL ? user.photoURL : "/broken-image.jpg"}
+                    />
+                  </IconButton>
+                  <Menu
+                    sx={{ mt: "45px" }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography
+                        textAlign="center"
+                        onClick={() => userSignOut()}
+                      >
+                        Log out
+                      </Typography>
+                    </MenuItem>
+                  </Menu>
+                </>
+              )}
             </Box>
           </Toolbar>
         </AppBar>
