@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -7,14 +7,14 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useForm } from "react-hook-form";
-import GoogleIcon from "@mui/icons-material/Google";
-import { Stack } from "@mui/system";
-import FacebookIcon from "@mui/icons-material/Facebook";
 import { Chip, Divider } from "@mui/material";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../context/AuthProvider";
+import SocialLogin from "./socialLogin/socialLogin";
 
 const Auth = ({ setOpen }) => {
   const [isLogin, setIsLogin] = useState(true);
+  const { userLogin, createUser, userProfileUpdate } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
@@ -22,20 +22,33 @@ const Auth = ({ setOpen }) => {
     reset,
   } = useForm();
   const onSubmit = (data) => {
-    const { name, mail, password, photoURL } = data;
-    console.log(data);
-    if (isLogin) {
-      setOpen(false);
-      toast.success("Login Successful");
-    } else {
-      setOpen(false);
-      const toastId = toast.loading("Account Creating...");
-      setTimeout(function () {
-        toast.success("Account Successfully Created", {
-          id: toastId,
+    const { name, mail, password } = data;
+    const userProfile = { displayName: name };
+    // creating user
+    if (!isLogin) {
+      createUser(mail, password)
+        .then((res) => {
+          userProfileUpdate(userProfile);
+          toast.success("Account Successfully Created");
+          setOpen(false);
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          toast.error(error.code.split("/")[1].split("-").join(" "));
         });
-      }, 2000);
+    } else {
+      // login user
+      userLogin(mail, password)
+        .then((res) => {
+          toast.success("Login Successfully");
+          setOpen(false);
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          toast.error(error.code.split("/")[1].split("-").join(" "));
+        });
     }
+    reset();
   };
 
   return (
@@ -130,7 +143,6 @@ const Auth = ({ setOpen }) => {
                 {...register("password", {
                   required: "Password is required",
                   validate: {
-                    positiveNumber: (value) => /[0-9]/g.test(value) === true,
                     graterThanSeven: (value) => value.length >= 6,
                   },
                 })}
@@ -184,53 +196,8 @@ const Auth = ({ setOpen }) => {
               sx={{ backgroundColor: "transparent", border: "1px solid #ccc" }}
             />
           </Divider>
-          <Stack direction="row" spacing={2} marginY={2}>
-            <Button
-              variant="contained"
-              startIcon={<GoogleIcon />}
-              fullWidth
-              sx={{
-                fontWeight: "bold",
-                backgroundColor: "#34A853",
-                color: "#fff",
-                borderRadius: "7px",
-                textTransform: "inherit",
-                boxShadow: "none",
-                border: "1px solid transparent",
-                ":hover": {
-                  backgroundColor: "transparent",
-                  color: "#34A853",
-                  boxShadow: "none",
-                  border: "1px solid #34A853",
-                },
-              }}
-            >
-              Google
-            </Button>
-            <Button
-              variant="contained"
-              startIcon={<FacebookIcon />}
-              fullWidth
-              sx={{
-                fontWeight: "bold",
-                backgroundColor: "#0165E1",
-                color: "#fff",
-                borderRadius: "7px",
-                textTransform: "inherit",
-                boxShadow: "none",
-                border: "1px solid transparent",
-                ":hover": {
-                  backgroundColor: "transparent",
-                  color: "#0165E1",
-                  boxShadow: "none",
-                  border: "1px solid #0165E1",
-                },
-              }}
-            >
-              Facebook
-            </Button>
-          </Stack>
 
+          <SocialLogin setOpen={setOpen} />
           <Grid container justifyContent={"center"} alignItems={"center"}>
             <Grid item>
               {!isLogin ? (
