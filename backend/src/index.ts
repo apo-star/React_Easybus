@@ -3,7 +3,6 @@ import cors from "cors";
 import user from "./routes/user";
 import dbConnect from "./config/dbConnect";
 import location from "./routes/location";
-import offerDeals from "./routes/offerDeals";
 
 const app = express();
 app.use(express.json());
