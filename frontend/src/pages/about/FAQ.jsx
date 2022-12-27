@@ -61,7 +61,7 @@ const FAQ = () => {
                 aria-controls={`faq${index}-content`}
                 id={`faq${index}`}
               >
-                <Typography>{question}</Typography>
+                <Typography sx={{ fontWeight: "bold" }}>{question}</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>{answer}</Typography>
