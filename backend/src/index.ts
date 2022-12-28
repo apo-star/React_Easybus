@@ -19,7 +19,6 @@ app.use("/api/v1", location);
 app.use("/api/v1", bus);
 app.use("/api/v1", offerDeals);
 app.use("/api/v1", busRoute);
-
 app.use("/api/v1", stripe);
 
 dbConnect()

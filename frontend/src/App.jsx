@@ -1,6 +1,8 @@
 import { RouterProvider, useLocation } from "react-router-dom";
 import router from "./routes/router";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 const theme = createTheme({
   palette: {
@@ -18,11 +20,14 @@ const theme = createTheme({
   },
 });
 
+const stripePromise = loadStripe(`${import.meta.env.VITE_stripe_pk}`);
 function App() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <RouterProvider router={router} />
+        <Elements stripe={stripePromise}>
+          <RouterProvider router={router} />
+        </Elements>
       </ThemeProvider>
     </div>
   );
