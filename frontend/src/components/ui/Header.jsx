@@ -14,12 +14,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link as RouterLink, useLocation } from "react-router-dom";
-import AuthModal from "./modals/AuthModal";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useEffect } from "react";
 import Auth from "../../pages/auth/Auth";
 import { AuthContext } from "../../context/AuthProvider";
 import { Avatar, Menu, MenuItem, Stack } from "@mui/material";
+import CustomModal from "./modals/CustomModal";
 
 const drawerWidth = 240;
 const navItems = [
@@ -233,9 +233,9 @@ function Header(props) {
             {drawer}
           </Drawer>
         </Box>
-        <AuthModal open={open} setOpen={setOpen}>
+        <CustomModal open={open} setOpen={setOpen}>
           <Auth setOpen={setOpen} />
-        </AuthModal>
+        </CustomModal>
       </Box>
     </Box>
   );
