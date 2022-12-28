@@ -1,105 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Skeleton } from "@mui/material";
+
 import RouteCard from "./RouteCard";
 import Filter from "./Filter";
+import axios from "axios";
 
 const categories = ["ac", "non-ac"];
 
-const routes = [
-  {
-    image: "/khulna.jpg",
-    categories: ["non-ac"],
-    startPoint: "Dhaka",
-    destPoint: "Khulna",
-    fair: {
-      label: "Economy from",
-      currencySign: "৳",
-      amount: "1000",
-    },
-  },
-  {
-    image: "/cumilla.jpg",
-    categories: ["ac"],
-    startPoint: "Dhaka",
-    destPoint: "Cumilla",
-    fair: {
-      label: "Business Class",
-      currencySign: "৳",
-      amount: "2100",
-    },
-  },
-  {
-    image: "/rajshahi.jpg",
-    categories: ["non-ac"],
-    startPoint: "Dhaka",
-    destPoint: "Rajshahi",
-    fair: {
-      label: "Economy from",
-      currencySign: "৳",
-      amount: "1000",
-    },
-  },
-  {
-    image: "/dhaka.jpg",
-    categories: ["ac"],
-    startPoint: "Cumilla",
-    destPoint: "Dhaka",
-    fair: {
-      label: "Business Class",
-      currencySign: "৳",
-      amount: "1800",
-    },
-  },
-  {
-    image: "https://i.ibb.co/31NmXsC/barisal.jpg",
-    categories: ["non-ac"],
-    startPoint: "Dhaka",
-    destPoint: "Rajshahi",
-    fair: {
-      label: "Economy from",
-      currencySign: "৳",
-      amount: "1000",
-    },
-  },
-  {
-    image: "https://i.ibb.co/19DsrjZ/coxbazar.jpg",
-    categories: ["ac"],
-    startPoint: "Dhaka",
-    destPoint: "Cox's Bazar",
-    fair: {
-      label: "Business Class",
-      currencySign: "৳",
-      amount: "2100",
-    },
-  },
-  {
-    image: "https://i.ibb.co/CV67Kpp/sylhet.jpg",
-    categories: ["ac"],
-    startPoint: "Dhaka",
-    destPoint: "Sylhet",
-    fair: {
-      label: "Business Class",
-      currencySign: "৳",
-      amount: "2100",
-    },
-  },
-  {
-    image: "https://i.ibb.co/1J2hqnr/chittagong.jpg",
-    categories: ["non-ac"],
-    startPoint: "Dhaka",
-    destPoint: "Chittagong",
-    fair: {
-      label: "Economy from",
-      currencySign: "৳",
-      amount: "900",
-    },
-  },
-];
-
 const Routes = () => {
   const [selectedCategories, setSelectedCategories] = useState(categories);
+  const [routes, setRoutes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const fetchBusRoutes = async () => {
+      setLoading(true);
+      try {
+        const { data } = await axios.get(
+          "http://localhost:5000/api/v1/bus-routes"
+        );
+        setRoutes(data.data);
+      } catch (err) {
+        console.log(err);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBusRoutes();
+  }, []);
 
   const filterFunction = (route) => {
     if (selectedCategories.length === 0) {
@@ -125,13 +58,44 @@ const Routes = () => {
         sx={{ mx: "auto" }}
       />
 
-      <Grid container spacing={3} justifyContent="center">
-        {routes.filter(filterFunction).map((route, index) => (
-          <Grid key={index} item sm={12} md={6} lg={3}>
-            <RouteCard route={route} />
-          </Grid>
-        ))}
-      </Grid>
+      {loading && (
+        <Grid container spacing={3} justifyContent="center">
+          {new Array(4).fill(0).map((route, index) => (
+            <Grid key={index} item sm={12} md={6} lg={3}>
+              <Skeleton variant="rectangular" height={200} />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton variant="text" height={32} sx={{ my: "16px" }} />
+              <Skeleton
+                variant="rectangular"
+                height={40}
+                sx={{
+                  width: "80%",
+                  height: "200px",
+                  borderRadius: "15px",
+                  mx: "auto",
+                }}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+
+      {!loading && error && (
+        <Typography sx={{ color: "red", textAlign: "center" }} variant="h3">
+          Please, Reload the page!
+        </Typography>
+      )}
+
+      {!loading && !error && Array.isArray(routes) && routes.length > 0 && (
+        <Grid container spacing={3} justifyContent="center">
+          {routes.filter(filterFunction).map((route, index) => (
+            <Grid key={index} item sm={12} md={6} lg={3}>
+              <RouteCard route={route} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </Container>
   );
 };

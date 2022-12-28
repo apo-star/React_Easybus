@@ -44,7 +44,7 @@ const FAQ = () => {
           ].map(({ question, answer }, index) => (
             <Accordion
               disableGutters
-              key={question}
+              key={index}
               sx={{
                 my: "16px",
                 boxShadow: "0 0",
