@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import Booking from "../models/Booking";
-import Bus from "../models/Bus";
 
 export const CreateNewBooking = async (req: Request, res: Response) => {
+  const busId = req.body.busId;
+  const seatId = req.body.seatId;
   try {
     const newBooking = await Booking.create(req.body);
     res.status(200).json({ success: true, data: newBooking });

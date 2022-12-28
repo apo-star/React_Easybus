@@ -40,11 +40,16 @@ const busSchema = new Schema(
           type: String,
           required: [true, "SeatNo is required"],
         },
-        isBooked: {
-          type: Boolean,
-          required: [true, "Required"],
-          default: false,
-        },
+        seatAvailability: [
+          {
+            bookingDate: {
+              type: String,
+            },
+            isBooked: {
+              type: Boolean,
+            },
+          },
+        ],
       },
     ],
   },
