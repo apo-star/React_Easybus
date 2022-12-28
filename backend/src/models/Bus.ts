@@ -29,6 +29,7 @@ const busSchema = new Schema(
     totalSeats: {
       type: Number,
       required: [true, "Total Seat is required"],
+      default: 24,
     },
     category: {
       type: String,
