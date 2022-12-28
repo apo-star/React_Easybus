@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container } from '@mui/material';
 
 import "./mybookings.css"
 
 
 const MyBookings = () => {
+  const [bookings, setBookings] = useState([])
+  useEffect(() => {
+    const url = "http://localhost:5000/api/v1/all-bookings";
+    fetch(url)
+      .then((response) => response?.json())
+      .then(data => setBookings(data))
+  }, [])
+  console.log(bookings)
   return (
-    <Container sx={{marginTop:"110px",marginBottom:"20px"}}>
+    <Container sx={{ marginTop: "110px", marginBottom: "20px" }}>
       <table>
         <caption>My Booking</caption>
         <thead>
@@ -20,14 +28,18 @@ const MyBookings = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td data-label="Departure">10 AM</td>
-            <td data-label="Arrival">12 PM</td>
-            <td data-label="Date">31/12/2022</td>
-            <td data-label="Fare">$120</td>
-            <td data-label="Status">OK</td>
-            <td data-label="Cancel">Cancel</td>
-          </tr>
+          {
+            bookings?.data?.map(({_id,departureLocation,date,fare,arrivalLocation,status}) => (
+              <tr key={_id}>
+                <td data-label="Departure">{departureLocation}</td>
+                <td data-label="Arrival">{arrivalLocation}</td>
+                <td data-label="Date">{date}</td>
+                <td data-label="Fare">{fare}</td>
+                <td data-label="Status">{status}</td>
+                <td data-label="Cancel">Cancel</td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </Container>
