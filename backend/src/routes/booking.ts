@@ -1,8 +1,11 @@
 import express from "express";
-import { CreateNewBus, GetAllBuses } from "../controllers/BusController";
+import {
+  CreateNewBooking,
+  GetAllBookings,
+} from "../controllers/BookingController";
 
 const router = express.Router();
-router.get("/all-bookings", GetAllBuses);
-router.post("/booking/new", CreateNewBus);
+router.get("/all-bookings", GetAllBookings);
+router.post("/booking/new", CreateNewBooking);
 
 export default router;
