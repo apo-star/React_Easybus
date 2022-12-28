@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
@@ -18,8 +18,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { DataContext } from "../../context/DataProvider";
+import { AuthContext } from "../../context/AuthProvider";
 
 const TicketPayment = () => {
+  const { bookedseats, bookedBus, journeyDate } = useContext(DataContext);
+  const { user } = useContext(AuthContext);
   const ticketPrice = 100;
 
   const {
@@ -83,26 +87,25 @@ const TicketPayment = () => {
     console.log(paymentIntent);
     if (paymentIntent.status === "succeeded") {
       setTransectionId(paymentIntent?.id);
-      toast.success("Payment Successful");
+
       // send payment details on database
-      // const paymentInfo = {
-      //   email,
-      //   ticketPrice,
-      //   ticketId: '123df',
-      //   txnId: paymentIntent?.id,
-      // };
-      // const { data } = await axios.post(
-      //   "http://localhost:5000/payments",
-      //   paymentInfo
-      // );
-      // if (data.acknowledged) {
-      //   toast({
-      //     title: `${"Payment Successful"}`,
-      //     position: "top",
-      //     isClosable: true,
-      //     status: "success",
-      //   });
-      // }
+      const paymentInfo = {
+        userName: user.name,
+        userEmail: user.email,
+        fare: bookedBus.fare,
+        departureLocation: bookedBus.departureLocation,
+        arrivalLocation: bookedBus.arrivalLocation,
+        date: journeyDate,
+        seatId: bookedseats,
+        transectionId: paymentIntent?.id,
+      };
+      const { data } = await axios.post(
+        "http://localhost:5000/api/v1/booking/new",
+        paymentInfo
+      );
+      if (data.acknowledged) {
+        toast.success("Payment Successful");
+      }
     }
     reset();
   };
@@ -144,6 +147,7 @@ const TicketPayment = () => {
                     autoFocus
                     {...register("routename", { required: true })}
                     aria-invalid={errors.name ? "true" : "false"}
+                    defaultValue={`${bookedBus.arrivalLocation} - ${bookedBus.departureLocation}`}
                   />
                 </Box>
                 <Box>
@@ -158,6 +162,7 @@ const TicketPayment = () => {
                         <InputAdornment position="start">$</InputAdornment>
                       }
                       label="Amount"
+                      defaultValue={bookedBus.fare}
                     />
                   </FormControl>
                 </Box>
@@ -173,6 +178,7 @@ const TicketPayment = () => {
                       autoFocus
                       {...register("name", { required: true })}
                       aria-invalid={errors.name ? "true" : "false"}
+                      defaultValue={user?.displayName}
                     />
                   </Stack>
                 </Box>
@@ -198,6 +204,7 @@ const TicketPayment = () => {
                       },
                     })}
                     aria-invalid={errors.mail ? "true" : "false"}
+                    defaultValue={user?.email}
                   />
                 </Box>
                 <FormControl>

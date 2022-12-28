@@ -11,6 +11,7 @@ import Login from "../pages/login/Login";
 import MyBookings from "../pages/myBookings/MyBookings";
 import Register from "../pages/register/Register";
 import SearchBus from "../pages/searchBus/SearchBus";
+import TicketPayment from "../pages/ticketPayment/TicketPayment";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/my-bookings",
         element: <MyBookings />,
+      },
+      {
+        path: "/payment",
+        element: <TicketPayment />,
       },
     ],
   },

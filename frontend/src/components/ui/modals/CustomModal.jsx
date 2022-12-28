@@ -8,7 +8,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const AuthModal = ({ open, setOpen, children }) => {
+const CustomModal = ({ open, setOpen, children }) => {
   const handleClose = () => {
     setOpen(false);
   };
@@ -31,4 +31,4 @@ const AuthModal = ({ open, setOpen, children }) => {
   );
 };
 
-export default AuthModal;
+export default CustomModal;
