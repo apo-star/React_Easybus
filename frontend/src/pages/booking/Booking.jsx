@@ -3,14 +3,15 @@ import * as React from "react";
 import { Box, Typography } from "@mui/material";
 import SingleBooking from "./SingleBooking";
 import { DataContext } from "../../context/DataProvider";
+import Spinner from "../../components/Spinner";
 
 const Booking = () => {
   const { data, isLoading } = useGetAllSeatQuery();
   const { journeyDate, fromToLocation } = React.useContext(DataContext);
   const bookings = data?.data;
   
-  if (isLoading) {
-    return <Typography>Loading...</Typography>;
+  if(isLoading) {
+    return <Spinner></Spinner>
   }
   const filteredBooking = bookings.filter(
     (booking) =>
@@ -25,7 +26,7 @@ const Booking = () => {
       sx={{
         py: "30px",
         backgroundColor: "#FBF9F2",
-        height: "80vh",
+        height: "auto",
         mt: "80px",
       }}
     >
