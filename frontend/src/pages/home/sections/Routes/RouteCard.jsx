@@ -24,7 +24,6 @@ const RouteCard = ({ route: { image, startPoint, destPoint, fair } }) => {
             boxShadow: "0px 0px 20px 5px #0000002e",
           },
         }}
-        marginX={"auto"}
       >
         <CardMedia
           component="img"

@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
-import axios from "axios";
+import { sendUserToDB } from "../userToDB";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Stack } from "@mui/system";
 
@@ -17,7 +16,9 @@ const SocialLogin = ({ setOpen }) => {
   // google sign in
   const handleGoogleSignIn = () => {
     userGoogleSignIn()
-      .then((res) => {
+      .then(async (res) => {
+        await sendUserToDB(res.user);
+        console.info("User Data sent to DB");
         setOpen(false);
         navigate("/");
       })
@@ -29,7 +30,8 @@ const SocialLogin = ({ setOpen }) => {
   // facebook sign in
   const handleFacebookSignIn = () => {
     userFacebookSignIn()
-      .then((res) => {
+      .then(async (res) => {
+        await sendUserToDB(res.user);
         setOpen(false);
         navigate("/");
       })

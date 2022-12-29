@@ -11,6 +11,7 @@ import { Chip, Divider } from "@mui/material";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthProvider";
 import SocialLogin from "./socialLogin/socialLogin";
+import { sendUserToDB } from "./userToDB";
 
 const Auth = ({ setOpen }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -39,8 +40,9 @@ const Auth = ({ setOpen }) => {
     } else {
       // login user
       userLogin(mail, password)
-        .then((res) => {
+        .then(async (res) => {
           toast.success("Login Successfully");
+          await sendUserToDB(res.user);
           setOpen(false);
           navigate(from, { replace: true });
         })
@@ -62,7 +64,7 @@ const Auth = ({ setOpen }) => {
         }}
       >
         <Typography component="h1" variant="h5">
-          {!isLogin ? "Create Account" : "Good to see you again"}
+          {!isLogin ? "Create Account" : "Good to See You Again"}
         </Typography>
         <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -222,8 +224,9 @@ const Auth = ({ setOpen }) => {
                 </Typography>
               ) : (
                 <Typography fontSize={14}>
-                  You don't have any Easy Bus account?{" "}
+                  You don't have any EasyBus account?{" "}
                   <Typography
+                    component="span"
                     display={"inline-block"}
                     color={"secondary.main"}
                     sx={{

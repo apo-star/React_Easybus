@@ -90,7 +90,7 @@ const Routes = () => {
       {!loading && !error && Array.isArray(routes) && routes.length > 0 && (
         <Grid container spacing={3} justifyContent="center">
           {routes.filter(filterFunction).map((route, index) => (
-            <Grid key={index} item sm={12} md={6} lg={3}>
+            <Grid key={index} item sm={12} md={6} lg={3} sx={{ width: "100%" }}>
               <RouteCard route={route} />
             </Grid>
           ))}

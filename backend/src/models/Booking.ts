@@ -40,9 +40,9 @@ const bookingSchema = new Schema(
       type: String,
       required: [true, "Bus Id is Required"],
     },
-    seatId: {
+    seatNo: {
       type: String,
-      required: [true, "Seat Id is Required"],
+      required: [true, "Seat No is Required"],
     },
   },
   { timestamps: true }

@@ -1,13 +1,13 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Button, Chip } from '@mui/material';
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Button, Chip } from "@mui/material";
 
 function createData(name, email) {
   return { name, email };
@@ -18,7 +18,6 @@ const rows = [
   createData('John Doe', 'john@gmail.com'),
   createData('John Doe', 'john@gmail.com'),
 ];
-
 
 const Dashboard = () => {
 
