@@ -17,13 +17,15 @@ const PrivateRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext)
     const loaction = useLocation()
 
-    if(loading){
+    if (loading) {
         return <Spinner />
     }
-    if(user){
+    if (user) {
         return children
-    }else{
-        return <Navigate to="/login" state={{from:loaction}}  replace/>
+    } else {
+        return <Navigate to="/login" state={{ from: loaction }} replace />
     }
 
 }
+
+export default PrivateRoute;
