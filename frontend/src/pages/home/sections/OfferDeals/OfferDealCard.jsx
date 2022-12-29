@@ -5,8 +5,21 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
+import { useContext } from "react";
+import { DataContext } from "../../../../context/DataProvider";
+import { useNavigate } from "react-router-dom";
 const OfferDealCard = ({ deal }) => {
   const { _id, picture, place, from, price, date } = deal;
+  const {fromToLocation, setFromToLocation} = useContext(DataContext)
+  const navigate = useNavigate()
+
+  const departure = place.split(" ")[0]
+  const arrival = place.split(" ")[2]
+
+  const offerDealSearch=()=>{
+    setFromToLocation({from: departure, to: arrival});
+    navigate('/booking');
+  }
   return (
     <Box
       sx={{
@@ -132,6 +145,7 @@ const OfferDealCard = ({ deal }) => {
               }}
             >
               <Button
+              onClick={offerDealSearch}
                 variant="contained"
                 sx={{
                   color: "#622243",

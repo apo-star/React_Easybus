@@ -16,6 +16,7 @@ const OfferDeals = () => {
   if (isLoading) {
     return <Spinner></Spinner>;
   }
+
   return (
     <Box>
       <Container sx={{ py: "30px", backgroundColor: "#FBF9F2" }}>
