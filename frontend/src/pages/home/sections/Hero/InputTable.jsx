@@ -1,123 +1,118 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { FormControl, Input, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import { useState } from 'react';
-
-
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import {
+  Box,
+  FormControl,
+  Grid,
+  Input,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
+import { useState } from "react";
 
 export default function BasicTable() {
-  const [age, setAge] = useState('');
+  const [age, setAge] = useState("");
   const districts = [
-  {
-    value:"Please Select Location",
-    label:"Please Select Location"
-  },
-  {
-    value: 'Dhaka',
-    label: 'Dhaka',
-  },
-  {
-    value: 'Chittagong',
-    label: 'Chittagong',
-  },
-  {
-    value: 'Sylhet',
-    label: 'Sylhet',
-  },
-  {
-    value: 'Rajshahi',
-    label: 'Rajshahi',
-  },
-  {
-    value: 'Khulna',
-    label: 'Khulna',
-  },
-  {
-    value: 'Barishal',
-    label: 'Barishal',
-  },
-];
+    {
+      value: "Please Select Location",
+      label: "Please Select Location",
+    },
+    {
+      value: "Dhaka",
+      label: "Dhaka",
+    },
+    {
+      value: "Chittagong",
+      label: "Chittagong",
+    },
+    {
+      value: "Sylhet",
+      label: "Sylhet",
+    },
+    {
+      value: "Rajshahi",
+      label: "Rajshahi",
+    },
+    {
+      value: "Khulna",
+      label: "Khulna",
+    },
+    {
+      value: "Barishal",
+      label: "Barishal",
+    },
+  ];
   const [toLocation, setToLocation] = useState(districts);
-  const handleSelect = (selectedvalue) =>{
-    const remaining = districts.filter(district => district.value !== selectedvalue);
+  const handleSelect = (selectedvalue) => {
+    const remaining = districts.filter(
+      (district) => district.value !== selectedvalue
+    );
     setToLocation(remaining);
-  }
+  };
   const handleChange = (event) => {
     setAge(event.target.value);
   };
 
   return (
-    <TableContainer component={Paper} sx={{boxShadow:"0px 0px 0px 12px #0000000d" }}>
-      <Table sx={{ minWidth: 750}} aria-label="simple table">
-        <TableBody>
-            <TableRow
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell align="right" sx={{width:'20%'}}>
-                <TextField
+    <form>
+      <Box sx={{ width: "100%" }}>
+        <Grid
+          container
+          rowSpacing={1}
+          columnSpacing={{ xs: 1, sm: 2, lg: 4, md: 3 }}
+        >
+          <Grid item xs={12} lg={4} md={12}>
+            <TextField
               id="from"
               select
               label="From"
               defaultValue="Please Select Location"
-              variant="standard" 
+              variant="standard"
+              sx={{ width: "100%" }}
               onChange={(e) => handleSelect(e.target.value)}
             >
-          {districts.map((option,i) => (
-            <MenuItem key={i} value={option.value} >
-              {option.label}
-            </MenuItem>
-          ))}
-                </TextField>
-              </TableCell>
-              <TableCell align="right" sx={{width:'20%'}}>
-                <TextField
+              {districts.map((option, i) => (
+                <MenuItem key={i} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Grid>
+          <Grid item xs={12} lg={4} md={12}>
+            <TextField
               id="to"
               select
               label="To"
+              sx={{ width: "100%" }}
               defaultValue="Please Select Location"
-              variant="standard" 
+              variant="standard"
             >
-          {toLocation.map((option,i) => (
-            <MenuItem key={i} value={option.value} >
-              {option.label}
-            </MenuItem>
-          ))}
-                </TextField>
-              </TableCell>
-              <TableCell align="right" sx={{width:'20%'}}>
-                <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
-                <Select
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  value={age}
-                  onChange={handleChange}
-                  label="Age"
-                  variant="standard"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={'Adventure'}>Adventure</MenuItem>
-                  <MenuItem value={'Family Tour'}>Family Tour</MenuItem>
-                </Select>
-              </FormControl>
-              </TableCell>
-              <TableCell align="right" sx={{width:'20%'}}>
-                <TextField id="filled-basic" label="Passengers"variant="standard"/>
-              </TableCell>
-              <TableCell align="right" sx={{width:'20%'}}>
-                <Input id="filled-basic" label="Filled" variant="filled" type='date' />
-              </TableCell>
-            </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+              {toLocation.map((option, i) => (
+                <MenuItem key={i} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Grid>
+          <Grid item xs={12} md={12} lg={4} sx={{display: 'flex', alignItems:'end'}}>
+            <Input
+              id="filled-basic"
+              label="Filled"
+              variant="filled"
+              sx={{ width: "100%" }}
+              type="date"
+            />
+          </Grid>
+        </Grid>
+      </Box>
+    </form>
   );
 }

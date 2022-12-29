@@ -4,7 +4,7 @@ const busSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, "Bus name is required"],
+      // required: [true, "Bus name is required"],
     },
     fare: {
       type: Number,
@@ -20,11 +20,11 @@ const busSchema = new Schema(
     },
     departureTime: {
       type: String,
-      required: [true, "Departure Time is required"],
+      // required: [true, "Departure Time is required"],
     },
     arrivalTime: {
       type: String,
-      required: [true, "Departure Time is required"],
+      // required: [true, "Departure Time is required"],
     },
     totalSeats: {
       type: Number,

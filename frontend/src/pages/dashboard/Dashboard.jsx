@@ -9,42 +9,36 @@ import Paper from '@mui/material/Paper';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button, Chip } from '@mui/material';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(name, email) {
+  return { name, email };
 }
 
 const rows = [
-  createData('John Doe', 'john@gmail.com', 'Chittagong'),
-  createData('John Doe', 'john@gmail.com', 'Chittagong'),
-  createData('John Doe', 'john@gmail.com', 'Chittagong'),
+  createData('John Doe', 'john@gmail.com'),
+  createData('John Doe', 'john@gmail.com'),
+  createData('John Doe', 'john@gmail.com'),
 ];
 
 
 const Dashboard = () => {
 
   return <div>
-     <TableContainer component={Paper} sx={{ width: '80%', margin:'auto', position: 'absolute', top: 120 }}>
-      <Table sx={{ width: '100%' }} aria-label="caption table">
+     <TableContainer  sx={{  width: '80%', position: 'absolute', top: 120 }}>
+      <Table sx={{ width: '60%', margin:'auto' }} aria-label="caption table">
         <TableHead>
           <TableRow sx={{backgroundColor: '#212529', }}>
             <TableCell align="center" sx={{color: 'white'}}>User Name</TableCell>
             <TableCell align="center" sx={{color: 'white'}}>User Email</TableCell>
-            <TableCell align="center" sx={{color: 'white'}}>Location</TableCell>
-            <TableCell align="center" sx={{color: 'white'}}>Update</TableCell>
             <TableCell align="center" sx={{color: 'white'}}>Remove</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
+          {rows.map((row,i) => (
+            <TableRow key={i}>
               <TableCell component="th" scope="row" align="center">
                 {row.name}
               </TableCell>
-              <TableCell align="center">{row.calories}</TableCell>
-              <TableCell align="center">{row.fat}</TableCell>
-              <TableCell align="center">
-                <Button ><Chip label="Update" color="primary" sx={{color: 'white'}} /></Button>
-              </TableCell>
+              <TableCell align="center">{row.email}</TableCell>
               <TableCell align="center">
                 <Button sx={{color:'red'}}>
                   <DeleteIcon></DeleteIcon>

@@ -15,6 +15,9 @@ import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useContext } from "react";
+import { DataContext } from "../../context/DataProvider";
+import { Link, useNavigate } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -56,9 +59,15 @@ const districts = [
 export default function SearchBus() {
   const [toLocation, setToLocation] = useState(districts);
   const { register, handleSubmit } = useForm();
+  const { setJourneyDate, setFromToLocation, fromToLocation } = useContext(DataContext);
+  const navigate = useNavigate();
   const handleSearch = (data) => {
     console.log(data);
+    setJourneyDate(data.date);
+    setFromToLocation({from: data.from, to: data.to});
+    navigate('/booking');
   };
+  console.log(fromToLocation);
   const handleSelect = (selectedvalue) => {
     const remaining = districts.filter(
       (district) => district.value !== selectedvalue
@@ -96,6 +105,7 @@ export default function SearchBus() {
                   label="From"
                   defaultValue="Please Select Location"
                   variant="standard"
+                  sx={{ width: "100%" }}
                   {...register("from", { required: true })}
                   onChange={(e) => handleSelect(e.target.value)}
                 >
@@ -111,6 +121,7 @@ export default function SearchBus() {
                   label="To"
                   defaultValue="Please Select Location"
                   variant="standard"
+                  sx={{ width: "100%" }}
                   {...register("to", { required: true })}
                 >
                   {toLocation.map((option, i) => (
@@ -137,6 +148,7 @@ export default function SearchBus() {
                 </FormControl>
                 <Box>
                   <Button
+                  
                     type="submit"
                     variant="contained"
                     endIcon={<SearchIcon />}
