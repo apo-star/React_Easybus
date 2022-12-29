@@ -25,7 +25,6 @@ const TicketPayment = () => {
   const { bookedseats, bookedBus, journeyDate } = useContext(DataContext);
   const { user } = useContext(AuthContext);
   const ticketPrice = 100;
-
   const {
     register,
     formState: { errors, isSubmitting },
@@ -43,9 +42,11 @@ const TicketPayment = () => {
   // payment confirm traxnId state
   const [transectionId, setTransectionId] = useState("");
 
-  const onSubmit = async (orderedItem) => {
+  const onSubmit = async (customer, e) => {
     // getting stripe card data
     if (!stripe || !elements) {
+      // Stripe.js has not loaded yet. Make sure to disable
+      // form submission until Stripe.js has loaded.
       return;
     }
 
@@ -71,43 +72,49 @@ const TicketPayment = () => {
       {
         payment_method: {
           card: card,
-          // billing_details: {
-          //   name: "demo",
-          //   email: "demo@gmail.com",
-          //   ticketId: "demooo123",
-          // },
+          billing_details: {
+            name: customer?.name,
+            email: customer?.email,
+            route: customer?.routeName,
+          },
         },
       }
     );
 
+    console.log(paymentIntent);
+
     if (confirmError) {
-      toast.error(confirmError);
+      console.log(confirmError);
       return;
     }
-    console.log(paymentIntent);
+
     if (paymentIntent.status === "succeeded") {
       setTransectionId(paymentIntent?.id);
-
-      // send payment details on database
+      // send order on database
       const paymentInfo = {
-        userName: user.name,
+        userName: user.displayName,
         userEmail: user.email,
         fare: bookedBus.fare,
         departureLocation: bookedBus.departureLocation,
         arrivalLocation: bookedBus.arrivalLocation,
         date: journeyDate,
-        seatId: bookedseats,
-        transectionId: paymentIntent?.id,
+        seatNo: bookedseats,
+        busId: bookedBus._id,
+        transactionId: paymentIntent?.id,
       };
-      const { data } = await axios.post(
-        "http://localhost:5000/api/v1/booking/new",
-        paymentInfo
-      );
-      if (data.acknowledged) {
-        toast.success("Payment Successful");
-      }
+      fetch("http://localhost:5000/api/v1/booking/new", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(paymentInfo),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          data.success &&
+            toast.success(`${customer.name}, Your Order Successfully Placed.`);
+        });
     }
-    reset();
   };
   // stripe payment intents
   useEffect(() => {
@@ -124,6 +131,7 @@ const TicketPayment = () => {
         setClientSecret(data.data);
       });
   }, [ticketPrice]);
+
   return (
     <div>
       <Box

@@ -30,14 +30,15 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
   },
 }));
 const SeatLayout = ({ booking, setOpen }) => {
-  const { setBookedSeats, bookedseats, setBookedBus } = useContext(DataContext);
+  const { setBookedSeats, bookedseats, setBookedBus, journeyDate } =
+    useContext(DataContext);
   const { seats } = booking;
   const getBookedSeat = (seat) => {
-    setBookedSeats(seat._id);
+    setBookedSeats(seat.seatNo);
     setBookedBus(booking);
     toast(seat.seatNo);
   };
-  console.log(booking);
+
   return (
     <Box>
       <Stack
@@ -78,7 +79,11 @@ const SeatLayout = ({ booking, setOpen }) => {
                       {...label}
                       icon={<ChairOutlinedIcon sx={{ color: "#999" }} />}
                       checkedIcon={<ChairIcon />}
-                      checked={bookedseats === seat._id || seat.isBooked}
+                      checked={seat.seatAvailability?.find(
+                        (item) =>
+                          item?.bookingDate === journeyDate ||
+                          bookedseats === seat?.seatNo
+                      )}
                     />
                   </BootstrapTooltip>
                 </Grid>
@@ -100,7 +105,10 @@ const SeatLayout = ({ booking, setOpen }) => {
                       {...label}
                       icon={<ChairOutlinedIcon sx={{ color: "#999" }} />}
                       checkedIcon={<ChairIcon />}
-                      checked={bookedseats === seat._id || seat.isBooked}
+                      checked={
+                        journeyDate === seat.seatAvailability[0]?.bookingDate ||
+                        bookedseats === seat?.seatNo
+                      }
                     />
                   </BootstrapTooltip>
                 </Grid>
