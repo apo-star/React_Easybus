@@ -16,7 +16,6 @@ const RouteCard = ({ route: { image, startPoint, destPoint, fair } }) => {
         sx={{
           width: "100%",
           height: "auto",
-          marginX: "auto",
           p: 1.5,
           pb: 2,
           boxShadow: "0 5px 10px 2px #0000002e",
