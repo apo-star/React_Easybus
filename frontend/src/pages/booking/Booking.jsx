@@ -8,16 +8,18 @@ const Booking = () => {
   const { data, isLoading } = useGetAllSeatQuery();
   const { journeyDate, fromToLocation } = React.useContext(DataContext);
   const bookings = data?.data;
-  const filteredBooking = bookings.filter(
-    (booking) =>
-      booking.departureLocation == fromToLocation.from ||
-      booking.arrivalLocation == fromToLocation.to);
-  console.log(bookings);
-  console.log(fromToLocation);
-  console.log(filteredBooking);
+  
   if (isLoading) {
     return <Typography>Loading...</Typography>;
   }
+  const filteredBooking = bookings.filter(
+    (booking) =>
+      booking.departureLocation === fromToLocation.from &&
+      booking.arrivalLocation === fromToLocation.to
+  );
+  console.log(bookings);
+  console.log(fromToLocation);
+  console.log(filteredBooking);
   return (
     <Box
       sx={{
@@ -27,7 +29,7 @@ const Booking = () => {
         mt: "80px",
       }}
     >
-      {bookings?.map((booking) => (
+      {filteredBooking?.map((booking) => (
         <SingleBooking key={booking._id} booking={booking}></SingleBooking>
       ))}
     </Box>
