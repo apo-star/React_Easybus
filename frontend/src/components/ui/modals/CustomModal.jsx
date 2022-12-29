@@ -21,11 +21,7 @@ const CustomModal = ({ open, setOpen, children }) => {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            {children}
-          </DialogContentText>
-        </DialogContent>
+        <DialogContent>{children}</DialogContent>
       </Dialog>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -15,10 +15,10 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { useEffect } from "react";
+
 import Auth from "../../pages/auth/Auth";
 import { AuthContext } from "../../context/AuthProvider";
-import { Avatar, Menu, MenuItem, Stack } from "@mui/material";
+import { Avatar, Menu, MenuItem } from "@mui/material";
 import CustomModal from "./modals/CustomModal";
 
 const drawerWidth = 240;
@@ -77,8 +77,8 @@ function Header(props) {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item.route} disablePadding>
+        {navItems.map((item, index) => (
+          <ListItem key={index} disablePadding>
             <ListItemButton
               component={RouterLink}
               to={`/${item.link}`}
@@ -149,9 +149,9 @@ function Header(props) {
               </Typography>
             </Typography>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              {navItems.map((item) => (
+              {navItems.map((item, index) => (
                 <Button
-                  key={item}
+                  key={index}
                   component={RouterLink}
                   to={`/${item.link}`}
                   sx={{
