@@ -98,7 +98,7 @@ const TicketPayment = () => {
         departureLocation: bookedBus.departureLocation,
         arrivalLocation: bookedBus.arrivalLocation,
         date: journeyDate,
-        seatId: bookedseats,
+        seatNo: bookedseats,
         busId: bookedBus._id,
         transactionId: paymentIntent?.id,
       };

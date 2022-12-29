@@ -34,7 +34,7 @@ const SeatLayout = ({ booking, setOpen }) => {
     useContext(DataContext);
   const { seats } = booking;
   const getBookedSeat = (seat) => {
-    setBookedSeats(seat._id);
+    setBookedSeats(seat.seatNo);
     setBookedBus(booking);
     toast(seat.seatNo);
   };
@@ -82,7 +82,7 @@ const SeatLayout = ({ booking, setOpen }) => {
                       checked={seat.seatAvailability?.find(
                         (item) =>
                           item?.bookingDate === journeyDate ||
-                          bookedseats === seat?._id
+                          bookedseats === seat?.seatNo
                       )}
                     />
                   </BootstrapTooltip>
@@ -107,7 +107,7 @@ const SeatLayout = ({ booking, setOpen }) => {
                       checkedIcon={<ChairIcon />}
                       checked={
                         journeyDate === seat.seatAvailability[0]?.bookingDate ||
-                        bookedseats === seat?._id
+                        bookedseats === seat?.seatNo
                       }
                     />
                   </BootstrapTooltip>
