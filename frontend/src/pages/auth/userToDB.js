@@ -8,6 +8,9 @@ export async function sendUserToDB(firebaseUser) {
     });
     console.info("User Data sent to DB", data);
   } catch (err) {
-    console.info("Ignorable Error Sending User Data to DB", err);
+    console.info(
+      "Ignorable Error Sending User Data to DB",
+      err.response.data.error
+    );
   }
 }
