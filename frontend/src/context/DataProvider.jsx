@@ -6,7 +6,8 @@ export const DataContext = createContext();
 const DataProvider = ({ children }) => {
   const [bookedseats, setBookedSeats] = useState("");
   const [bookedBus, setBookedBus] = useState({});
-  const [journeyDate, setJourneyDate] = useState("30/12/2022");
+  const [journeyDate, setJourneyDate] = useState("12/28/2022");
+  const [fromToLocation, setFromToLocation] = useState({});
   return (
     <DataContext.Provider
       value={{
@@ -16,6 +17,8 @@ const DataProvider = ({ children }) => {
         bookedBus,
         setJourneyDate,
         journeyDate,
+        fromToLocation,
+        setFromToLocation,
       }}
     >
       {children}
