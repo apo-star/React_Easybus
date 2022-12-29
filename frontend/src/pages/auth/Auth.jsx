@@ -11,6 +11,7 @@ import { Chip, Divider } from "@mui/material";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthProvider";
 import SocialLogin from "./socialLogin/socialLogin";
+import { sendUserToDB } from "./userToDB";
 
 const Auth = ({ setOpen }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -39,8 +40,9 @@ const Auth = ({ setOpen }) => {
     } else {
       // login user
       userLogin(mail, password)
-        .then((res) => {
+        .then(async (res) => {
           toast.success("Login Successfully");
+          await sendUserToDB(res.user);
           setOpen(false);
           navigate(from, { replace: true });
         })
