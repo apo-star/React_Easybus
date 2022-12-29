@@ -64,7 +64,7 @@ const Auth = ({ setOpen }) => {
         }}
       >
         <Typography component="h1" variant="h5">
-          {!isLogin ? "Create Account" : "Good to see you again"}
+          {!isLogin ? "Create Account" : "Good to See You Again"}
         </Typography>
         <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -224,8 +224,9 @@ const Auth = ({ setOpen }) => {
                 </Typography>
               ) : (
                 <Typography fontSize={14}>
-                  You don't have any Easy Bus account?{" "}
+                  You don't have any EasyBus account?{" "}
                   <Typography
+                    component="span"
                     display={"inline-block"}
                     color={"secondary.main"}
                     sx={{
