@@ -25,7 +25,7 @@ const Booking = () => {
       sx={{
         py: "30px",
         backgroundColor: "#FBF9F2",
-        height: "80vh",
+        height: "auto",
         mt: "80px",
       }}
     >
