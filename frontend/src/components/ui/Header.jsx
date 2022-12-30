@@ -122,9 +122,8 @@ function Header(props) {
         <AppBar
           component="nav"
           sx={{
-            backgroundColor: `${
-              fixed || location.pathname !== "/" ? "#212529" : "transparent"
-            }`,
+            backgroundColor: `${fixed || location.pathname !== "/" ? "#212529" : "transparent"
+              }`,
             color: "#000000",
             py: "10px",
             px: "32px",
