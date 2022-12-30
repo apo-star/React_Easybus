@@ -25,10 +25,21 @@ export const GetAllBuses = async (req: Request, res: Response) => {
   }
 };
 
-export const GetBusById = async (req: Request, res: Response) => {
+export const DeleteBus = async (req: Request, res: Response) => {
   try {
-    const allBuses = await Bus.find({});
-    res.status(200).json({ success: true, data: allBuses });
+    const user = await Bus.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Bus Not Found",
+      });
+    }
+    await user.delete();
+    res.status(200).json({
+      success: true,
+      message: "Bus successfully deleted",
+      data: user,
+    });
   } catch (error) {
     res.status(400).json({
       success: false,
