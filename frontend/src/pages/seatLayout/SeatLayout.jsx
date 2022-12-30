@@ -129,8 +129,9 @@ const SeatLayout = ({ booking, setOpen }) => {
             },
           }}
           to={`/payment`}
+          disabled={!bookedseats}
         >
-          View Seats
+          Cofirm Booking
         </Button>
       </Stack>
     </Box>
