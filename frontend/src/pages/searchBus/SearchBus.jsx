@@ -17,7 +17,8 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -55,19 +56,47 @@ const districts = [
     value: "Barishal",
     label: "Barishal",
   },
+  {
+    value: "Cumilla",
+    label: "Cumilla",
+  },
 ];
 export default function SearchBus() {
+  const [searchParams] = useSearchParams();
+  const fromInSearch = searchParams.get("from");
+  const toInSearch = searchParams.get("to");
   const [toLocation, setToLocation] = useState(districts);
   const { register, handleSubmit } = useForm();
-  const { setJourneyDate, setFromToLocation, fromToLocation } = useContext(DataContext);
+  const { setJourneyDate, setFromToLocation, fromToLocation } =
+    useContext(DataContext);
   const navigate = useNavigate();
+
   const handleSearch = (data) => {
-    console.log(data);
+    console.log("Form", data);
+    if (
+      !districts
+        .slice(1)
+        .map((district) => district.value)
+        .includes(data.from)
+    ) {
+      return;
+    }
+    if (
+      !districts
+        .slice(1)
+        .map((district) => district.value)
+        .includes(data.to)
+    ) {
+      return;
+    }
+    if (data.from === data.to) {
+      return;
+    }
     setJourneyDate(data.date);
-    setFromToLocation({from: data.from, to: data.to});
-    navigate('/booking');
+    setFromToLocation({ from: data.from, to: data.to });
+    navigate("/booking");
   };
-  console.log(fromToLocation);
+
   const handleSelect = (selectedvalue) => {
     const remaining = districts.filter(
       (district) => district.value !== selectedvalue
@@ -103,7 +132,7 @@ export default function SearchBus() {
                   id="from"
                   select
                   label="From"
-                  defaultValue="Please Select Location"
+                  defaultValue={fromInSearch || "Please Select Location"}
                   variant="standard"
                   sx={{ width: "100%" }}
                   {...register("from", { required: true })}
@@ -119,7 +148,7 @@ export default function SearchBus() {
                   id="to"
                   select
                   label="To"
-                  defaultValue="Please Select Location"
+                  defaultValue={toInSearch || "Please Select Location"}
                   variant="standard"
                   sx={{ width: "100%" }}
                   {...register("to", { required: true })}
@@ -148,7 +177,6 @@ export default function SearchBus() {
                 </FormControl>
                 <Box>
                   <Button
-                  
                     type="submit"
                     variant="contained"
                     endIcon={<SearchIcon />}
