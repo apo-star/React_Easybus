@@ -15,7 +15,7 @@ export const CreateNewBus = async (req: Request, res: Response) => {
 
 export const GetAllBuses = async (req: Request, res: Response) => {
   try {
-    const allBuses = await Bus.find({});
+    const allBuses = await Bus.find({}).sort({ createdAt: -1 });
     res.status(200).json({ success: true, data: allBuses });
   } catch (error) {
     res.status(400).json({
