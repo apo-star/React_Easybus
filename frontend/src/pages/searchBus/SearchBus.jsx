@@ -105,16 +105,17 @@ export default function SearchBus() {
   };
   return (
     <Box
-      sx={{
+      sx={{py:"80px",
+      backgroundColor:"#FBF9F2",
         "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}
     >
-      <Box sx={{ width: "80%", margin: "7% auto" }}>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={12} lg={6} md={12} sx={{ margin: "auto" }}>
+      <Box sx={{ width: "80%",height:"auto", margin: "7% auto" }}>
+        <Grid container rowSpacing={1} sx={{alignItems: "end"}} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid item xs={12} lg={6} md={12} sx={{ margin: "auto",height:"60vh",paddingTop:"0px" }}>
             <Box
               component="img"
-              sx={{ width: "90%", height: "75vh" }}
+              sx={{ width: "100%", height: "100%",objectFit:"cover" ,borderRadius:"10px",paddingTop:"0px"}}
               alt="The house from the offer."
               src="/busImage.PNG"
             />
@@ -124,10 +125,15 @@ export default function SearchBus() {
             xs={12}
             lg={6}
             md={12}
-            sx={{ display: "flex", alignItems: "center", margin: "auto" }}
+            sx={{ display: "flex",
+            height:"59vh",
+            alignItems: "center",
+            backgroundColor:"#ffffff",
+            border:"1px solid #dddddd",borderRadius:"10px",boxShadow: "0px 0px 9px 1px #0000001f",p:"20px"}}
           >
             <form onSubmit={handleSubmit(handleSearch)}>
-              <Box noValidate autoComplete="off" sx={{ maxWidth: "100%" }}>
+              <Box noValidate autoComplete="off" 
+              sx={{ maxWidth: "100%"}}>
                 <TextField
                   id="from"
                   select
@@ -180,7 +186,7 @@ export default function SearchBus() {
                     type="submit"
                     variant="contained"
                     endIcon={<SearchIcon />}
-                    sx={{ color: "white", width: "90%" }}
+                    sx={{ color: "white", width: "90%",backgroundColor:"#FFA903"}}
                   >
                     Search
                   </Button>
