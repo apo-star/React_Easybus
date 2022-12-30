@@ -12,7 +12,6 @@ const MyBookings = () => {
       .then((response) => response?.json())
       .then(data => setBookings(data))
   }, [])
-  console.log(bookings)
   return (
     <Container sx={{ marginTop: "110px", marginBottom: "20px" }}>
       <table>

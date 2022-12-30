@@ -4,19 +4,31 @@ import Bus from "../models/Bus";
 
 export const CreateNewBooking = async (req: Request, res: Response) => {
   const busId = req.body.busId;
-  const busSeatNo = req.body.seatNo;
+  const busSeatNo = ["A1", "A2"];
   const date = req.body.date;
   try {
     const bookedBus = await Bus.findById(busId);
-    const selectedSeat = bookedBus?.seats.find(
-      (seat) => seat.seatNo === busSeatNo
-    );
-    const newBookingDate = {
-      bookingDate: date,
-      isBooked: true,
-    };
-    const seat = selectedSeat?.seatAvailability.push(newBookingDate);
+    busSeatNo.map((seatNo) => {
+      const selectedSeat = bookedBus?.seats.find(
+        (seat) => seat.seatNo === seatNo
+      );
+      const newBookingDate = {
+        bookingDate: date,
+        isBooked: true,
+      };
+      const seat = selectedSeat?.seatAvailability.push(newBookingDate);
+    });
+    console.log(bookedBus);
     await bookedBus?.save();
+    // const selectedSeat = bookedBus?.seats.find(
+    //   (seat) => seat.seatNo === busSeatNo
+    // );
+    // const newBookingDate = {
+    //   bookingDate: date,
+    //   isBooked: true,
+    // };
+    // const seat = selectedSeat?.seatAvailability.push(newBookingDate);
+    // await bookedBus?.save();
     const newBooking = await Booking.create(req.body);
     res.status(200).json({ success: true, data: newBooking });
   } catch (error) {
@@ -29,7 +41,9 @@ export const CreateNewBooking = async (req: Request, res: Response) => {
 
 export const GetAllBookings = async (req: Request, res: Response) => {
   try {
-    const allBookings = await Booking.find({});
+    const allBookings = await Booking.find({ userEmail: req.query.email }).sort(
+      { createdAt: -1 }
+    );
     res.status(200).json({ success: true, data: allBookings });
   } catch (error) {
     res.status(400).json({
