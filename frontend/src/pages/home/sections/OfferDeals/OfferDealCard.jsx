@@ -24,15 +24,13 @@ const OfferDealCard = ({ deal }) => {
     <Box
       sx={{
         position: "relative",
-        height: "auto",
-        mb: 2,
-        mx: _id !== "1" && 1,
+        height: "100%",
       }}
     >
       <Card
         sx={{
           width: "100%",
-          height: "auto",
+          height: "100%",
           p: _id === "1" ? 0 : 1.5,
           pb: _id == "1" && 2,
           boxShadow: "0 5px 10px 2px #0000002e",
