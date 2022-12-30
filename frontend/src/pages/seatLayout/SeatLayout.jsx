@@ -12,6 +12,7 @@ import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
+import axios from "axios";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const BootstrapTooltip = styled(({ className, ...props }) => (
@@ -29,11 +30,16 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
     textAlign: "center",
   },
 }));
-const SeatLayout = ({ booking, setOpen }) => {
+const SeatLayout = ({ booking, setOpen, refetch }) => {
   const { setBookedSeats, bookedseats, setBookedBus, journeyDate } =
     useContext(DataContext);
-  const { seats } = booking;
+  const { seats, _id } = booking;
   const getBookedSeat = (seat) => {
+    axios.patch("http://localhost:5000/api/v1/bus/update", {
+      busId: _id,
+      seatNo: bookedseats,
+    });
+    refetch();
     setBookedSeats(seat.seatNo);
     setBookedBus(booking);
     toast(seat.seatNo);
@@ -105,10 +111,11 @@ const SeatLayout = ({ booking, setOpen }) => {
                       {...label}
                       icon={<ChairOutlinedIcon sx={{ color: "#999" }} />}
                       checkedIcon={<ChairIcon />}
-                      checked={
-                        journeyDate === seat.seatAvailability[0]?.bookingDate ||
-                        bookedseats === seat?.seatNo
-                      }
+                      checked={seat.seatAvailability?.find(
+                        (item) =>
+                          item?.bookingDate === journeyDate ||
+                          bookedseats === seat?.seatNo
+                      )}
                     />
                   </BootstrapTooltip>
                 </Grid>

@@ -4,12 +4,29 @@ import { Box, Typography } from "@mui/material";
 import SingleBooking from "./SingleBooking";
 import { DataContext } from "../../context/DataProvider";
 import Spinner from "../../components/Spinner";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const Booking = () => {
-  const { data, isLoading } = useGetAllSeatQuery();
   const { journeyDate, fromToLocation } = React.useContext(DataContext);
-  const bookings = data?.data;
-
+  const {
+    data: data = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["buses"],
+    queryFn: async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5000/api/v1/buses?from=${fromToLocation.from}&to=${fromToLocation.to}`
+        );
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
+  const bookings = data.data;
   if (isLoading) {
     return <Spinner></Spinner>;
   }
@@ -31,7 +48,11 @@ const Booking = () => {
       }}
     >
       {filteredBooking?.map((booking) => (
-        <SingleBooking key={booking._id} booking={booking}></SingleBooking>
+        <SingleBooking
+          key={booking._id}
+          booking={booking}
+          refetch={refetch}
+        ></SingleBooking>
       ))}
     </Box>
   );
