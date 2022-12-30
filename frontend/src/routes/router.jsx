@@ -13,6 +13,7 @@ import MyBookings from "../pages/myBookings/MyBookings";
 import Register from "../pages/register/Register";
 import SearchBus from "../pages/searchBus/SearchBus";
 import TicketPayment from "../pages/ticketPayment/TicketPayment";
+import PrivateRoute from "./privateRoute";
 
 const router = createBrowserRouter([
   {
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-bookings",
-        element: <MyBookings />,
+        element: <PrivateRoute><MyBookings /></PrivateRoute>,
       },
       {
         path: "/payment",
