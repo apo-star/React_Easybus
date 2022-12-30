@@ -53,8 +53,8 @@ const Brands = () => {
           }}
           modules={[Autoplay]}
         >
-          {brands.map((brand) => (
-            <SwiperSlide className={style.brandSlide} key={Math.random()}>
+          {brands.map((brand, index) => (
+            <SwiperSlide className={style.brandSlide} key={index}>
               <Box
                 sx={{
                   ":hover": {

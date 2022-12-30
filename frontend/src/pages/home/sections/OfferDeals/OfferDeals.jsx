@@ -42,10 +42,13 @@ const OfferDeals = () => {
                         }
                     </Grid>
                 </Grid>
+              ))}
             </Grid>
-        </Container>
-     </Box>
-    );
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
 };
 
 export default OfferDeals;

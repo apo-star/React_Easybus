@@ -4,7 +4,7 @@ const busSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, "Bus name is required"],
+      // required: [true, "Bus name is required"],
     },
     fare: {
       type: Number,
@@ -20,15 +20,16 @@ const busSchema = new Schema(
     },
     departureTime: {
       type: String,
-      required: [true, "Departure Time is required"],
+      // required: [true, "Departure Time is required"],
     },
     arrivalTime: {
       type: String,
-      required: [true, "Departure Time is required"],
+      // required: [true, "Departure Time is required"],
     },
     totalSeats: {
       type: Number,
       required: [true, "Total Seat is required"],
+      default: 24,
     },
     category: {
       type: String,
@@ -40,11 +41,16 @@ const busSchema = new Schema(
           type: String,
           required: [true, "SeatNo is required"],
         },
-        isBooked: {
-          type: Boolean,
-          required: [true, "Required"],
-          default: false,
-        },
+        seatAvailability: [
+          {
+            bookingDate: {
+              type: String,
+            },
+            isBooked: {
+              type: Boolean,
+            },
+          },
+        ],
       },
     ],
   },

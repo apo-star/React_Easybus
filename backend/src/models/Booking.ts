@@ -36,9 +36,13 @@ const bookingSchema = new Schema(
       type: String,
       required: [true, "Transaction Id is Required"],
     },
-    seatId: {
+    busId: {
       type: String,
-      required: [true, "Seat Id is Required"],
+      required: [true, "Bus Id is Required"],
+    },
+    seatNo: {
+      type: String,
+      required: [true, "Seat No is Required"],
     },
   },
   { timestamps: true }

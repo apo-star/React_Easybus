@@ -66,13 +66,13 @@ const SingleBooking = ({ booking }) => {
               1, VOLVO, {category}
             </Typography>
             <Typography sx={{ fontSize: "14px" }}>
-              Route: {arrivalLocation} - {departureLocation}
+              Route: {departureLocation} - {arrivalLocation}
             </Typography>
             <Typography sx={{ fontSize: "14px" }}>
-              Starting Point: {arrivalLocation}
+              Starting Point: {departureLocation}
             </Typography>
             <Typography sx={{ fontSize: "14px" }}>
-              Ending Point: {departureLocation}
+              Ending Point: {arrivalLocation}
             </Typography>
           </Box>
         </Box>
