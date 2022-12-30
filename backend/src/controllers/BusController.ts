@@ -14,8 +14,15 @@ export const CreateNewBus = async (req: Request, res: Response) => {
 };
 
 export const GetAllBuses = async (req: Request, res: Response) => {
+  let query = {};
+  if (req.query.from && req.query.to) {
+    query = {
+      departureLocation: req.query.from,
+      arrivalLocation: req.query.to,
+    };
+  }
   try {
-    const allBuses = await Bus.find({}).sort({ createdAt: -1 });
+    const allBuses = await Bus.find(query).sort({ createdAt: -1 });
     res.status(200).json({ success: true, data: allBuses });
   } catch (error) {
     res.status(400).json({
