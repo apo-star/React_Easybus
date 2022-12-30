@@ -105,7 +105,7 @@ const OfferDealCard = ({deal}) => {
                 fontSize={19}
                 fontWeight={700}
                 >
-                  {place}
+                  ৳ {place}
                 </Typography>
                 <Typography >
                   {date}
@@ -118,7 +118,7 @@ const OfferDealCard = ({deal}) => {
                   color="#FFA903"
                   fontSize={18}
                   >
-                  {price}
+                  ৳ {price}
                 </Typography>
                 <Box sx={{
                   display:"flex",

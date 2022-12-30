@@ -4,7 +4,7 @@ import { createOfferDeals, getAllOfferDeals } from "../controllers/OfferDealsCon
 const  router = express.Router()
 
 router.get("/offerDeals",getAllOfferDeals)
-router.post("/offerDeal/new",createOfferDeals)
+router.post("/offerDeal/new",createOfferDeals) 
 
 export default router
 

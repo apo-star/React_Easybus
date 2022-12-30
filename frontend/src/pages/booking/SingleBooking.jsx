@@ -27,12 +27,12 @@ const SingleBooking = ({ booking }) => {
   return (
     <Box>
       <Box
+      display={{sm:'block', md:"flex"}}
         sx={{
-          display: "flex",
           justifyContent: "center",
           my: "20px",
           backgroundColor: "#ffffff",
-          width: "57.96%",
+          width: "auto",
           mx: "auto",
         }}
       >
@@ -156,13 +156,15 @@ const SingleBooking = ({ booking }) => {
             </Typography>
             <Button
               sx={{
-                backgroundColor: "#089D49",
-                color: "white",
+                backgroundColor: "#FFA903",
+                color: "#000000",
                 fontSize: "12px",
+                fontWeight:600,
                 mt: "40px",
                 ":hover": {
                   background: "#000000",
-                  transition: "all 0.5s",
+                  color:"#ffffff",
+                  transition: "all 0.3s",
                 },
               }}
               onClick={handleClickOpen}

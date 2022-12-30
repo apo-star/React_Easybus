@@ -2,20 +2,22 @@ import { useGetAllSeatQuery } from "../../features/bus/busSlice";
 import * as React from "react";
 import { Box, Typography } from "@mui/material";
 import SingleBooking from "./SingleBooking";
+import Spinner from "../../components/Spinner";
 
 const Booking = () => {
   const { data, isLoading } = useGetAllSeatQuery();
   const bookings = data?.data;
-  console.log(bookings);
-  if (isLoading) {
-    return <Typography>Loading...</Typography>;
+
+  if(isLoading) {
+    return <Spinner></Spinner>
   }
+
   return (
     <Box
       sx={{
         py: "30px",
         backgroundColor: "#FBF9F2",
-        height: "80vh",
+        height: "auto",
         mt: "80px",
       }}
     >
