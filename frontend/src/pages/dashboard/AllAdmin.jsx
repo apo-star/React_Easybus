@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,56 +8,49 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Chip } from "@mui/material";
+import { useState } from "react";
 import Spinner from "../../components/Spinner";
-import { useBusesData, useDeleteBus } from "../../hooks/useBusesData";
+import {
+  useDeleteUser,
+  useMakeAdminUser,
+  useUsersData,
+} from "../../hooks/useUsersData";
 
-function createData(name, fare, departureLocation, ArrivalLocation) {
-  return { name, fare, departureLocation, ArrivalLocation };
+function createData(name, email) {
+  return { name, email };
 }
-
-const AllBus = () => {
-  const { data: buses, isLoading } = useBusesData();
-  const { mutate } = useDeleteBus();
+const AllAdmin = () => {
+  const { data: admins, isLoading } = useUsersData("admin");
+  const { mutate: mutateDelete } = useDeleteUser("user");
 
   if (isLoading) {
     return <Spinner />;
   }
 
   const handleRemove = (id) => {
-    mutate(id);
+    mutateDelete(id);
   };
+  console.log(admins);
   return (
     <div>
       <TableContainer sx={{ width: "80%", position: "absolute", top: 120 }}>
-        <Table sx={{ width: "100%", margin: "auto" }} aria-label="caption table">
+        <Table sx={{ width: "70%", margin: "auto" }} aria-label="caption table">
           <TableHead>
             <TableRow sx={{ backgroundColor: "#212529" }}>
-              <TableCell align="center" sx={{ color: "white" }}>
-                Bus Name
-              </TableCell>
-              <TableCell align="center" sx={{ color: "white" }}>
-                Bus Fare
-              </TableCell>
-              <TableCell align="center" sx={{ color: "white" }}>
-                Depature Location
-              </TableCell>
-              <TableCell align="center" sx={{ color: "white" }}>
-                Arrival Location
-              </TableCell>
+              <TableCell sx={{ color: "white" }}>User Name</TableCell>
+              <TableCell sx={{ color: "white" }}>User Email</TableCell>
               <TableCell align="center" sx={{ color: "white" }}>
                 Remove
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {buses.map((row, i) => (
+            {admins.map((row, i) => (
               <TableRow key={i}>
-                <TableCell component="th" scope="row" align="center">
+                <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="center">{row.fare}</TableCell>
-                <TableCell align="center">{row.departureLocation}</TableCell>
-                <TableCell align="center">{row.arrivalLocation}</TableCell>
+                <TableCell>{row.email}</TableCell>
                 <TableCell align="center">
                   <Button
                     onClick={() => handleRemove(row._id)}
@@ -75,4 +68,4 @@ const AllBus = () => {
   );
 };
 
-export default AllBus;
+export default AllAdmin;

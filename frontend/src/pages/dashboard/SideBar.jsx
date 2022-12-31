@@ -10,19 +10,23 @@ import { Link } from 'react-router-dom';
 // const drawerWidth = 240;
 const SideBar = () => {
     const routes = [
-        {
-            name: 'All User',
-            link: '/dashboard'
-        },
-        {
-            name: 'All Bus',
-            link: '/dashboard/allbus'
-        },
-        {
-            name: 'Add New Bus',
-            link: '/dashboard/addbus'
-        },
-    ]
+      {
+        name: "All User",
+        link: "/dashboard",
+      },
+      {
+        name: "All Admin",
+        link: "/dashboard/alladmin",
+      },
+      {
+        name: "All Bus",
+        link: "/dashboard/allbus",
+      },
+      {
+        name: "Add New Bus",
+        link: "/dashboard/addbus",
+      },
+    ];
     return (
       <div>
         <Drawer
@@ -64,7 +68,7 @@ const SideBar = () => {
                   <ListItem disablePadding>
                     <ListItemButton>
                       <ListItemIcon>
-                        {i === 0 ? <GroupIcon /> : <DirectionsBusIcon />}
+                        {(i === 0) ? <GroupIcon /> : <DirectionsBusIcon />}
                       </ListItemIcon>
                       <ListItemText primary={route.name} />
                     </ListItemButton>
