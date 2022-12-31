@@ -81,7 +81,7 @@ const FAQ = () => {
             p: "0",
             height: {
               xs: "300px",
-              md: "auto",
+              md: "550px",
             },
             width: {
               xs: "100%",
