@@ -140,7 +140,7 @@ const Footer = () => {
                   textAlign: "right",
                 }}
               >
-                <img src="https://i.ibb.co/5hq7j7j/payment.png" alt="cart" />
+                <img src="https://i.ibb.co/5hq7j7j/payment.png" alt="cart"/>
               </Box>
             </Grid>
           </Grid>
