@@ -2,15 +2,19 @@ import { Box, Typography, TextField, Button } from "@mui/material";
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import './contact.css';
 import { NavLink } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Contact = () => {
   const handleSubmit = (e) => {
-    e.preventDefault();
 
+    e.preventDefault();
+    toast.success("successfull",{duration:2000})
+    e.target.reset()
   }
   let activeStyle = {
     color: "#ffa903"
   }
+
   return (
     <Box marginTop={10} marginBottom={5}>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -31,15 +35,15 @@ const Contact = () => {
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             <form onSubmit={handleSubmit}>
               <Box sx={{ marginBottom: "10px", marginTop: "15px" }}>
-                <TextField sx={{ marginRight: "10px", width: { xs: "300px", lg: "450px" }, marginBottom: "15px" }} label="Your Name" name="name" id="outlined" placeholder="Your Name" variant="outlined" /><br />
-                <TextField sx={{ marginRight: "10px", width: { xs: "300px", lg: "450px" }, marginBottom: "15px" }} id="outlined-basic" label="Your Email" placeholder="Your Email" variant="outlined" />
+                <TextField required sx={{ marginRight: "10px", width: { xs: "300px", lg: "450px" }, marginBottom: "15px" }} label="Your Name" name="name" id="outlined" placeholder="Your Name" variant="outlined" /><br />
+                <TextField required sx={{ marginRight: "10px", width: { xs: "300px", lg: "450px" }, marginBottom: "15px" }} id="outlined-basic" label="Your Email" placeholder="Your Email" variant="outlined" />
               </Box>
               <Box sx={{ marginBottom: "10px" }}>
-                <TextField sx={{ marginRight: "10px", width: { xs: "300px", lg: "450px" }, marginBottom: "15px" }} id="outlined-basic" label="Subject" placeholder="Subject" variant="outlined" /> <br />
-                <TextField sx={{ marginRight: "10px", width: { xs: "300px", lg: "450px" }, marginBottom: "15px" }} id="outlined-basic" label="Your Mobile" placeholder="Your Mobile" variant="outlined" /><br />
+                <TextField required sx={{ marginRight: "10px", width: { xs: "300px", lg: "450px" }, marginBottom: "15px" }} id="outlined-basic" label="Subject" placeholder="Subject" variant="outlined" /> <br />
+                <TextField required sx={{ marginRight: "10px", width: { xs: "300px", lg: "450px" }, marginBottom: "15px" }} id="outlined-basic" label="Your Mobile" placeholder="Your Mobile" variant="outlined" /><br />
               </Box>
               <Box sx={{ marginBottom: "10px" }}>
-                <TextareaAutosize minRows={1} className="text-area" style={{ height: 100, }} name="Message" id="outlined-basic"  placeholder="Message" variant="outlined" />
+                <TextareaAutosize required minRows={1} className="text-area" style={{ height: 100, }} name="Message" id="outlined-basic"  placeholder="Message" variant="outlined" />
               </Box>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Button type="submit" variant="contained">Submit</Button>
