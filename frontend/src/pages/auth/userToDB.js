@@ -7,6 +7,7 @@ export async function sendUserToDB(firebaseUser) {
       email: firebaseUser.email,
     });
     console.info("User Data sent to DB", data);
+    localStorage.setItem("easybus", data.token);
   } catch (err) {
     console.info(
       "Ignorable Error Sending User Data to DB",

@@ -12,9 +12,11 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthProvider";
 import SocialLogin from "./socialLogin/socialLogin";
 import { sendUserToDB } from "./userToDB";
+import { useLocation } from "react-router-dom";
 
 const Auth = ({ setOpen }) => {
   const [isLogin, setIsLogin] = useState(true);
+  const { pathname } = useLocation();
   const { userLogin, createUser, userProfileUpdate } = useContext(AuthContext);
   const {
     register,
@@ -54,7 +56,16 @@ const Auth = ({ setOpen }) => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container
+      component="main"
+      maxWidth="xs"
+      sx={{
+        ...(pathname === "/login" && {
+          paddingY: "4rem",
+          paddingTop: "8.5rem",
+        }),
+      }}
+    >
       <CssBaseline />
       <Box
         sx={{

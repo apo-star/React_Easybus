@@ -17,7 +17,8 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -55,19 +56,47 @@ const districts = [
     value: "Barishal",
     label: "Barishal",
   },
+  {
+    value: "Cumilla",
+    label: "Cumilla",
+  },
 ];
 export default function SearchBus() {
+  const [searchParams] = useSearchParams();
+  const fromInSearch = searchParams.get("from");
+  const toInSearch = searchParams.get("to");
   const [toLocation, setToLocation] = useState(districts);
   const { register, handleSubmit } = useForm();
-  const { setJourneyDate, setFromToLocation, fromToLocation } = useContext(DataContext);
+  const { setJourneyDate, setFromToLocation, fromToLocation } =
+    useContext(DataContext);
   const navigate = useNavigate();
+
   const handleSearch = (data) => {
-    console.log(data);
+    console.log("Form", data);
+    if (
+      !districts
+        .slice(1)
+        .map((district) => district.value)
+        .includes(data.from)
+    ) {
+      return;
+    }
+    if (
+      !districts
+        .slice(1)
+        .map((district) => district.value)
+        .includes(data.to)
+    ) {
+      return;
+    }
+    if (data.from === data.to) {
+      return;
+    }
     setJourneyDate(data.date);
-    setFromToLocation({from: data.from, to: data.to});
-    navigate('/booking');
+    setFromToLocation({ from: data.from, to: data.to });
+    navigate("/booking");
   };
-  console.log(fromToLocation);
+
   const handleSelect = (selectedvalue) => {
     const remaining = districts.filter(
       (district) => district.value !== selectedvalue
@@ -76,16 +105,17 @@ export default function SearchBus() {
   };
   return (
     <Box
-      sx={{
+      sx={{py:"80px",
+      backgroundColor:"#FBF9F2",
         "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}
     >
-      <Box sx={{ width: "80%", margin: "7% auto" }}>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={12} lg={6} md={12} sx={{ margin: "auto" }}>
+      <Box sx={{ width: "80%",height:"auto", margin: "7% auto" }}>
+        <Grid container rowSpacing={1} sx={{alignItems: "end"}} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid item xs={12} lg={6} md={12} sx={{ margin: "auto",height:"60vh",paddingTop:"0px" }}>
             <Box
               component="img"
-              sx={{ width: "90%", height: "75vh" }}
+              sx={{ width: "100%", height: "100%",objectFit:"cover" ,borderRadius:"10px",paddingTop:"0px"}}
               alt="The house from the offer."
               src="/busImage.PNG"
             />
@@ -95,15 +125,20 @@ export default function SearchBus() {
             xs={12}
             lg={6}
             md={12}
-            sx={{ display: "flex", alignItems: "center", margin: "auto" }}
+            sx={{ display: "flex",
+            height:"59vh",
+            alignItems: "center",
+            backgroundColor:"#ffffff",
+            border:"1px solid #dddddd",borderRadius:"10px",boxShadow: "0px 0px 9px 1px #0000001f",p:"20px"}}
           >
             <form onSubmit={handleSubmit(handleSearch)}>
-              <Box noValidate autoComplete="off" sx={{ maxWidth: "100%" }}>
+              <Box noValidate autoComplete="off" 
+              sx={{ maxWidth: "100%"}}>
                 <TextField
                   id="from"
                   select
                   label="From"
-                  defaultValue="Please Select Location"
+                  defaultValue={fromInSearch || "Please Select Location"}
                   variant="standard"
                   sx={{ width: "100%" }}
                   {...register("from", { required: true })}
@@ -119,7 +154,7 @@ export default function SearchBus() {
                   id="to"
                   select
                   label="To"
-                  defaultValue="Please Select Location"
+                  defaultValue={toInSearch || "Please Select Location"}
                   variant="standard"
                   sx={{ width: "100%" }}
                   {...register("to", { required: true })}
@@ -148,11 +183,10 @@ export default function SearchBus() {
                 </FormControl>
                 <Box>
                   <Button
-                  
                     type="submit"
                     variant="contained"
                     endIcon={<SearchIcon />}
-                    sx={{ color: "white", width: "90%" }}
+                    sx={{ color: "white", width: "90%",backgroundColor:"#FFA903"}}
                   >
                     Search
                   </Button>
