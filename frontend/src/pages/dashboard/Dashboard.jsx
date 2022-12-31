@@ -20,6 +20,7 @@ function createData(name, email) {
   return { name, email };
 }
 const Dashboard = () => {
+  const [admin, setAdmin] = useState(false);
   const { data: users, isLoading } = useUsersData("user");
   const { mutate: mutateDelete } = useDeleteUser("user");
   const { mutate: mutateMakeAdmin } = useMakeAdminUser();
@@ -31,6 +32,10 @@ const Dashboard = () => {
   const handleRemove = (id) => {
     mutateDelete(id);
   };
+  const handleAdmin = (id) => {
+    mutateMakeAdmin(id);
+  };
+  
   return (
     <div>
       <TableContainer sx={{ width: "80%", position: "absolute", top: 120 }}>
@@ -39,6 +44,9 @@ const Dashboard = () => {
             <TableRow sx={{ backgroundColor: "#212529" }}>
               <TableCell sx={{ color: "white" }}>User Name</TableCell>
               <TableCell sx={{ color: "white" }}>User Email</TableCell>
+              <TableCell align="center" sx={{ color: "white" }}>
+                Make Admin
+              </TableCell>
               <TableCell align="center" sx={{ color: "white" }}>
                 Remove
               </TableCell>
@@ -51,6 +59,20 @@ const Dashboard = () => {
                   {row.name}
                 </TableCell>
                 <TableCell>{row.email}</TableCell>
+                <TableCell align="center">
+                  {!admin ? (
+                    <Chip
+                      label="Make Admin"
+                      onClick={() => handleAdmin(row._id)}
+                    />
+                  ) : (
+                    <Chip
+                      label="Make Admin"
+                      onClick={() => handleAdmin(row._id)}
+                      sx={{backgroundColor: 'blue'}}
+                    />
+                  )}
+                </TableCell>
                 <TableCell align="center">
                   <Button
                     onClick={() => handleRemove(row._id)}

@@ -6,6 +6,7 @@ import Auth from "../pages/auth/Auth";
 import Booking from "../pages/booking/Booking";
 import Contact from "../pages/contact/Contact";
 import AddNewBus from "../pages/dashboard/AddNewBus";
+import AllAdmin from "../pages/dashboard/AllAdmin";
 import AllBus from "../pages/dashboard/AllBus";
 import Dashboard from "../pages/dashboard/Dashboard";
 import ErrorPage from "../pages/error/ErrorPage";
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/allbus",
         element: <AllBus />,
+      },
+      {
+        path: "/dashboard/alladmin",
+        element: <AllAdmin />,
       },
     ],
   },
