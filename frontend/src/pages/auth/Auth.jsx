@@ -32,7 +32,7 @@ const Auth = ({ setOpen }) => {
       createUser(mail, password)
         .then(async (res) => {
           await sendUserToDB(userProfile);
-          userProfileUpdate(userProfile);
+          await userProfileUpdate(userProfile);
           toast.success("Account Successfully Created");
           setOpen(false);
           navigate(from, { replace: true });
