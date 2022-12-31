@@ -30,7 +30,7 @@ function Header(props) {
   const location = useLocation();
   const [fixed, setFixed] = useState(false);
   const { user, userSignOut } = useContext(AuthContext);
-  const [admin, setAdmin] = useState();
+  // const [admin, setAdmin] = useState();
   function setFixedFunc() {
     if (window.scrollY >= 80) {
       setFixed(true);
@@ -48,12 +48,12 @@ function Header(props) {
 
 
   useEffect(()=>{
-    fetch("http://localhost:5000/api/v1/users")
+    fetch("http://localhost:5000/api/v1/user/role")
     .then(res => res.json())
-    .then(data => setAdmin(data))
+    .then(data => console.log(data))
   } ,[])
 
-  console.log(admin.data.role)
+  // console.log(admin.data.role)
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center", zIndex: "1000", color: "white" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
