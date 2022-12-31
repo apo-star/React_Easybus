@@ -23,7 +23,6 @@ import CustomModal from "./modals/CustomModal";
 
 const drawerWidth = 240;
 
-
 function Header(props) {
   const { windows } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -46,62 +45,64 @@ function Header(props) {
     setMobileOpen((prevState) => !prevState);
   };
 
-
-  useEffect(()=>{
+  useEffect(() => {
     fetch("http://localhost:5000/api/v1/user/role")
-    .then(res => res.json())
-    .then(data => console.log(data))
-  } ,[])
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, []);
 
   // console.log(admin.data.role)
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center", zIndex: "1000", color: "white" }}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{ textAlign: "center", zIndex: "1000", color: "white" }}
+    >
       <Typography variant="h6" sx={{ my: 2 }}>
         Easy Bus
       </Typography>
       <Divider />
       <List>
-          <ListItem disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText>
-                <RouterLink to="/">Home</RouterLink>
-              </ListItemText>
-            </ListItemButton>
-          </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemText>
+              <RouterLink to="/">Home</RouterLink>
+            </ListItemText>
+          </ListItemButton>
+        </ListItem>
 
-          <ListItem disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText>
-                <RouterLink to="/search-bus">Search Bus</RouterLink>
-              </ListItemText>
-            </ListItemButton>
-          </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemText>
+              <RouterLink to="/search-bus">Search Bus</RouterLink>
+            </ListItemText>
+          </ListItemButton>
+        </ListItem>
 
-          <ListItem disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText>
-                <RouterLink to="/about">About</RouterLink>
-              </ListItemText>
-            </ListItemButton>
-          </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemText>
+              <RouterLink to="/about">About</RouterLink>
+            </ListItemText>
+          </ListItemButton>
+        </ListItem>
 
-          <ListItem disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText>
-                {user?.uid && <RouterLink to="/my-bookings">My Bookings</RouterLink>}
-              </ListItemText>
-            </ListItemButton>
-          </ListItem>
-        
-          <ListItem disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText>
-                <RouterLink to="/dashboard">Dashboard</RouterLink>
-              </ListItemText>
-            </ListItemButton>
-          </ListItem>
-        
-  
+        <ListItem disablePadding>
+          <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemText>
+              {user?.uid && (
+                <RouterLink to="/my-bookings">My Bookings</RouterLink>
+              )}
+            </ListItemText>
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem disablePadding>
+          <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemText>
+              <RouterLink to="/dashboard">Dashboard</RouterLink>
+            </ListItemText>
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
@@ -114,7 +115,6 @@ function Header(props) {
     setOpen(true);
   };
   const [anchorElNav, setAnchorElNav] = useState(null);
-
 
   const [anchorElUser, setAnchorElUser] = useState(null);
   const handleOpenUserMenu = (event) => {
@@ -137,8 +137,9 @@ function Header(props) {
         <AppBar
           component="nav"
           sx={{
-            backgroundColor: `${fixed || location.pathname !== "/" ? "#212529" : "transparent"
-              }`,
+            backgroundColor: `${
+              fixed || location.pathname !== "/" ? "#212529" : "transparent"
+            }`,
             color: "#000000",
             py: "10px",
             px: "32px",
@@ -163,6 +164,75 @@ function Header(props) {
               </Typography>
             </Typography>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
+              <Button
+                sx={{
+                  px: 3,
+                  gap: 0.5,
+                  ":hover": {
+                    color: "#FFA903",
+                  },
+                }}
+              >
+                <RouterLink
+                  style={{ textDecoration: "none", color: "#fff" }}
+                  to="/"
+                >
+                  Home
+                </RouterLink>
+                <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
+              </Button>
+              <Button
+                sx={{
+                  px: 3,
+                  gap: 0.5,
+                  ":hover": {
+                    color: "#FFA903",
+                  },
+                }}
+              >
+                <RouterLink
+                  style={{ textDecoration: "none", color: "#fff" }}
+                  to="/search-bus"
+                >
+                  Search Bus
+                </RouterLink>
+                <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
+              </Button>
+              <Button
+                sx={{
+                  px: 3,
+                  gap: 0.5,
+                  ":hover": {
+                    color: "#FFA903",
+                  },
+                }}
+              >
+                <RouterLink
+                  style={{ textDecoration: "none", color: "#fff" }}
+                  to="/about"
+                >
+                  About
+                </RouterLink>
+                <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
+              </Button>
+              <Button
+                sx={{
+                  px: 3,
+                  gap: 0.5,
+                  ":hover": {
+                    color: "#FFA903",
+                  },
+                }}
+              >
+                <RouterLink
+                  style={{ textDecoration: "none", color: "#fff" }}
+                  to="/contact"
+                >
+                  Contact
+                </RouterLink>
+                <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
+              </Button>
+              {user?.uid && (
                 <Button
                   sx={{
                     px: 3,
@@ -172,71 +242,32 @@ function Header(props) {
                     },
                   }}
                 >
-                  <RouterLink style={{textDecoration:"none",color: "#fff", }} to="/" >Home</RouterLink>
+                  <RouterLink
+                    style={{ textDecoration: "none", color: "#fff" }}
+                    to="/my-bookings"
+                  >
+                    My Bookings
+                  </RouterLink>
                   <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
                 </Button>
-                <Button
-                  sx={{
-                    px: 3,
-                    gap: 0.5,
-                    ":hover": {
-                      color: "#FFA903",
-                    },
-                  }}
+              )}
+              <Button
+                sx={{
+                  px: 3,
+                  gap: 0.5,
+                  ":hover": {
+                    color: "#FFA903",
+                  },
+                }}
+              >
+                <RouterLink
+                  style={{ textDecoration: "none", color: "#fff" }}
+                  to="/dashboard"
                 >
-                  <RouterLink style={{textDecoration:"none",color: "#fff", }} to="/search-bus" >Search Bus</RouterLink>
-                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
-                </Button>
-                <Button
-                  sx={{
-                    px: 3,
-                    gap: 0.5,
-                    ":hover": {
-                      color: "#FFA903",
-                    },
-                  }}
-                >
-                  <RouterLink style={{textDecoration:"none",color: "#fff", }} to="/about" >About</RouterLink>
-                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
-                </Button>
-                <Button
-                  sx={{
-                    px: 3,
-                    gap: 0.5,
-                    ":hover": {
-                      color: "#FFA903",
-                    },
-                  }}
-                >
-                  <RouterLink style={{textDecoration:"none",color: "#fff", }} to="/contact" >Contact</RouterLink>
-                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
-                </Button>
-                {
-                  user?.uid && <Button
-                  sx={{
-                    px: 3,
-                    gap: 0.5,
-                    ":hover": {
-                      color: "#FFA903",
-                    },
-                  }}
-                >
-                  <RouterLink style={{textDecoration:"none",color: "#fff", }} to="/my-bookings" >My Bookings</RouterLink>
-                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
-                </Button>
-                }
-                <Button
-                  sx={{
-                    px: 3,
-                    gap: 0.5,
-                    ":hover": {
-                      color: "#FFA903",
-                    },
-                  }}
-                >
-                  <RouterLink style={{textDecoration:"none",color: "#fff", }} to="/dashboard" >Dashboard</RouterLink>
-                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
-                </Button>
+                  Dashboard
+                </RouterLink>
+                <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
+              </Button>
 
               {!user?.uid ? (
                 <Button
