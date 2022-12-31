@@ -26,18 +26,19 @@ const Auth = ({ setOpen }) => {
   } = useForm();
   const onSubmit = (data) => {
     const { name, mail, password } = data;
-    const userProfile = { displayName: name };
+    const userProfile = { displayName: name, email: mail };
     // creating user
     if (!isLogin) {
       createUser(mail, password)
-        .then((res) => {
-          userProfileUpdate(userProfile);
+        .then(async (res) => {
+          await sendUserToDB(userProfile);
+          await userProfileUpdate(userProfile);
           toast.success("Account Successfully Created");
           setOpen(false);
           navigate(from, { replace: true });
         })
         .catch((error) => {
-          toast.error(error.code.split("/")[1].split("-").join(" "));
+          toast.error(error.code?.split("/")[1].split("-").join(" "));
         });
     } else {
       // login user

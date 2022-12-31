@@ -106,7 +106,7 @@ const About = () => {
                 justifyContent: "center",
               }}
             >
-              <Link to="/booking" style={{ textDecoration: "none" }}>
+              <Link to="/search-bus" style={{ textDecoration: "none" }}>
                 <Button
                   variant="contained"
                   sx={{
