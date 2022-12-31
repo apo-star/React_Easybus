@@ -7,9 +7,9 @@ const fetchAllBusData = () => {
   return request({ url: `/api/v1/buses` });
 };
 
-// const fetchProductsByCategory = (category) => {
-//   return request({ url: `/api/v1/products/${category}` });
-// };
+const fetchBusByRoute = (route) => {
+  return request({ url: `/api/v1/buses?from=${route.from}&to=${route.to}` });
+};
 
 const createNewBus = (data) => {
   return request({
@@ -27,11 +27,9 @@ export const useBusesData = () => {
   return useQuery(["buses", "admin"], () => fetchAllBusData());
 };
 
-// export const useBusesDataByRoute = (category) => {
-//   return useQuery(["products", category], () =>
-//     fetchProductsByCategory(category)
-//   );
-// };
+export const useBusesDataByRoute = (route) => {
+  return useQuery(["buses"], () => fetchBusByRoute(route));
+};
 
 export const useCreateNewBus = () => {
   const navigate = useNavigate();

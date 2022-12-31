@@ -67,7 +67,7 @@ const schedule = [
 ];
 
 const AddNewBus = () => {
-  const { mutate } = useCreateNewBus();
+  const { mutate, isLoading } = useCreateNewBus();
 
   const [districts, setDistricts] = useState([]);
   useEffect(() => {
