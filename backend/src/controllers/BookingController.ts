@@ -4,7 +4,7 @@ import Bus from "../models/Bus";
 
 export const CreateNewBooking = async (req: Request, res: Response) => {
   const busId = req.body.busId;
-  const busSeatNo = ["A1", "A2"];
+  const busSeatNo = req.body.seatNo as [string];
   const date = req.body.date;
   try {
     const bookedBus = await Bus.findById(busId);
@@ -12,6 +12,7 @@ export const CreateNewBooking = async (req: Request, res: Response) => {
       const selectedSeat = bookedBus?.seats.find(
         (seat) => seat.seatNo === seatNo
       );
+      selectedSeat!.tempBooked = false;
       const newBookingDate = {
         bookingDate: date,
         isBooked: true,

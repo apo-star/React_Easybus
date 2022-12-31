@@ -3,7 +3,8 @@ import router from "./routes/router";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient();
 const theme = createTheme({
   palette: {
     primary: {
@@ -25,9 +26,11 @@ function App() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Elements stripe={stripePromise}>
-          <RouterProvider router={router} />
-        </Elements>
+        <QueryClientProvider client={queryClient}>
+          <Elements stripe={stripePromise}>
+            <RouterProvider router={router} />
+          </Elements>
+        </QueryClientProvider>
       </ThemeProvider>
     </div>
   );
