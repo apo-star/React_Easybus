@@ -1,20 +1,19 @@
-import React, { useEffect, useState,useContext } from 'react'
-import { Container } from '@mui/material';
+import React, { useEffect, useState, useContext } from "react";
+import { Container } from "@mui/material";
 
-import "./mybookings.css"
+import "./mybookings.css";
 
-import { AuthContext } from '../../context/AuthProvider';
-
+import { AuthContext } from "../../context/AuthProvider";
 
 const MyBookings = () => {
-  const [bookings, setBookings] = useState([])
-  const {user} = useContext(AuthContext)
+  const [bookings, setBookings] = useState([]);
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     const url = `http://localhost:5000/api/v1/all-bookings/${user?.email}`;
     fetch(url)
       .then((response) => response?.json())
-      .then(data => setBookings(data))
-  }, [])
+      .then((data) => setBookings(data));
+  }, []);
   return (
     <Container sx={{ marginTop: "110px", marginBottom: "20px" }}>
       <table>
@@ -30,8 +29,15 @@ const MyBookings = () => {
           </tr>
         </thead>
         <tbody>
-          {
-            bookings?.data?.map(({_id,departureLocation,date,fare,arrivalLocation,status}) => (
+          {bookings?.data?.map(
+            ({
+              _id,
+              departureLocation,
+              date,
+              fare,
+              arrivalLocation,
+              status,
+            }) => (
               <tr key={_id}>
                 <td data-label="Departure">{departureLocation}</td>
                 <td data-label="Arrival">{arrivalLocation}</td>
@@ -40,12 +46,12 @@ const MyBookings = () => {
                 <td data-label="Status">{status}</td>
                 <td data-label="Cancel">Cancel</td>
               </tr>
-            ))
-          }
+            )
+          )}
         </tbody>
       </table>
     </Container>
-  )
-}
+  );
+};
 
-export default MyBookings
+export default MyBookings;
