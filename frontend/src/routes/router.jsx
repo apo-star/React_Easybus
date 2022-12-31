@@ -16,6 +16,7 @@ import MyBookings from "../pages/myBookings/MyBookings";
 import Register from "../pages/register/Register";
 import SearchBus from "../pages/searchBus/SearchBus";
 import TicketPayment from "../pages/ticketPayment/TicketPayment";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./privateRoute";
 
 const router = createBrowserRouter([
@@ -54,7 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-bookings",
-        element: <PrivateRoute><MyBookings /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyBookings />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/payment",
@@ -64,7 +69,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <AdminRoute>
+        <DashboardLayout />
+      </AdminRoute>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
