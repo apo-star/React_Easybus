@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import CustomModal from "../../components/ui/modals/CustomModal";
 import SeatLayout from "../seatLayout/SeatLayout";
 
-const SingleBooking = ({ booking, refetch }) => {
+const SingleBooking = ({ booking, refetch, dateInSearch }) => {
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -174,7 +174,12 @@ const SingleBooking = ({ booking, refetch }) => {
         </Box>
       </Box>
       <CustomModal open={open} setOpen={setOpen}>
-        <SeatLayout booking={booking} setOpen={setOpen} refetch={refetch} />
+        <SeatLayout
+          booking={booking}
+          setOpen={setOpen}
+          refetch={refetch}
+          dateInSearch={dateInSearch}
+        />
       </CustomModal>
     </Box>
   );

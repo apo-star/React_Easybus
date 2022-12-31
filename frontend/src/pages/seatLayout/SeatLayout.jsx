@@ -31,7 +31,7 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
     textAlign: "center",
   },
 }));
-const SeatLayout = ({ booking, setOpen, refetch }) => {
+const SeatLayout = ({ booking, dateInSearch }) => {
   const { setBookedSeats, bookedseats, setBookedBus, journeyDate } =
     useContext(DataContext);
   const [booked, setBooked] = useState(true);
@@ -114,7 +114,7 @@ const SeatLayout = ({ booking, setOpen, refetch }) => {
                       checkedIcon={<ChairIcon />}
                       checked={
                         seat.seatAvailability?.find(
-                          (item) => item?.bookingDate === journeyDate
+                          (item) => item?.bookingDate === dateInSearch
                         ) || seat.tempBooked
                       }
                     />
@@ -140,7 +140,7 @@ const SeatLayout = ({ booking, setOpen, refetch }) => {
                       checkedIcon={<ChairIcon />}
                       checked={
                         seat.seatAvailability?.find(
-                          (item) => item?.bookingDate === journeyDate
+                          (item) => item?.bookingDate === dateInSearch
                         ) || seat.tempBooked
                       }
                     />
