@@ -59,10 +59,9 @@ export default function BasicTable() {
     React.useContext(DataContext);
   const navigate = useNavigate();
   const handleSearch = (data) => {
-    console.log(data);
     setJourneyDate(data.date);
     setFromToLocation({ from: data.from, to: data.to });
-    navigate("/booking");
+    navigate(`/booking?from=${data.from}&to=${data.to}&date=${data.date}`);
   };
   const handleSelect = (selectedvalue) => {
     const remaining = districts.filter(
@@ -135,7 +134,10 @@ export default function BasicTable() {
           <Button
             type="submit"
             variant="contained"
-            sx={{ ":hover": { backgroundColor: "#622243", color: "#ffffff" }, marginTop: 3 }}
+            sx={{
+              ":hover": { backgroundColor: "#622243", color: "#ffffff" },
+              marginTop: 3,
+            }}
           >
             Book Now
           </Button>
