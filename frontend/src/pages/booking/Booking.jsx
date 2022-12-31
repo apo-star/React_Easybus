@@ -4,6 +4,8 @@ import { Box, Typography } from "@mui/material";
 import SingleBooking from "./SingleBooking";
 import { DataContext } from "../../context/DataProvider";
 import Spinner from "../../components/Spinner";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 
 const Booking = () => {
