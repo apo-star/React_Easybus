@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,31 +8,23 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Chip } from "@mui/material";
-import Spinner from '../../components/Spinner';
+import Spinner from "../../components/Spinner";
+import { useBusesData, useDeleteBus } from "../../hooks/useBusesData";
 
-function createData(name,fare, seat) {
-  return { name,fare,seat};
+function createData(name, fare, seat) {
+  return { name, fare, seat };
 }
 
 const AllBus = () => {
-  const [rows, setRows] = useState([]);
-  
-  useEffect(() => {
-    fetch("http://localhost:5000/api/v1/buses")
-      .then((res) => res.json())
-      .then((data) => setRows(data.data));
-  }, []);
-  if (rows.length === 0) {
-    return <Spinner></Spinner>;
+  const { data: buses, isLoading } = useBusesData();
+  const { mutate } = useDeleteBus();
+
+  if (isLoading) {
+    return <Spinner />;
   }
-  console.log(rows.length);
+
   const handleRemove = (id) => {
-    console.log(id);
-    fetch(`http://localhost:5000/api/v1/bus/${id}`, {
-        method: 'DELETE'
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    mutate(id);
   };
   return (
     <div>
@@ -55,7 +47,7 @@ const AllBus = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, i) => (
+            {buses.map((row, i) => (
               <TableRow key={i}>
                 <TableCell component="th" scope="row" align="center">
                   {row.name}

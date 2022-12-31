@@ -9,32 +9,28 @@ import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Chip } from "@mui/material";
 import { useState } from "react";
-import { useEffect } from "react";
 import Spinner from "../../components/Spinner";
+import {
+  useDeleteUser,
+  useMakeAdminUser,
+  useUsersData,
+} from "../../hooks/useUsersData";
 
 function createData(name, email) {
   return { name, email };
 }
 const Dashboard = () => {
-  const [rows, setRows] = useState([]);
-  
-  useEffect(() => {
-    fetch("http://localhost:5000/api/v1/users")
-      .then((res) => res.json())
-      .then((data) => setRows(data.data));
-  }, []);
-  if (rows.length === 0) {
-    return <Spinner></Spinner>;
+  const { data: users, isLoading } = useUsersData("user");
+  const { mutate: mutateDelete } = useDeleteUser("user");
+  const { mutate: mutateMakeAdmin } = useMakeAdminUser();
+
+  if (isLoading) {
+    return <Spinner />;
   }
-  console.log(rows.length);
-  const handleRemove = (id) =>{
-    console.log(id);
-    fetch(`http://localhost:5000/api/v1/bus/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }
+
+  const handleRemove = (id) => {
+    mutateDelete(id);
+  };
   return (
     <div>
       <TableContainer sx={{ width: "80%", position: "absolute", top: 120 }}>
@@ -49,14 +45,17 @@ const Dashboard = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, i) => (
+            {users.map((row, i) => (
               <TableRow key={i}>
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
                 <TableCell>{row.email}</TableCell>
                 <TableCell align="center">
-                  <Button onClick={() => handleRemove(row._id)} sx={{ color: "red" }}>
+                  <Button
+                    onClick={() => handleRemove(row._id)}
+                    sx={{ color: "red" }}
+                  >
                     <DeleteIcon></DeleteIcon>
                   </Button>
                 </TableCell>
