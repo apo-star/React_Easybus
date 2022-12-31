@@ -22,39 +22,15 @@ import { Avatar, Menu, MenuItem } from "@mui/material";
 import CustomModal from "./modals/CustomModal";
 
 const drawerWidth = 240;
-const navItems = [
-  {
-    route: "Home",
-    link: "",
-  },
-  {
-    route: "Search Bus",
-    link: "search-bus",
-  },
-  {
-    route: "About",
-    link: "about",
-  },
-  {
-    route: "Contact",
-    link: "contact",
-  },
-  {
-    route: "My Bookings",
-    link: "my-bookings",
-  },
-  {
-    route: "Dashboard",
-    link: "dashboard",
-  },
-];
+
 
 function Header(props) {
   const { windows } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const [fixed, setFixed] = useState(false);
-
+  const { user, userSignOut } = useContext(AuthContext);
+  // const [admin, setAdmin] = useState();
   function setFixedFunc() {
     if (window.scrollY >= 80) {
       setFixed(true);
@@ -70,24 +46,62 @@ function Header(props) {
     setMobileOpen((prevState) => !prevState);
   };
 
+
+  useEffect(()=>{
+    fetch("http://localhost:5000/api/v1/user/role")
+    .then(res => res.json())
+    .then(data => console.log(data))
+  } ,[])
+
+  // console.log(admin.data.role)
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center", zIndex: "1000", color: "white" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
         Easy Bus
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton
-              component={RouterLink}
-              to={`/${item.link}`}
-              sx={{ textAlign: "center" }}
-            >
-              <ListItemText primary={item.route} />
+          <ListItem disablePadding>
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <ListItemText>
+                <RouterLink to="/">Home</RouterLink>
+              </ListItemText>
             </ListItemButton>
           </ListItem>
-        ))}
+
+          <ListItem disablePadding>
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <ListItemText>
+                <RouterLink to="/search-bus">Search Bus</RouterLink>
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <ListItemText>
+                <RouterLink to="/about">About</RouterLink>
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <ListItemText>
+                {user?.uid && <RouterLink to="/my-bookings">My Bookings</RouterLink>}
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+        
+          <ListItem disablePadding>
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <ListItemText>
+                <RouterLink to="/dashboard">Dashboard</RouterLink>
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+        
+  
       </List>
     </Box>
   );
@@ -100,7 +114,7 @@ function Header(props) {
     setOpen(true);
   };
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const { user, userSignOut } = useContext(AuthContext);
+
 
   const [anchorElUser, setAnchorElUser] = useState(null);
   const handleOpenUserMenu = (event) => {
@@ -149,13 +163,8 @@ function Header(props) {
               </Typography>
             </Typography>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              {navItems.map((item, index) => (
                 <Button
-                  key={index}
-                  component={RouterLink}
-                  to={`/${item.link}`}
                   sx={{
-                    color: "#fff",
                     px: 3,
                     gap: 0.5,
                     ":hover": {
@@ -163,10 +172,71 @@ function Header(props) {
                     },
                   }}
                 >
-                  {item.route}
+                  <RouterLink style={{textDecoration:"none",color: "#fff", }} to="/" >Home</RouterLink>
                   <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
                 </Button>
-              ))}
+                <Button
+                  sx={{
+                    px: 3,
+                    gap: 0.5,
+                    ":hover": {
+                      color: "#FFA903",
+                    },
+                  }}
+                >
+                  <RouterLink style={{textDecoration:"none",color: "#fff", }} to="/search-bus" >Search Bus</RouterLink>
+                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
+                </Button>
+                <Button
+                  sx={{
+                    px: 3,
+                    gap: 0.5,
+                    ":hover": {
+                      color: "#FFA903",
+                    },
+                  }}
+                >
+                  <RouterLink style={{textDecoration:"none",color: "#fff", }} to="/about" >About</RouterLink>
+                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
+                </Button>
+                <Button
+                  sx={{
+                    px: 3,
+                    gap: 0.5,
+                    ":hover": {
+                      color: "#FFA903",
+                    },
+                  }}
+                >
+                  <RouterLink style={{textDecoration:"none",color: "#fff", }} to="/contact" >Contact</RouterLink>
+                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
+                </Button>
+                {
+                  user?.uid && <Button
+                  sx={{
+                    px: 3,
+                    gap: 0.5,
+                    ":hover": {
+                      color: "#FFA903",
+                    },
+                  }}
+                >
+                  <RouterLink style={{textDecoration:"none",color: "#fff", }} to="/my-bookings" >My Bookings</RouterLink>
+                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
+                </Button>
+                }
+                <Button
+                  sx={{
+                    px: 3,
+                    gap: 0.5,
+                    ":hover": {
+                      color: "#FFA903",
+                    },
+                  }}
+                >
+                  <RouterLink style={{textDecoration:"none",color: "#fff", }} to="/dashboard" >Dashboard</RouterLink>
+                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
+                </Button>
 
               {!user?.uid ? (
                 <Button
