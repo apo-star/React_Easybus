@@ -30,7 +30,7 @@ const OfferDeals = () => {
           maxWidth={{ xs: "100%", md: "80%", lg: "100%" }}
           spacing={{ xs: 0, md: 1 }}
           paddingX={0}
-          marginX={0}
+          marginX={{ xs: 0, md: "auto" }}
         >
           <Grid item lg={6} xs={12} width="100%" paddingX={0}>
             {deals?.slice(0, 1)?.map((deal) => (
