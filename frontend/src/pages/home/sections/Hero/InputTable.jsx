@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import {
   Box,
+  Button,
   FormControl,
   Grid,
   Input,
@@ -17,9 +18,11 @@ import {
   TextField,
 } from "@mui/material";
 import { useState } from "react";
+import { DataContext } from "../../../../context/DataProvider";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export default function BasicTable() {
-  const [age, setAge] = useState("");
   const districts = [
     {
       value: "Please Select Location",
@@ -51,18 +54,25 @@ export default function BasicTable() {
     },
   ];
   const [toLocation, setToLocation] = useState(districts);
+  const { register, handleSubmit } = useForm();
+  const { setJourneyDate, setFromToLocation, fromToLocation } =
+    React.useContext(DataContext);
+  const navigate = useNavigate();
+  const handleSearch = (data) => {
+    console.log(data);
+    setJourneyDate(data.date);
+    setFromToLocation({ from: data.from, to: data.to });
+    navigate("/booking");
+  };
   const handleSelect = (selectedvalue) => {
     const remaining = districts.filter(
       (district) => district.value !== selectedvalue
     );
     setToLocation(remaining);
   };
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(handleSearch)}>
       <Box sx={{ width: "100%" }}>
         <Grid
           container
@@ -77,6 +87,7 @@ export default function BasicTable() {
               defaultValue="Please Select Location"
               variant="standard"
               sx={{ width: "100%" }}
+              {...register("from", { required: true })}
               onChange={(e) => handleSelect(e.target.value)}
             >
               {districts.map((option, i) => (
@@ -94,6 +105,7 @@ export default function BasicTable() {
               sx={{ width: "100%" }}
               defaultValue="Please Select Location"
               variant="standard"
+              {...register("to", { required: true })}
             >
               {toLocation.map((option, i) => (
                 <MenuItem key={i} value={option.value}>
@@ -102,16 +114,32 @@ export default function BasicTable() {
               ))}
             </TextField>
           </Grid>
-          <Grid item xs={12} md={12} lg={4} sx={{display: 'flex', alignItems:'end'}}>
+          <Grid
+            item
+            xs={12}
+            md={12}
+            lg={4}
+            sx={{ display: "flex", alignItems: "end" }}
+          >
             <Input
               id="filled-basic"
               label="Filled"
               variant="filled"
               sx={{ width: "100%" }}
               type="date"
+              {...register("date", { required: true })}
             />
           </Grid>
         </Grid>
+        <Box>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ ":hover": { backgroundColor: "#622243", color: "#ffffff" }, marginTop: 3 }}
+          >
+            Book Now
+          </Button>
+        </Box>
       </Box>
     </form>
   );
