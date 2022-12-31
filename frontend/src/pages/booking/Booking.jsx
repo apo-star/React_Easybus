@@ -4,10 +4,13 @@ import { Box, Typography } from "@mui/material";
 import SingleBooking from "./SingleBooking";
 import { DataContext } from "../../context/DataProvider";
 import Spinner from "../../components/Spinner";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useSearchParams } from "react-router-dom";
 
 const Booking = () => {
+  const [searchParams] = useSearchParams();
+  const fromInSearch = searchParams.get("from");
+  const toInSearch = searchParams.get("to");
+  const dateInSearch = searchParams.get("date");
   const { journeyDate, fromToLocation } = React.useContext(DataContext);
   const {
     data: data = [],
