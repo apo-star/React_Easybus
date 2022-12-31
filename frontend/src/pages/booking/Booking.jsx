@@ -22,6 +22,7 @@ const Booking = () => {
   if (isLoading) {
     return <Spinner />;
   }
+  console.log(dateInSearch);
   return (
     <Box
       sx={{
@@ -32,7 +33,11 @@ const Booking = () => {
       }}
     >
       {bookings?.map((booking) => (
-        <SingleBooking key={booking._id} booking={booking}></SingleBooking>
+        <SingleBooking
+          key={booking._id}
+          booking={booking}
+          dateInSearch={dateInSearch}
+        ></SingleBooking>
       ))}
     </Box>
   );
