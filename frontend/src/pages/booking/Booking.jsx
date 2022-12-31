@@ -9,18 +9,18 @@ const Booking = () => {
   const { data, isLoading } = useGetAllSeatQuery();
   const { journeyDate, fromToLocation } = React.useContext(DataContext);
   const bookings = data?.data;
-  
-  if(isLoading) {
-    return <Spinner></Spinner>
+
+  if (isLoading) {
+    return <Spinner></Spinner>;
   }
   const filteredBooking = bookings.filter(
     (booking) =>
       booking.departureLocation === fromToLocation.from &&
       booking.arrivalLocation === fromToLocation.to
   );
-  console.log(bookings);
+
   console.log(fromToLocation);
-  console.log(filteredBooking);
+  console.log(journeyDate);
   return (
     <Box
       sx={{

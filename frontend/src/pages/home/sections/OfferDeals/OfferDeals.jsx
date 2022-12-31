@@ -1,13 +1,13 @@
-import { Box, Grid } from '@mui/material';
-import { Container } from '@mui/system';
-import React from 'react';
-import OfferDealCard from './OfferDealCard';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { useGetOfferDealsQuery } from '../../../../features/offerDeals/offerDeals';
-import Spinner from '../../../../components/Spinner';
+import { Box, Grid } from "@mui/material";
+import { Container } from "@mui/system";
+import React from "react";
+import OfferDealCard from "./OfferDealCard";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { useGetOfferDealsQuery } from "../../../../features/offerDeals/offerDeals";
+import Spinner from "../../../../components/Spinner";
 
 const OfferDeals = () => {
     const {data,isLoading} = useGetOfferDealsQuery()
@@ -43,7 +43,10 @@ const OfferDeals = () => {
                         }
                     </Grid>
                 </Grid>
+              ))}
             </Grid>
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );

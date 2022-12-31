@@ -95,6 +95,7 @@ function Header(props) {
   const container =
     windows !== undefined ? () => windows().document.body : undefined;
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -170,7 +171,7 @@ function Header(props) {
               {!user?.uid ? (
                 <Button
                   variant="contained"
-                  onClick={handleClickOpen}
+                  onClick={pathname !== "/login" && handleClickOpen}
                   sx={{ fontWeight: 600 }}
                 >
                   Sign In

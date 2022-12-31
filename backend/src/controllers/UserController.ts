@@ -1,10 +1,15 @@
 import { Request, Response } from "express";
 import User from "../models/User";
+import { AssignJwt } from "../services/ManageJwt";
 
 export const CreateNewUser = async (req: Request, res: Response) => {
+  if (req.body?.role && req.body.role === "admin") {
+    return res.status(401).json({ success: false, message: "Unauthorized" });
+  }
   try {
     const newUser = await User.create(req.body);
-    res.status(200).json({ success: true, data: newUser });
+    const token = await AssignJwt(newUser.email);
+    res.status(200).json({ success: true, data: newUser, token });
   } catch (error) {
     res.status(400).json({
       success: false,
@@ -35,13 +40,11 @@ export const DeleteUser = async (req: Request, res: Response) => {
       });
     }
     await user.delete();
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "User successfully deleted",
-        data: user,
-      });
+    res.status(200).json({
+      success: true,
+      message: "User successfully deleted",
+      data: user,
+    });
   } catch (error) {
     res.status(400).json({
       success: false,
