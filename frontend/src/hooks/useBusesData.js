@@ -11,11 +11,11 @@ const fetchAllBusData = () => {
 //   return request({ url: `/api/v1/products/${category}` });
 // };
 
-const createNewBus = (products) => {
+const createNewBus = (data) => {
   return request({
     url: `/api/v1/admin/bus/new`,
     method: "post",
-    data: products,
+    data: data,
   });
 };
 
