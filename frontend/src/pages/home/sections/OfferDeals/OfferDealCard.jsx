@@ -45,7 +45,7 @@ const OfferDealCard = ({ deal }) => {
           image={picture}
           alt="green iguana"
           style={{
-            borderRadius: `${_id === "1" ? "0px" : "15px"}`,
+            borderRadius: `${_id == "1" ? "0px" : "15px"}`,
             width: "full",
           }}
         />
@@ -68,12 +68,11 @@ const OfferDealCard = ({ deal }) => {
           >
             {place}
           </Typography>
-          <Typography>{date}</Typography>
           <Typography sx={{ marginTop: "13px" }}>{from}</Typography>
           <Typography
             fontWeight={600}
             fontSize={18}
-            paddingBottom={_id == "1" ? "55px" : "20px"}
+            paddingBottom={_id=== "1" ? "50px" : "20px"}
           >
             {price}
           </Typography>
@@ -131,7 +130,6 @@ const OfferDealCard = ({ deal }) => {
             >
               {place}
             </Typography>
-            <Typography>{date}</Typography>
             <Typography marginTop={"13px"}>{from}</Typography>
             <Typography fontWeight={600} color="#FFA903" fontSize={18}>
               {price}
@@ -156,16 +154,6 @@ const OfferDealCard = ({ deal }) => {
                 }}
               >
                 Booking Now
-              </Button>
-              <Button
-                sx={{
-                  color: "white",
-                  ":hover": {
-                    color: "#FFA903",
-                  },
-                }}
-              >
-                Discover
               </Button>
             </Box>
           </CardContent>

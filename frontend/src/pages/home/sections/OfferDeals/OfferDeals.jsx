@@ -28,7 +28,7 @@ const OfferDeals = () => {
                     Bus Offer Deals
                 </Typography>
             </Box>
-            <Grid container maxWidth={{sm:'100%', md:"80%", lg:"100%"}} marginX={"auto"}>
+            <Grid alignItems={"stretch"} container maxWidth={{sm:'100%', md:"80%", lg:"100%"}} marginX={"auto"}>
                 <Grid item lg={6} xs={12} height="100%" sm={{p:0}}>
                     {
                         deals?.slice(0,1)?.map(deal=><OfferDealCard deal={deal} key={deal._id}></OfferDealCard>)
