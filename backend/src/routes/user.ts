@@ -9,8 +9,8 @@ import ValidateId from "../middlewares/ValidateId";
 
 const router = express.Router();
 
-router.get("/users", CheckExistingUser, GetAllUsers);
-router.post("/user/new", CreateNewUser);
+router.get("/users", GetAllUsers);
+router.post("/user/new", CheckExistingUser, CreateNewUser);
 router.delete("/user/:id", ValidateId, DeleteUser);
 
 export default router;
