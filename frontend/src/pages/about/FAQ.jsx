@@ -32,14 +32,13 @@ const FAQ = () => {
               the user will get back 70% of fair. After that time, it's 50%.`,
             },
             {
-              question: "What is the policy of EasyBus on Cancelling a Ticket?",
-              answer: `If a user cancels his/her ticket before 24 hours of departure time, 
-              the user will get back 70% of fair. After that time, it's 50%.`,
+              question:
+                "If I reserve a bus, do I also get to decide the departure time?",
+              answer: `Yes, that's too reserved for you!`,
             },
             {
-              question: "What is the policy of EasyBus on Cancelling a Ticket?",
-              answer: `If a user cancels his/her ticket before 24 hours of departure time, 
-              the user will get back 70% of fair. After that time, it's 50%.`,
+              question: "Is Buffet available?",
+              answer: `Depends on Coach. After reserving your seat(s), contact the bus operator with your inquiry.`,
             },
           ].map(({ question, answer }, index) => (
             <Accordion
