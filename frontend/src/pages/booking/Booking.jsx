@@ -22,7 +22,9 @@ const Booking = () => {
     queryKey: ["buses"],
     queryFn: async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/v1/buses`);
+        const { data } = await axios.get(
+          `http://localhost:5000/api/v1/buses?from=${fromInSearch}&to=${toInSearch}`
+        );
         return data;
       } catch (error) {
         console.log(error);
@@ -33,12 +35,12 @@ const Booking = () => {
   if (isLoading) {
     return <Spinner></Spinner>;
   }
-  const filteredBooking = bookings.filter(
-    (booking) =>
-      booking.departureLocation === fromToLocation.from &&
-      booking.arrivalLocation === fromToLocation.to
-  );
-
+  // const filteredBooking = bookings.filter(
+  //   (booking) =>
+  //     booking.departureLocation === fromToLocation.from &&
+  //     booking.arrivalLocation === fromToLocation.to
+  // );
+  console.log(bookings);
   return (
     <Box
       sx={{
@@ -48,7 +50,7 @@ const Booking = () => {
         mt: "80px",
       }}
     >
-      {filteredBooking?.map((booking) => (
+      {bookings?.map((booking) => (
         <SingleBooking
           key={booking._id}
           booking={booking}
