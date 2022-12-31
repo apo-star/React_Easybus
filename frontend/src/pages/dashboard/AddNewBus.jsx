@@ -13,6 +13,8 @@ import {
   TextField,
 } from "@mui/material";
 import Button from "@mui/material/Button";
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const categories = [
   {
@@ -32,7 +34,51 @@ const categories = [
     label: "Double Decker",
   },
 ];
+const schedule = [
+  {
+    value: "6:00 AM",
+    label: "6:00 AM",
+  },
+  {
+    value: "8:00 AM",
+    label: "8:00 AM",
+  },
+  {
+    value: "10:00 AM",
+    label: "10:00 AM",
+  },
+  {
+    value: "12:00 PM",
+    label: "12:00 PM",
+  },
+  {
+    value: "2:00 PM",
+    label: "2:00 PM",
+  },
+  {
+    value: "4:00 PM",
+    label: "4:00 PM",
+  },
+  {
+    value: "6:00 PM",
+    label: "6:00 PM",
+  },
+];
+
 const AddNewBus = () => {
+  const [districts, setDistricts] = useState([]);
+  useEffect(()=>{
+    fetch("http://localhost:5000/api/v1/locations")
+      .then((res) => res.json())
+      .then((data) => setDistricts(data.data));
+  },[])
+  const [toLocation, setToLocation] = useState(districts);
+  const handleSelect = (selectedvalue) => {
+    const remaining = districts.filter(
+      (district) => district.value !== selectedvalue
+    );
+    setToLocation(remaining);
+  };
   const { register, handleSubmit } = useForm();
   const handleAddBus = (data) =>{
     data.fare = Number(data.fare);
@@ -40,141 +86,76 @@ const AddNewBus = () => {
   data.seats = [
       {
         seatNo: "A1",
-        _id: "63ac85b9816bf53fbffe75e0",
-        seatAvailability: [
-          {
-            bookingDate: "30/12/2022",
-            isBooked: true,
-            _id: "63ad4b726359bd18ae131c85",
-          },
-        ],
       },
       {
         seatNo: "A2",
-        _id: "63ac85b9816bf53fbffe75e1",
-        seatAvailability: [],
       },
       {
         seatNo: "B1",
-        seatAvailability: [
-          {
-            bookingDate: "29/12/2022",
-            isBooked: true,
-            _id: "63ac85b9816bf53fbffe75e3",
-          },
-        ],
-        _id: "63ac85b9816bf53fbffe75e2",
+        
       },
       {
         seatNo: "B2",
-        _id: "63ac85b9816bf53fbffe75e4",
-        seatAvailability: [],
       },
       {
-        seatNo: "C1",
-        _id: "63ac85b9816bf53fbffe75e5",
-        seatAvailability: [],
+        seatNo: "C1"
       },
       {
-        seatNo: "C2",
-        _id: "63ac85b9816bf53fbffe75e6",
-        seatAvailability: [],
+        seatNo: "C2"
       },
       {
-        seatNo: "D1",
-        seatAvailability: [
-          {
-            bookingDate: "29/12/2022",
-            isBooked: true,
-            _id: "63ac85b9816bf53fbffe75e8",
-          },
-        ],
-        _id: "63ac85b9816bf53fbffe75e7",
+        seatNo: "D1"
       },
       {
-        seatNo: "D2",
-        _id: "63ac85b9816bf53fbffe75e9",
-        seatAvailability: [],
+        seatNo: "D2"
       },
       {
-        seatNo: "E1",
-        _id: "63ac85b9816bf53fbffe75ea",
-        seatAvailability: [],
+        seatNo: "E1"
       },
       {
-        seatNo: "E2",
-        _id: "63ac85b9816bf53fbffe75eb",
-        seatAvailability: [],
+        seatNo: "E2"
       },
       {
-        seatNo: "F1",
-        _id: "63ac85b9816bf53fbffe75ec",
-        seatAvailability: [],
+        seatNo: "F1"
       },
       {
-        seatNo: "F2",
-        _id: "63ac85b9816bf53fbffe75ed",
-        seatAvailability: [],
+        seatNo: "F2"
       },
       {
-        seatNo: "A3",
-        _id: "63ac85b9816bf53fbffe75ee",
-        seatAvailability: [],
+        seatNo: "A3"
       },
       {
-        seatNo: "A4",
-        _id: "63ac85b9816bf53fbffe75ef",
-        seatAvailability: [],
+        seatNo: "A4"
       },
       {
-        seatNo: "B3",
-        _id: "63ac85b9816bf53fbffe75f0",
-        seatAvailability: [],
+        seatNo: "B3"
       },
       {
-        seatNo: "B4",
-        _id: "63ac85b9816bf53fbffe75f1",
-        seatAvailability: [],
+        seatNo: "B4"
       },
       {
-        seatNo: "C3",
-        _id: "63ac85b9816bf53fbffe75f2",
-        seatAvailability: [],
+        seatNo: "C3"
       },
       {
-        seatNo: "C4",
-        _id: "63ac85b9816bf53fbffe75f3",
-        seatAvailability: [],
+        seatNo: "C4"
       },
       {
-        seatNo: "D3",
-        _id: "63ac85b9816bf53fbffe75f4",
-        seatAvailability: [],
+        seatNo: "D3"
       },
       {
-        seatNo: "D4",
-        _id: "63ac85b9816bf53fbffe75f5",
-        seatAvailability: [],
+        seatNo: "D4"
       },
       {
-        seatNo: "E3",
-        _id: "63ac85b9816bf53fbffe75f6",
-        seatAvailability: [],
+        seatNo: "E3"
       },
       {
-        seatNo: "E4",
-        _id: "63ac85b9816bf53fbffe75f7",
-        seatAvailability: [],
+        seatNo: "E4"
       },
       {
-        seatNo: "F3",
-        _id: "63ac85b9816bf53fbffe75f8",
-        seatAvailability: [],
+        seatNo: "F3"
       },
       {
-        seatNo: "F4",
-        _id: "63ac85b9816bf53fbffe75f9",
-        seatAvailability: [],
+        seatNo: "F4"
       },
     ];
     fetch("http://localhost:5000/api/v1/bus/new", {
@@ -188,7 +169,6 @@ const AddNewBus = () => {
       .then((result) => console.log(result));
       console.log(data);
   }
-
     return (
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Grid
@@ -224,28 +204,68 @@ const AddNewBus = () => {
               ></TextField>
               <TextField
                 id="departureLocation"
+                select
                 label="Departure Location"
+                defaultValue="Please Select Location"
                 variant="filled"
+                sx={{ width: "100%" }}
                 {...register("departureLocation", { required: true })}
-              ></TextField>
+                onChange={(e) => handleSelect(e.target.value)}
+              >
+                {districts.map((option, i) => (
+                  <MenuItem key={i} value={option.name}>
+                    {option.name}
+                  </MenuItem>
+                ))}
+              </TextField>
               <TextField
                 id="arrivalLocation"
+                select
                 label="Arrival Location"
+                defaultValue="Please Select Location"
                 variant="filled"
+                sx={{ width: "100%" }}
                 {...register("arrivalLocation", { required: true })}
-              ></TextField>
+                onChange={(e) => handleSelect(e.target.value)}
+              >
+                {toLocation.map((option, i) => (
+                  <MenuItem key={i} value={option.name}>
+                    {option.name}
+                  </MenuItem>
+                ))}
+              </TextField>
               <TextField
                 id="departureTime"
+                select
                 label="Departure Time"
+                defaultValue="Please Select Location"
                 variant="filled"
+                sx={{ width: "100%" }}
                 {...register("departureTime", { required: true })}
-              ></TextField>
+                onChange={(e) => handleSelect(e.target.value)}
+              >
+                {schedule.map((option, i) => (
+                  <MenuItem key={i} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
               <TextField
                 id="arrivalTime"
+                select
                 label="Arrival Time"
+                defaultValue="Please Select Location"
                 variant="filled"
+                sx={{ width: "100%" }}
                 {...register("arrivalTime", { required: true })}
-              ></TextField>
+                onChange={(e) => handleSelect(e.target.value)}
+              >
+                {schedule.map((option, i) => (
+                  <MenuItem key={i} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
               <TextField
                 id="totalSeats"
                 label="Total Seats"
@@ -268,17 +288,17 @@ const AddNewBus = () => {
                   </MenuItem>
                 ))}
               </TextField>
+            </Box>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Button
                   type="submit"
                   variant="contained"
                   // endIcon={}
-                  sx={{ color: "white", width: "60%", marginTop: 5 }}
+                  sx={{ color: "white", width: "70%", marginTop: 5 }}
                 >
                   Add Bus
                 </Button>
               </Box>
-            </Box>
           </form>
         </Grid>
       </Box>

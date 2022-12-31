@@ -8,10 +8,10 @@ const DashboardLayout = () => {
     <div>
       <Header />
       <Grid container spacing={2}>
-      <Grid item xs={2}>
+      <Grid item xs={12} sm={12} md={12} lg={2}>
         <SideBar></SideBar>
       </Grid>
-      <Grid item xs={10} lg={10}>
+      <Grid item xs={12} sm={12} md={12} lg={10}>
         <Outlet />
       </Grid>
     </Grid>
