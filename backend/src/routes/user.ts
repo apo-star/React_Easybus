@@ -11,9 +11,9 @@ import { VerifyJwt } from "../middlewares/VerifyJwt";
 
 const router = express.Router();
 
-router.get("/users", CheckExistingUser, GetAllUsers);
+router.get("/users", GetAllUsers);
 router.get("/user/role", VerifyJwt, GetUserRole);
-router.post("/user/new", CreateNewUser);
+router.post("/user/new", CheckExistingUser, CreateNewUser);
 router.delete("/user/:id", ValidateId, DeleteUser);
 
 export default router;
