@@ -20,6 +20,7 @@ import Auth from "../../pages/auth/Auth";
 import { AuthContext } from "../../context/AuthProvider";
 import { Avatar, Menu, MenuItem } from "@mui/material";
 import CustomModal from "./modals/CustomModal";
+import useCheckUserRole from "../../hooks/useCheckUserRole";
 
 const drawerWidth = 240;
 
@@ -44,14 +45,7 @@ function Header(props) {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/v1/user/role")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
-
-  // console.log(admin.data.role)
+  const { userRole, loading } = useCheckUserRole();
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
@@ -251,23 +245,25 @@ function Header(props) {
                   <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
                 </Button>
               )}
-              <Button
-                sx={{
-                  px: 3,
-                  gap: 0.5,
-                  ":hover": {
-                    color: "#FFA903",
-                  },
-                }}
-              >
-                <RouterLink
-                  style={{ textDecoration: "none", color: "#fff" }}
-                  to="/dashboard"
+              {user?.uid && userRole === "admin" && (
+                <Button
+                  sx={{
+                    px: 3,
+                    gap: 0.5,
+                    ":hover": {
+                      color: "#FFA903",
+                    },
+                  }}
                 >
-                  Dashboard
-                </RouterLink>
-                <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
-              </Button>
+                  <RouterLink
+                    style={{ textDecoration: "none", color: "#fff" }}
+                    to="/dashboard"
+                  >
+                    Dashboard
+                  </RouterLink>
+                  <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
+                </Button>
+              )}
 
               {!user?.uid ? (
                 <Button
