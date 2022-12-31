@@ -43,10 +43,7 @@ const OfferDeals = () => {
                         }
                     </Grid>
                 </Grid>
-              ))}
             </Grid>
-          </Grid>
-        </Grid>
       </Container>
     </Box>
   );
