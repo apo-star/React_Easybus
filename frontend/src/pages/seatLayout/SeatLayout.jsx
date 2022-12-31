@@ -52,6 +52,8 @@ const SeatLayout = ({ booking, setOpen, refetch }) => {
     );
     if (!bookCheck) {
       mutate({ busId: _id, seatNo: seat.seatNo });
+    } else {
+      toast.error("This seat is already booked");
     }
 
     const bookSeat = booking.seats.filter((each) => each.tempBooked === true);
@@ -67,7 +69,7 @@ const SeatLayout = ({ booking, setOpen, refetch }) => {
     );
     setBookedSeats(removeDuplicateSeats);
     setBookedBus(booking);
-    toast(seat.seatNo);
+    // toast(seat.seatNo);
   };
 
   return (

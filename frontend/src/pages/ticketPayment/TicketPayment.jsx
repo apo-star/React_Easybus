@@ -21,10 +21,12 @@ import {
 import { DataContext } from "../../context/DataProvider";
 import { AuthContext } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 const TicketPayment = () => {
   const { bookedseats, bookedBus, journeyDate } = useContext(DataContext);
   const { user } = useContext(AuthContext);
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   if (!bookedBus) {
     return navigate(-1);
@@ -107,7 +109,7 @@ const TicketPayment = () => {
         departureLocation: bookedBus.departureLocation,
         arrivalLocation: bookedBus.arrivalLocation,
         date: journeyDate,
-        seatNo: seatNos,
+        seatNo: bookedseats,
         busId: bookedBus._id,
         transactionId: paymentIntent?.id,
       };
@@ -120,8 +122,8 @@ const TicketPayment = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          data.success &&
-            toast.success(`${customer.name}, Your Order Successfully Placed.`);
+          queryClient.invalidateQueries(["buses"]);
+          data.success && toast.success(`Bus Booked SuccessFully`);
           navigate("/my-bookings");
         });
     }

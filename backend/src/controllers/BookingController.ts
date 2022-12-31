@@ -19,7 +19,6 @@ export const CreateNewBooking = async (req: Request, res: Response) => {
       };
       const seat = selectedSeat?.seatAvailability.push(newBookingDate);
     });
-    console.log(bookedBus);
     await bookedBus?.save();
     // const selectedSeat = bookedBus?.seats.find(
     //   (seat) => seat.seatNo === busSeatNo
