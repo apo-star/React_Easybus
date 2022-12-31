@@ -69,12 +69,7 @@ export default function BasicTabs() {
       <TabPanel value={value} index={0}>
         <InputTable></InputTable>
       </TabPanel>
-      <Button
-        variant="contained"
-        sx={{ ":hover": { backgroundColor: "#622243", color: "#ffffff" } }}
-      >
-        Book Now
-      </Button>
+      
     </Box>
   );
 }

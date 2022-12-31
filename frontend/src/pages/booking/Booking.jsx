@@ -5,22 +5,23 @@ import SingleBooking from "./SingleBooking";
 import { DataContext } from "../../context/DataProvider";
 import Spinner from "../../components/Spinner";
 
+import { useSearchParams } from "react-router-dom";
+import { useBusesDataByRoute } from "../../hooks/useBusesData";
+
 const Booking = () => {
-  const { data, isLoading } = useGetAllSeatQuery();
-  const { journeyDate, fromToLocation } = React.useContext(DataContext);
-  const bookings = data?.data;
+  const [searchParams] = useSearchParams();
+  const from = searchParams.get("from");
+  const to = searchParams.get("to");
+  const dateInSearch = searchParams.get("date");
+  const route = {
+    from,
+    to,
+  };
+  const { data: bookings, isLoading } = useBusesDataByRoute(route);
 
   if (isLoading) {
-    return <Spinner></Spinner>;
+    return <Spinner />;
   }
-  const filteredBooking = bookings.filter(
-    (booking) =>
-      booking.departureLocation === fromToLocation.from &&
-      booking.arrivalLocation === fromToLocation.to
-  );
-
-  console.log(fromToLocation);
-  console.log(journeyDate);
   return (
     <Box
       sx={{
@@ -30,7 +31,7 @@ const Booking = () => {
         mt: "80px",
       }}
     >
-      {filteredBooking?.map((booking) => (
+      {bookings?.map((booking) => (
         <SingleBooking key={booking._id} booking={booking}></SingleBooking>
       ))}
     </Box>

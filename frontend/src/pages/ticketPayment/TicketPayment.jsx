@@ -20,16 +20,27 @@ import {
 } from "@mui/material";
 import { DataContext } from "../../context/DataProvider";
 import { AuthContext } from "../../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 const TicketPayment = () => {
   const { bookedseats, bookedBus, journeyDate } = useContext(DataContext);
   const { user } = useContext(AuthContext);
-  const ticketPrice = 100;
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  if (!bookedBus) {
+    return navigate(-1);
+  }
+  const ticketPrice = bookedBus.fare;
+  const bookSeat = bookedBus.seats.filter((each) => each.tempBooked === true);
+  const seatNos = [];
+  bookSeat.map((each) => {
+    seatNos.push(each.seatNo);
+  });
   const {
     register,
     formState: { errors, isSubmitting },
     handleSubmit,
-    reset,
   } = useForm();
 
   // stripe card element
@@ -111,8 +122,9 @@ const TicketPayment = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          data.success &&
-            toast.success(`${customer.name}, Your Order Successfully Placed.`);
+          queryClient.invalidateQueries(["buses"]);
+          data.success && toast.success(`Bus Booked SuccessFully`);
+          navigate("/my-bookings");
         });
     }
   };
@@ -156,6 +168,7 @@ const TicketPayment = () => {
                     {...register("routename", { required: true })}
                     aria-invalid={errors.name ? "true" : "false"}
                     defaultValue={`${bookedBus.arrivalLocation} - ${bookedBus.departureLocation}`}
+                    inputProps={{ readOnly: true }}
                   />
                 </Box>
                 <Box>
@@ -171,6 +184,7 @@ const TicketPayment = () => {
                       }
                       label="Amount"
                       defaultValue={bookedBus.fare}
+                      inputProps={{ readOnly: true }}
                     />
                   </FormControl>
                 </Box>
@@ -183,6 +197,7 @@ const TicketPayment = () => {
                       fullWidth
                       id="name"
                       label="Your Name"
+                      inputProps={{ readOnly: true }}
                       autoFocus
                       {...register("name", { required: true })}
                       aria-invalid={errors.name ? "true" : "false"}
@@ -199,6 +214,7 @@ const TicketPayment = () => {
                     name="email"
                     autoComplete="email"
                     autoFocus
+                    inputProps={{ readOnly: true }}
                     sx={{
                       fontSize: "12px",
                     }}

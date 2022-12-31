@@ -3,12 +3,11 @@ import React, { useState } from "react";
 import CustomModal from "../../components/ui/modals/CustomModal";
 import SeatLayout from "../seatLayout/SeatLayout";
 
-const SingleBooking = ({ booking }) => {
+const SingleBooking = ({ booking, refetch }) => {
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
-  console.log(booking);
 
   const {
     _id,
@@ -27,7 +26,7 @@ const SingleBooking = ({ booking }) => {
   return (
     <Box>
       <Box
-      display={{sm:'block', md:"flex"}}
+        display={{ sm: "block", md: "flex" }}
         sx={{
           justifyContent: "center",
           my: "20px",
@@ -159,11 +158,11 @@ const SingleBooking = ({ booking }) => {
                 backgroundColor: "#FFA903",
                 color: "#000000",
                 fontSize: "12px",
-                fontWeight:600,
+                fontWeight: 600,
                 mt: "40px",
                 ":hover": {
                   background: "#000000",
-                  color:"#ffffff",
+                  color: "#ffffff",
                   transition: "all 0.3s",
                 },
               }}
@@ -175,7 +174,7 @@ const SingleBooking = ({ booking }) => {
         </Box>
       </Box>
       <CustomModal open={open} setOpen={setOpen}>
-        <SeatLayout booking={booking} setOpen={setOpen} />
+        <SeatLayout booking={booking} setOpen={setOpen} refetch={refetch} />
       </CustomModal>
     </Box>
   );

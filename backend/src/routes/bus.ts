@@ -10,8 +10,8 @@ import ValidateId from "../middlewares/ValidateId";
 const router = express.Router();
 
 router.get("/buses", GetAllBuses);
-router.post("/bus/new", CreateNewBus);
+router.post("/admin/bus/new", CreateNewBus);
 router.patch("/bus/update", UpdateTempBookedSeat);
-router.delete("/bus/:id", ValidateId, DeleteBus);
+router.delete("/admin/bus/:id", ValidateId, DeleteBus);
 
 export default router;

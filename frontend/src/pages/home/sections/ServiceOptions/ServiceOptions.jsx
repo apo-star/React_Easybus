@@ -46,7 +46,7 @@ const options = [
 const ServiceOptions = () => {
   return (
     <div>
-      <Box py={10} sx={{ bgcolor: "#FBF9F2" }}>
+      <Box py={10} sx={{ bgcolor: "#FBF9F2",mx:"auto" }} maxWidth={{ xs: "100%", md: "100%", lg: "95%" }}>
         <Stack maxWidth={"90%"} mx={"auto"}>
           <Typography variant="h6" fontSize={18} color={"#FFA903"}>
             WHY EASY BUS

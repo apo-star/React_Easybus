@@ -10,21 +10,28 @@ import { DataContext } from "../../../../context/DataProvider";
 import { useNavigate } from "react-router-dom";
 const OfferDealCard = ({ deal }) => {
   const { _id, picture, place, from, price, date } = deal;
-  const {fromToLocation, setFromToLocation} = useContext(DataContext)
-  const navigate = useNavigate()
+  const { fromToLocation, setFromToLocation } = useContext(DataContext);
+  const navigate = useNavigate();
 
-  const departure = place.split(" ")[0]
-  const arrival = place.split(" ")[2]
+  const departure = place.split(" ")[0];
+  const arrival = place.split(" ")[2];
 
-  const offerDealSearch=()=>{
-    setFromToLocation({from: departure, to: arrival});
-    navigate('/booking');
-  }
+  const offerDealSearch = () => {
+    setFromToLocation({ from: departure, to: arrival });
+    navigate(`/search-bus?from=${departure}&to=${arrival}`);
+  };
   return (
     <Box
       sx={{
         position: "relative",
-        height: "100%",
+        height: {
+          xs: "95%",
+          md: "100%",
+        },
+        marginTop: {
+          xs: "5%",
+          md: "0",
+        },
       }}
     >
       <Card
@@ -36,6 +43,9 @@ const OfferDealCard = ({ deal }) => {
           boxShadow: "0 5px 10px 2px #0000002e",
           borderRadius: "15px",
           marginX: "auto",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
         }}
       >
         <CardMedia
@@ -44,7 +54,8 @@ const OfferDealCard = ({ deal }) => {
           alt="green iguana"
           style={{
             borderRadius: `${_id == "1" ? "0px" : "15px"}`,
-            width: "full",
+            width: "100%",
+            flexGrow: 1,
           }}
         />
         <CardContent
@@ -70,7 +81,7 @@ const OfferDealCard = ({ deal }) => {
           <Typography
             fontWeight={600}
             fontSize={18}
-            paddingBottom={_id=== "1" ? "50px" : "20px"}
+            paddingBottom={_id === "1" ? "50px" : "20px"}
           >
             {price}
           </Typography>
@@ -141,7 +152,7 @@ const OfferDealCard = ({ deal }) => {
               }}
             >
               <Button
-              onClick={offerDealSearch}
+                onClick={offerDealSearch}
                 variant="contained"
                 sx={{
                   color: "#622243",
@@ -151,7 +162,7 @@ const OfferDealCard = ({ deal }) => {
                   fontWeight: "600",
                 }}
               >
-                Booking Now
+                Book Now
               </Button>
             </Box>
           </CardContent>
