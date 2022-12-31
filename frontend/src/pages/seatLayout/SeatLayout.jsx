@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
 import axios from "axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const BootstrapTooltip = styled(({ className, ...props }) => (
@@ -33,14 +34,38 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
 const SeatLayout = ({ booking, setOpen, refetch }) => {
   const { setBookedSeats, bookedseats, setBookedBus, journeyDate } =
     useContext(DataContext);
+  const [booked, setBooked] = useState(true);
+  const queryClient = useQueryClient();
+  const updateSeat = (seatInfo) => {
+    return axios.patch("http://localhost:5000/api/v1/bus/update", seatInfo);
+  };
+  const { mutate } = useMutation(updateSeat, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["buses"]);
+      setBooked(false);
+    },
+  });
   const { seats, _id } = booking;
   const getBookedSeat = (seat) => {
-    axios.patch("http://localhost:5000/api/v1/bus/update", {
-      busId: _id,
-      seatNo: bookedseats,
-    });
-    refetch();
-    setBookedSeats(seat.seatNo);
+    const bookCheck = seat.seatAvailability?.find(
+      (item) => item?.bookingDate === journeyDate
+    );
+    if (!bookCheck) {
+      mutate({ busId: _id, seatNo: seat.seatNo });
+    }
+
+    const bookSeat = booking.seats.filter((each) => each.tempBooked === true);
+    if (bookSeat.length > 0) {
+      setBooked(false);
+    }
+    // if (bookSeat.length > 3) {
+    //   return toast("You Can Select atleast 3 sit");
+    // }
+    const newSeats = [...bookedseats, seat.seatNo];
+    let removeDuplicateSeats = newSeats.filter(
+      (v, i) => newSeats.indexOf(v) === i
+    );
+    setBookedSeats(removeDuplicateSeats);
     setBookedBus(booking);
     toast(seat.seatNo);
   };
@@ -85,11 +110,11 @@ const SeatLayout = ({ booking, setOpen, refetch }) => {
                       {...label}
                       icon={<ChairOutlinedIcon sx={{ color: "#999" }} />}
                       checkedIcon={<ChairIcon />}
-                      checked={seat.seatAvailability?.find(
-                        (item) =>
-                          item?.bookingDate === journeyDate ||
-                          bookedseats === seat?.seatNo
-                      )}
+                      checked={
+                        seat.seatAvailability?.find(
+                          (item) => item?.bookingDate === journeyDate
+                        ) || seat.tempBooked
+                      }
                     />
                   </BootstrapTooltip>
                 </Grid>
@@ -111,11 +136,11 @@ const SeatLayout = ({ booking, setOpen, refetch }) => {
                       {...label}
                       icon={<ChairOutlinedIcon sx={{ color: "#999" }} />}
                       checkedIcon={<ChairIcon />}
-                      checked={seat.seatAvailability?.find(
-                        (item) =>
-                          item?.bookingDate === journeyDate ||
-                          bookedseats === seat?.seatNo
-                      )}
+                      checked={
+                        seat.seatAvailability?.find(
+                          (item) => item?.bookingDate === journeyDate
+                        ) || seat.tempBooked
+                      }
                     />
                   </BootstrapTooltip>
                 </Grid>
@@ -136,7 +161,7 @@ const SeatLayout = ({ booking, setOpen, refetch }) => {
             },
           }}
           to={`/payment`}
-          disabled={!bookedseats}
+          disabled={booked}
         >
           Cofirm Booking
         </Button>

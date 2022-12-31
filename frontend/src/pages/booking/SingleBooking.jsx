@@ -8,7 +8,6 @@ const SingleBooking = ({ booking, refetch }) => {
   const handleClickOpen = () => {
     setOpen(true);
   };
-  console.log(booking);
 
   const {
     _id,

@@ -25,6 +25,11 @@ const TicketPayment = () => {
   const { bookedseats, bookedBus, journeyDate } = useContext(DataContext);
   const { user } = useContext(AuthContext);
   const ticketPrice = 100;
+  const bookSeat = bookedBus.seats.filter((each) => each.tempBooked === true);
+  const seatNos = [];
+  bookSeat.map((each) => {
+    seatNos.push(each.seatNo);
+  });
   const {
     register,
     formState: { errors, isSubmitting },
@@ -98,7 +103,7 @@ const TicketPayment = () => {
         departureLocation: bookedBus.departureLocation,
         arrivalLocation: bookedBus.arrivalLocation,
         date: journeyDate,
-        seatNo: bookedseats,
+        seatNo: seatNos,
         busId: bookedBus._id,
         transactionId: paymentIntent?.id,
       };

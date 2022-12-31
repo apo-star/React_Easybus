@@ -17,9 +17,7 @@ const Booking = () => {
     queryKey: ["buses"],
     queryFn: async () => {
       try {
-        const { data } = await axios.get(
-          `http://localhost:5000/api/v1/buses?from=${fromToLocation.from}&to=${fromToLocation.to}`
-        );
+        const { data } = await axios.get(`http://localhost:5000/api/v1/buses`);
         return data;
       } catch (error) {
         console.log(error);
@@ -36,8 +34,6 @@ const Booking = () => {
       booking.arrivalLocation === fromToLocation.to
   );
 
-  console.log(fromToLocation);
-  console.log(journeyDate);
   return (
     <Box
       sx={{
