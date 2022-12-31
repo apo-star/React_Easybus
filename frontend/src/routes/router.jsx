@@ -11,9 +11,7 @@ import AllBus from "../pages/dashboard/AllBus";
 import Dashboard from "../pages/dashboard/Dashboard";
 import ErrorPage from "../pages/error/ErrorPage";
 import Home from "../pages/home/Home";
-import Login from "../pages/login/Login";
 import MyBookings from "../pages/myBookings/MyBookings";
-import Register from "../pages/register/Register";
 import SearchBus from "../pages/searchBus/SearchBus";
 import TicketPayment from "../pages/ticketPayment/TicketPayment";
 import AdminRoute from "./AdminRoute";
@@ -32,10 +30,6 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Auth />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
       },
       {
         path: "/about",
@@ -63,7 +57,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/payment",
-        element: <TicketPayment />,
+        element: (
+          <PrivateRoute>
+            <TicketPayment />
+          </PrivateRoute>
+        ),
       },
     ],
   },
