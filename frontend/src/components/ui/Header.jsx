@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-
+import MenuIcon from "@mui/icons-material/Menu";
 import Auth from "../../pages/auth/Auth";
 import { AuthContext } from "../../context/AuthProvider";
 import { Avatar, Menu, MenuItem } from "@mui/material";
@@ -47,56 +47,75 @@ function Header(props) {
   };
   const { userRole, loading } = useCheckUserRole();
   const drawer = (
-    <Box
-      onClick={handleDrawerToggle}
-      sx={{ textAlign: "center", zIndex: "1000", color: "white" }}
-    >
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
         Easy Bus
       </Typography>
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "center" }}>
-            <ListItemText>
-              <RouterLink to="/">Home</RouterLink>
-            </ListItemText>
+          <ListItemButton
+            component={RouterLink}
+            to="/"
+            sx={{ textAlign: "center" }}
+          >
+            <ListItemText>Home</ListItemText>
           </ListItemButton>
         </ListItem>
 
         <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "center" }}>
-            <ListItemText>
-              <RouterLink to="/search-bus">Search Bus</RouterLink>
-            </ListItemText>
+          <ListItemButton
+            component={RouterLink}
+            to="/search-bus"
+            sx={{ textAlign: "center" }}
+          >
+            <ListItemText>Search Bus</ListItemText>
           </ListItemButton>
         </ListItem>
 
         <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "center" }}>
-            <ListItemText>
-              <RouterLink to="/about">About</RouterLink>
-            </ListItemText>
+          <ListItemButton
+            component={RouterLink}
+            to="/about"
+            sx={{ textAlign: "center" }}
+          >
+            <ListItemText>About</ListItemText>
           </ListItemButton>
         </ListItem>
 
         <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "center" }}>
-            <ListItemText>
-              {user?.uid && (
-                <RouterLink to="/my-bookings">My Bookings</RouterLink>
-              )}
-            </ListItemText>
+          <ListItemButton
+            component={RouterLink}
+            to="/contact"
+            sx={{ textAlign: "center" }}
+          >
+            <ListItemText>Contact</ListItemText>
           </ListItemButton>
         </ListItem>
 
-        <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "center" }}>
-            <ListItemText>
-              <RouterLink to="/dashboard">Dashboard</RouterLink>
-            </ListItemText>
-          </ListItemButton>
-        </ListItem>
+        {user?.uid && (
+          <ListItem disablePadding>
+            <ListItemButton
+              component={RouterLink}
+              to="/my-bookings"
+              sx={{ textAlign: "center" }}
+            >
+              <ListItemText>My Bookings</ListItemText>
+            </ListItemButton>
+          </ListItem>
+        )}
+
+        {user?.uid && userRole === "admin" && (
+          <ListItem disablePadding>
+            <ListItemButton
+              component={RouterLink}
+              to="/dashboard"
+              sx={{ textAlign: "center" }}
+            >
+              <ListItemText>Dashboard</ListItemText>
+            </ListItemButton>
+          </ListItem>
+        )}
       </List>
     </Box>
   );
@@ -157,10 +176,10 @@ function Header(props) {
                 Bus
               </Typography>
             </Typography>
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <Box sx={{ display: { xs: "none", lg: "block" } }}>
               <Button
                 sx={{
-                  px: 3,
+                  px: 2,
                   gap: 0.5,
                   ":hover": {
                     color: "#FFA903",
@@ -177,7 +196,7 @@ function Header(props) {
               </Button>
               <Button
                 sx={{
-                  px: 3,
+                  px: 2,
                   gap: 0.5,
                   ":hover": {
                     color: "#FFA903",
@@ -194,7 +213,7 @@ function Header(props) {
               </Button>
               <Button
                 sx={{
-                  px: 3,
+                  px: 2,
                   gap: 0.5,
                   ":hover": {
                     color: "#FFA903",
@@ -211,7 +230,7 @@ function Header(props) {
               </Button>
               <Button
                 sx={{
-                  px: 3,
+                  px: 2,
                   gap: 0.5,
                   ":hover": {
                     color: "#FFA903",
@@ -229,7 +248,7 @@ function Header(props) {
               {user?.uid && (
                 <Button
                   sx={{
-                    px: 3,
+                    px: 2,
                     gap: 0.5,
                     ":hover": {
                       color: "#FFA903",
@@ -248,7 +267,7 @@ function Header(props) {
               {user?.uid && userRole === "admin" && (
                 <Button
                   sx={{
-                    px: 3,
+                    px: 2,
                     gap: 0.5,
                     ":hover": {
                       color: "#FFA903",
@@ -308,6 +327,15 @@ function Header(props) {
                 </>
               )}
             </Box>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ display: { lg: "none", color: "#ffffff" } }}
+            >
+              <MenuIcon />
+            </IconButton>
           </Toolbar>
         </AppBar>
         <Box component="nav">
@@ -320,7 +348,7 @@ function Header(props) {
               keepMounted: true, // Better open performance on mobile.
             }}
             sx={{
-              display: { xs: "block", sm: "none" },
+              display: { xs: "block", lg: "none" },
               "& .MuiDrawer-paper": {
                 boxSizing: "border-box",
                 width: drawerWidth,
