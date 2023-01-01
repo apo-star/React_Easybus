@@ -21,7 +21,7 @@ function createData(name, email) {
 }
 const AllAdmin = () => {
   const { data: admins, isLoading } = useUsersData("admin");
-  const { mutate: mutateDelete } = useDeleteUser("user");
+  const { mutate: mutateDelete } = useDeleteUser("admin");
 
   if (isLoading) {
     return <Spinner />;
