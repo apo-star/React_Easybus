@@ -74,7 +74,6 @@ export default function SearchBus() {
   const navigate = useNavigate();
 
   const handleSearch = (data) => {
-    console.log("Form", data);
     if (
       !districts
         .slice(1)

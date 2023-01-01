@@ -32,7 +32,6 @@ const AllAdmin = () => {
   const handleRemove = (id) => {
     mutateDelete(id);
   };
-  console.log(admins);
   return (
     <div>
       <TableContainer sx={{ width: "80%", position: "absolute", top: 120 }}>

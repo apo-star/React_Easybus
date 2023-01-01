@@ -22,7 +22,6 @@ const Booking = () => {
   if (isLoading) {
     return <Spinner />;
   }
-  console.log(dateInSearch);
   return (
     <Box
       sx={{
