@@ -13,7 +13,12 @@ const Hero = () => {
           position: "absolute",
           top: "0%",
           bottom: "0%",
-          paddingLeft: "10%",
+          paddingLeft: {
+            xs:'5%',
+            sm:'5%',
+            md:"4%",
+            lg:'12%'
+          },
           background:
             "linear-gradient(to top, rgb(0 0 0 / 58%), rgb(0 0 0 / 90%) )",
           width: "100%",
@@ -24,7 +29,10 @@ const Hero = () => {
         }}
       >
         <Box>
-          <Typography variant="h3" component="h1" sx={{ color: "white" }}>
+          <Typography variant="h3" component="h1" sx={{ color: "white", fontSize: {
+            xs: '45px',
+            md: '55px',
+          } }}>
             10% Winter Sale Is Going On!
           </Typography>
           <Typography variant="p" component="p" sx={{ color: "white" }}>
