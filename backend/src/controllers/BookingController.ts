@@ -40,8 +40,9 @@ export const CreateNewBooking = async (req: Request, res: Response) => {
 };
 
 export const GetAllBookings = async (req: Request, res: Response) => {
+  const decodedEmail = req.decoded.email;
   try {
-    const allBookings = await Booking.find({ userEmail: req.query.email }).sort(
+    const allBookings = await Booking.find({ userEmail: decodedEmail }).sort(
       { createdAt: -1 }
     );
     res.status(200).json({ success: true, data: allBookings });

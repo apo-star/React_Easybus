@@ -1,19 +1,16 @@
-import React, { useEffect, useState, useContext } from "react";
 import { Container } from "@mui/material";
-
 import "./mybookings.css";
 
-import { AuthContext } from "../../context/AuthProvider";
+import { useMyBookingsData } from "../../hooks/useMyBookingsData";
+import Spinner from "../../components/Spinner";
 
 const MyBookings = () => {
-  const [bookings, setBookings] = useState([]);
-  const { user } = useContext(AuthContext);
-  useEffect(() => {
-    const url = `http://localhost:5000/api/v1/all-bookings/${user?.email}`;
-    fetch(url)
-      .then((response) => response?.json())
-      .then((data) => setBookings(data));
-  }, []);
+  const { data: bookings, isLoading } = useMyBookingsData();
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <Container sx={{ marginTop: "110px", marginBottom: "20px" }}>
       <table>
@@ -29,7 +26,7 @@ const MyBookings = () => {
           </tr>
         </thead>
         <tbody>
-          {bookings?.data?.map(
+          {bookings?.map(
             ({
               _id,
               departureLocation,
