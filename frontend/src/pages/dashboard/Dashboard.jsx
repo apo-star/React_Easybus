@@ -15,11 +15,13 @@ import {
   useMakeAdminUser,
   useUsersData,
 } from "../../hooks/useUsersData";
+import useDocTitle from "../../hooks/useDocTitle";
 
 function createData(name, email) {
   return { name, email };
 }
 const Dashboard = () => {
+  useDocTitle("All-Users");
   const [admin, setAdmin] = useState(false);
   const { data: users, isLoading } = useUsersData("user");
   const { mutate: mutateDelete } = useDeleteUser("user");
@@ -35,7 +37,7 @@ const Dashboard = () => {
   const handleAdmin = (id) => {
     mutateMakeAdmin(id);
   };
-  
+
   return (
     <div>
       <TableContainer sx={{ width: "80%", position: "absolute", top: 120 }}>
@@ -69,7 +71,7 @@ const Dashboard = () => {
                     <Chip
                       label="Make Admin"
                       onClick={() => handleAdmin(row._id)}
-                      sx={{backgroundColor: 'blue'}}
+                      sx={{ backgroundColor: "blue" }}
                     />
                   )}
                 </TableCell>

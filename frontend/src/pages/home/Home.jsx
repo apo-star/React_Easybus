@@ -6,8 +6,10 @@ import ServiceOptions from "./sections/ServiceOptions/ServiceOptions";
 import Routes from "./sections/Routes";
 import Informations from "./sections/Informations/Informations";
 import { Box } from "@mui/system";
+import useDocTitle from "../../hooks/useDocTitle";
 
 const Home = () => {
+  useDocTitle("Home");
   return (
     <Box sx={{ backgroundColor: "#FBF9F2" }}>
       <Hero />

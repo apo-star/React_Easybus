@@ -13,8 +13,10 @@ import { AuthContext } from "../../context/AuthProvider";
 import SocialLogin from "./socialLogin/socialLogin";
 import { sendUserToDB } from "./userToDB";
 import { useLocation } from "react-router-dom";
+import useDocTitle from "../../hooks/useDocTitle";
 
 const Auth = ({ setOpen }) => {
+  useDocTitle("Login");
   const [isLogin, setIsLogin] = useState(true);
   const { pathname } = useLocation();
   const { userLogin, createUser, userProfileUpdate } = useContext(AuthContext);

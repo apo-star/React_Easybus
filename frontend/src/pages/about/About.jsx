@@ -2,8 +2,10 @@ import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import FAQ from "./FAQ";
+import useDocTitle from "../../hooks/useDocTitle";
 
 const About = () => {
+  useDocTitle("About");
   return (
     <>
       <Box

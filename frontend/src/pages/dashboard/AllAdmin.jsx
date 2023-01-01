@@ -15,11 +15,13 @@ import {
   useMakeAdminUser,
   useUsersData,
 } from "../../hooks/useUsersData";
+import useDocTitle from "../../hooks/useDocTitle";
 
 function createData(name, email) {
   return { name, email };
 }
 const AllAdmin = () => {
+  useDocTitle("All-Admin");
   const { data: admins, isLoading } = useUsersData("admin");
   const { mutate: mutateDelete } = useDeleteUser("admin");
 
