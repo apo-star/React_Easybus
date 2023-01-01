@@ -7,7 +7,7 @@ import useCheckUserRole from "../hooks/useCheckUserRole";
 const AdminRoute = ({ children }) => {
   const location = useLocation();
   const { loading, userRole } = useCheckUserRole();
-  const { user, loading: userLoader } = useContext(AuthContext);
+  const { user, loading: userLoader, userType } = useContext(AuthContext);
 
   if (userLoader || loading) {
     return (
@@ -17,7 +17,10 @@ const AdminRoute = ({ children }) => {
     );
   }
 
-  if (user?.uid && userRole === "admin") {
+  if (
+    (user?.uid && userType === "admin") ||
+    (user?.uid && userRole === "admin")
+  ) {
     return children;
   }
   return <Navigate to="/login" state={{ from: location }} replace></Navigate>;

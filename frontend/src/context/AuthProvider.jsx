@@ -17,6 +17,7 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [userType, setUserType] = useState(null);
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
   // create user
@@ -76,6 +77,8 @@ const AuthProvider = ({ children }) => {
     userVerify,
     loading,
     setLoading,
+    userType,
+    setUserType,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
