@@ -46,13 +46,23 @@ export default function BasicTabs() {
   return (
     <Box
       sx={{
-        width: "70%",
-        m: "auto",
+        width: {
+          xs: "93%",
+          sm: "93%",
+          md: "93%",
+          lg: "76%",
+        },
+        margin: {
+          xs: "12% auto",
+          sm: "3% auto",
+          md: "auto",
+          lg: "auto",
+        },
         position: "relative",
         top: "-85px",
         backgroundColor: "white",
         boxShadow: "0 5px 10px 2px #0000002e",
-        borderRadius: 5,
+        borderRadius: 3,
         padding: "20px",
         zIndex: 1000,
       }}
@@ -69,7 +79,6 @@ export default function BasicTabs() {
       <TabPanel value={value} index={0}>
         <InputTable></InputTable>
       </TabPanel>
-      
     </Box>
   );
 }

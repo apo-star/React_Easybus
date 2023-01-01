@@ -35,7 +35,7 @@ const Information = ({info}) => {
               },
              }}>
             <Box className='icon'>
-                <img src={icon} alt="" width={"100%"} />
+                <img src={icon} alt="" width='45px' height='45px' />
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <CardContent sx={{ flex: '1 0 auto' }}>
