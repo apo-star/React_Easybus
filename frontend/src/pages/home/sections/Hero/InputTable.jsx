@@ -78,7 +78,7 @@ export default function BasicTable() {
           rowSpacing={1}
           columnSpacing={{ xs: 1, sm: 2, lg: 4, md: 3 }}
         >
-          <Grid item xs={12} lg={4} md={12}>
+          <Grid item xs={12} lg={4} md={6}>
             <TextField
               id="from"
               select
@@ -96,7 +96,7 @@ export default function BasicTable() {
               ))}
             </TextField>
           </Grid>
-          <Grid item xs={12} lg={4} md={12}>
+          <Grid item xs={12} lg={4} md={6}>
             <TextField
               id="to"
               select
@@ -131,12 +131,17 @@ export default function BasicTable() {
           </Grid>
         </Grid>
         <Box>
+          
           <Button
+            
             type="submit"
             variant="contained"
             sx={{
+              mt:4,
+              fontWeight: 600,
               ":hover": { backgroundColor: "#622243", color: "#ffffff" },
-              marginTop: 3,
+              color: "#2a2a2a",
+              paddingY: "15px",
             }}
           >
             Book Now

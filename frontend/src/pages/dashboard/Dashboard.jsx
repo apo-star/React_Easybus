@@ -38,7 +38,8 @@ const Dashboard = () => {
   
   return (
     <div>
-      <TableContainer sx={{ width: "80%", position: "absolute", top: 120 }}>
+      <TableContainer sx={{ width: "80%", position: "absolute", top: 120, 
+    }}>
         <Table sx={{ width: "70%", margin: "auto" }} aria-label="caption table">
           <TableHead>
             <TableRow sx={{ backgroundColor: "#212529" }}>
