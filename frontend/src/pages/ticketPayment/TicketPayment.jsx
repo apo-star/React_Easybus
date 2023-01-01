@@ -113,7 +113,7 @@ const TicketPayment = () => {
         busId: bookedBus._id,
         transactionId: paymentIntent?.id,
       };
-      fetch("http://localhost:5000/api/v1/booking/new", {
+      fetch("https://easybus-backend.vercel.app/api/v1/booking/new", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -133,7 +133,7 @@ const TicketPayment = () => {
     if (ticketPrice === 0) {
       return;
     }
-    fetch("http://localhost:5000/api/v1/stripeapi", {
+    fetch("https://easybus-backend.vercel.app/api/v1/stripeapi", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ price: parseInt(ticketPrice) }),

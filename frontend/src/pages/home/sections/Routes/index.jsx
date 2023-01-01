@@ -20,7 +20,7 @@ const Routes = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/v1/bus-routes"
+          "https://easybus-backend.vercel.app/api/v1/bus-routes"
         );
         setRoutes(data.data);
       } catch (err) {

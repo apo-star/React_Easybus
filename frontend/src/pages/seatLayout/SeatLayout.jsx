@@ -37,7 +37,10 @@ const SeatLayout = ({ booking, dateInSearch }) => {
   const [booked, setBooked] = useState(true);
   const queryClient = useQueryClient();
   const updateSeat = (seatInfo) => {
-    return axios.patch("http://localhost:5000/api/v1/bus/update", seatInfo);
+    return axios.patch(
+      "https://easybus-backend.vercel.app/api/v1/bus/update",
+      seatInfo
+    );
   };
   const { mutate } = useMutation(updateSeat, {
     onSuccess: () => {

@@ -71,7 +71,7 @@ const AddNewBus = () => {
 
   const [districts, setDistricts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/locations")
+    fetch("https://easybus-backend.vercel.app/api/v1/locations")
       .then((res) => res.json())
       .then((data) => setDistricts(data.data));
   }, []);

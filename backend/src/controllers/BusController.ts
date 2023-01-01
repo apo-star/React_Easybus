@@ -76,3 +76,25 @@ export const UpdateTempBookedSeat = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const ResetTempBookedSeat = async (req: Request, res: Response) => {
+  const from = req.query.from;
+  const to = req.query.to;
+  try {
+    const availableBus = await Bus.find({
+      departureLocation: from,
+      arrivalLocation: to,
+    });
+    availableBus.map((bus) =>
+      bus.seats.map((seat) => seat.tempBooked === false)
+    );
+
+    // await availableBus?.save();
+    res.status(200).json({ success: true, data: availableBus });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: (error as Error).message,
+    });
+  }
+};
