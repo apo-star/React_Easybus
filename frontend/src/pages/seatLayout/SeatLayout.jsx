@@ -45,7 +45,7 @@ const SeatLayout = ({ booking, dateInSearch }) => {
   const { mutate } = useMutation(updateSeat, {
     onSuccess: () => {
       queryClient.invalidateQueries(["buses"]);
-      setBooked(false);
+      // setBooked(false);
     },
   });
   const { seats, _id } = booking;
@@ -58,23 +58,44 @@ const SeatLayout = ({ booking, dateInSearch }) => {
     } else {
       toast.error("This seat is already booked");
     }
+    console.log(seat.tempBooked);
 
     const bookSeat = booking.seats.filter((each) => each.tempBooked === true);
-    if (bookSeat.length > 0) {
+    if (!seat.tempBooked === true) {
+      console.log(bookSeat);
+      setBooked(false);
+      const newSeats = [...bookedseats, seat.seatNo];
+      let removeDuplicateSeats = newSeats.filter(
+        (v, i) => newSeats.indexOf(v) === i
+      );
+      setBookedSeats(removeDuplicateSeats);
+    } else {
+      const newSeats = [...bookedseats, seat.seatNo];
+      let removeDuplicateSeats = newSeats.filter(
+        (v, i) => newSeats.indexOf(v) === i
+      );
+      let removeCurrent = removeDuplicateSeats.filter(
+        (each) => each !== seat.seatNo
+      );
+      console.log(removeCurrent, "r");
+      setBookedSeats(removeCurrent);
+      setBooked(true);
+    }
+    if (bookSeat.length > 1) {
       setBooked(false);
     }
     // if (bookSeat.length > 3) {
     //   return toast("You Can Select atleast 3 sit");
     // }
-    const newSeats = [...bookedseats, seat.seatNo];
-    let removeDuplicateSeats = newSeats.filter(
-      (v, i) => newSeats.indexOf(v) === i
-    );
-    setBookedSeats(removeDuplicateSeats);
+    // const newSeats = [...bookedseats, seat.seatNo];
+    // let removeDuplicateSeats = newSeats.filter(
+    //   (v, i) => newSeats.indexOf(v) === i
+    // );
+    // setBookedSeats(removeDuplicateSeats);
     setBookedBus(booking);
     // toast(seat.seatNo);
   };
-
+  console.log(bookedseats);
   return (
     <Box>
       <Stack

@@ -31,7 +31,7 @@ const TicketPayment = () => {
   if (!bookedBus) {
     return navigate(-1);
   }
-  const ticketPrice = bookedBus.fare;
+  const ticketPrice = bookedBus.fare * bookedseats.length;
   const bookSeat = bookedBus.seats.filter((each) => each.tempBooked === true);
   const seatNos = [];
   bookSeat.map((each) => {
@@ -183,7 +183,7 @@ const TicketPayment = () => {
                         <InputAdornment position="start">$</InputAdornment>
                       }
                       label="Amount"
-                      defaultValue={bookedBus.fare}
+                      defaultValue={ticketPrice}
                       inputProps={{ readOnly: true }}
                     />
                   </FormControl>
