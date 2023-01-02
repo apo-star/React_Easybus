@@ -20,7 +20,7 @@ import Auth from "../../pages/auth/Auth";
 import { AuthContext } from "../../context/AuthProvider";
 import { Avatar, Menu, MenuItem } from "@mui/material";
 import CustomModal from "./modals/CustomModal";
-import useCheckUserRole from "../../hooks/useCheckUserRole";
+import { useCheckUserRoleByEmail } from "../../hooks/useCheckUserRole";
 
 const drawerWidth = 240;
 
@@ -45,7 +45,7 @@ function Header(props) {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-  const { userRole, loading } = useCheckUserRole();
+  const { userRole, loading } = useCheckUserRoleByEmail();
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
@@ -104,7 +104,7 @@ function Header(props) {
             </ListItemButton>
           </ListItem>
         )}
-
+        {/* {loading && <>lo</>} */}
         {user?.uid && userRole === "admin" && (
           <ListItem disablePadding>
             <ListItemButton
@@ -155,7 +155,10 @@ function Header(props) {
             }`,
             color: "#000000",
             py: "10px",
-            px: "32px",
+            px: {
+              xs: "3px",
+              lg: "32px",
+            },
           }}
         >
           <Toolbar>
@@ -178,108 +181,96 @@ function Header(props) {
             </Typography>
             <Box sx={{ display: { xs: "none", lg: "block" } }}>
               <Button
+                component={RouterLink}
+                to="/"
                 sx={{
                   px: 2,
+                  color: "#fff",
                   gap: 0.5,
                   ":hover": {
                     color: "#FFA903",
                   },
                 }}
               >
-                <RouterLink
-                  style={{ textDecoration: "none", color: "#fff" }}
-                  to="/"
-                >
-                  Home
-                </RouterLink>
+                Home
                 <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
               </Button>
               <Button
+                component={RouterLink}
+                to="/search-bus/"
                 sx={{
                   px: 2,
+                  color: "#fff",
                   gap: 0.5,
                   ":hover": {
                     color: "#FFA903",
                   },
                 }}
               >
-                <RouterLink
-                  style={{ textDecoration: "none", color: "#fff" }}
-                  to="/search-bus"
-                >
-                  Search Bus
-                </RouterLink>
+                Search Bus
                 <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
               </Button>
               <Button
+                component={RouterLink}
+                to="/about"
                 sx={{
                   px: 2,
+                  color: "#fff",
                   gap: 0.5,
                   ":hover": {
                     color: "#FFA903",
                   },
                 }}
               >
-                <RouterLink
-                  style={{ textDecoration: "none", color: "#fff" }}
-                  to="/about"
-                >
-                  About
-                </RouterLink>
+                About
                 <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
               </Button>
               <Button
+                component={RouterLink}
+                to="/contact"
                 sx={{
                   px: 2,
+                  color: "#fff",
                   gap: 0.5,
                   ":hover": {
                     color: "#FFA903",
                   },
                 }}
               >
-                <RouterLink
-                  style={{ textDecoration: "none", color: "#fff" }}
-                  to="/contact"
-                >
-                  Contact
-                </RouterLink>
+                Contact
                 <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
               </Button>
               {user?.uid && (
                 <Button
+                  component={RouterLink}
+                  to="/my-bookings"
                   sx={{
                     px: 2,
+                    color: "#fff",
                     gap: 0.5,
                     ":hover": {
                       color: "#FFA903",
                     },
                   }}
                 >
-                  <RouterLink
-                    style={{ textDecoration: "none", color: "#fff" }}
-                    to="/my-bookings"
-                  >
-                    My Bookings
-                  </RouterLink>
+                  My Bookings
                   <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
                 </Button>
               )}
               {user?.uid && userRole === "admin" && (
                 <Button
+                  component={RouterLink}
+                  to="/dashboard"
                   sx={{
                     px: 2,
+                    color: "#fff",
                     gap: 0.5,
                     ":hover": {
                       color: "#FFA903",
                     },
                   }}
                 >
-                  <RouterLink
-                    style={{ textDecoration: "none", color: "#fff" }}
-                    to="/dashboard"
-                  >
-                    Dashboard
-                  </RouterLink>
+                  Dashboard
                   <ArrowForwardIosIcon fontSize={"2px"}></ArrowForwardIosIcon>
                 </Button>
               )}

@@ -1,7 +1,10 @@
+import React, { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import Spinner from "../components/Spinner";
 import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
-import About from "../pages/about/About";
+const About = React.lazy(() => import("../pages/about/About"));
+// import About from "../pages/about/About";
 import Auth from "../pages/auth/Auth";
 import Booking from "../pages/booking/Booking";
 import Contact from "../pages/contact/Contact";
@@ -33,7 +36,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
@@ -67,11 +74,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: (
-      <AdminRoute>
-        <DashboardLayout />
-      </AdminRoute>
-    ),
+    element: <DashboardLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
