@@ -2,19 +2,14 @@ import { Box, Typography, TextField, Button } from "@mui/material";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import "./contact.css";
 import { NavLink } from "react-router-dom";
-import { toast } from "react-hot-toast";
 import useDocTitle from "../../hooks/useDocTitle";
+import { useCreateNewContact } from "../../hooks/useContactsData";
 
 const Contact = () => {
   useDocTitle("Contact");
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    toast.success("successfull", { duration: 2000 });
-    e.target.reset();
-  };
-  let activeStyle = {
-    color: "#ffa903",
-  };
+  const { mutate, isLoading } = useCreateNewContact();
+
+  const handleSubmit = (e) => {};
 
   return (
     <Box marginTop={10} marginBottom={5}>
