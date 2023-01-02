@@ -9,8 +9,8 @@ import VerifyAdmin from "../middlewares/VerifyAdmin";
 
 const router = express.Router();
 
-router.get("/contacts", VerifyJwt, VerifyAdmin, GetAllContactMessage);
+router.get("/admin/contacts", VerifyJwt, VerifyAdmin, GetAllContactMessage);
 router.post("/contact/new", CreateNewContact);
-router.delete("/contact/:id", DeleteContact);
+router.delete("/admin/contact/:id",VerifyJwt, VerifyAdmin, DeleteContact);
 
 export default router;
