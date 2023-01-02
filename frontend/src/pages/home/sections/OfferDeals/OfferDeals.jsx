@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid,Skeleton  } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
 import OfferDealCard from "./OfferDealCard";
@@ -10,8 +10,29 @@ const OfferDeals = () => {
   const { data, isLoading } = useGetOfferDealsQuery();
   const deals = data?.data;
 
-  if (isLoading) {
-    return <Spinner></Spinner>;
+  if(isLoading){
+    return (
+      <Grid container spacing={3} justifyContent="center" sx={{ p: "30px"}}>
+        {new Array(4).fill(0).map((route, index) => (
+          <Grid key={index} item  xs={12} md={6} lg={3}>
+            <Skeleton variant="rectangular" height={200} />
+            <Skeleton />
+            <Skeleton />
+            <Skeleton variant="text" height={32} sx={{ my: "16px" }} />
+            <Skeleton
+              variant="rectangular"
+              height={40}
+              sx={{
+                width: "80%",
+                height: "200px",
+                borderRadius: "15px",
+                mx: "auto",
+              }}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    )
   }
 
   return (

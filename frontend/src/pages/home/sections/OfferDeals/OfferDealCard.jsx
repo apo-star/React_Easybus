@@ -83,7 +83,7 @@ const OfferDealCard = ({ deal }) => {
             fontSize={18}
             paddingBottom={_id === "1" ? "50px" : "20px"}
           >
-            {price}
+            ৳ {price}
           </Typography>
         </CardContent>
       </Card>
@@ -141,7 +141,7 @@ const OfferDealCard = ({ deal }) => {
             </Typography>
             <Typography marginTop={"13px"}>{from}</Typography>
             <Typography fontWeight={600} color="#FFA903" fontSize={18}>
-              {price}
+            ৳ {price}
             </Typography>
             <Box
               sx={{
