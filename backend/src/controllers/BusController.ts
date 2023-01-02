@@ -34,18 +34,18 @@ export const GetAllBuses = async (req: Request, res: Response) => {
 
 export const DeleteBus = async (req: Request, res: Response) => {
   try {
-    const user = await Bus.findById(req.params.id);
-    if (!user) {
+    const bus = await Bus.findById(req.params.id);
+    if (!bus) {
       return res.status(404).json({
         success: false,
         message: "Bus Not Found",
       });
     }
-    await user.delete();
+    await bus.delete();
     res.status(200).json({
       success: true,
       message: "Bus successfully deleted",
-      data: user,
+      data: bus,
     });
   } catch (error) {
     res.status(400).json({
