@@ -23,22 +23,42 @@ const Booking = () => {
     return <Spinner />;
   }
   return (
-    <Box
-      sx={{
-        py: "30px",
-        backgroundColor: "#FBF9F2",
-        height: "auto",
-        mt: "80px",
-      }}
-    >
-      {bookings?.map((booking) => (
-        <SingleBooking
-          key={booking._id}
-          booking={booking}
-          dateInSearch={dateInSearch}
-        ></SingleBooking>
-      ))}
+    <Box>
+        {
+        bookings.length<1 ?
+        <Box
+        display={{ sm: "block", md: "flex" }}
+        sx={{
+          py: "100px",
+          justifyContent: "center",
+          mt: "100px",
+          mb: "20px",
+          backgroundColor: "#0a09090f",
+          width: "auto",
+          mx: "auto",
+        }}
+      >
+      <Typography sx={{textAlign:"center",fontSize:"30px",fontWeight:"600",color:"gray"}}>Not Available</Typography>
+      </Box> :
+        <Box
+        sx={{
+          py: "30px",
+          backgroundColor: "#FBF9F2",
+          height: "auto",
+          mt: "80px",
+        }}
+      >
+        {bookings?.map((booking) => (
+          <SingleBooking
+            key={booking._id}
+            booking={booking}
+            dateInSearch={dateInSearch}
+          ></SingleBooking>
+        ))}
+      </Box>
+      }
     </Box>
+    
   );
 };
 
