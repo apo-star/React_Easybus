@@ -5,9 +5,9 @@ import Box from "@mui/material/Box";
 const Spinner = () => {
   return (
     <Box
+     minHeight={"80vh"}
       sx={{
         display: "flex",
-        height: "80vh",
         justifyContent: "center",
         alignItems: "center",
       }}
