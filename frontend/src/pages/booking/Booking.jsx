@@ -1,6 +1,6 @@
 import { useGetAllSeatQuery } from "../../features/bus/busSlice";
 import * as React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography ,Grid,Skeleton } from "@mui/material";
 import SingleBooking from "./SingleBooking";
 import { DataContext } from "../../context/DataProvider";
 import Spinner from "../../components/Spinner";
@@ -19,9 +19,31 @@ const Booking = () => {
   };
   const { data: bookings, isLoading } = useBusesDataByRoute(route);
 
-  if (isLoading) {
-    return <Spinner />;
+  if(isLoading){
+    return (
+      <Grid container spacing={3} justifyContent="center" sx={{ p: "50px", mt: "100px",mb: "20px",}}>
+        {new Array(3).fill(0).map((route, index) => (
+          <Grid key={index} item xs={12} md={6} lg={4}>
+            <Skeleton variant="rectangular" height={200} />
+            <Skeleton />
+            <Skeleton />
+            <Skeleton variant="text" height={32} sx={{ my: "16px" }} />
+            <Skeleton
+              variant="rectangular"
+              height={40}
+              sx={{
+                width: "60%",
+                height: "1200px",
+                borderRadius: "15px",
+                mx: "auto",
+              }}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    )
   }
+
   return (
     <Box>
         {
