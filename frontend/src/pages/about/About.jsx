@@ -28,7 +28,13 @@ const About = () => {
           About
         </Typography>
       </Box>
-      <Container sx={{ marginY: "70px", mx: "auto" }}>
+      <Container
+        sx={{
+          marginY: "70px",
+          marginX: "auto",
+          "&.MuiContainer-root.MuiContainer-root": { padding: "80px" },
+        }}
+      >
         <Grid
           container
           spacing={{ xs: 0, md: 5 }}
@@ -41,16 +47,16 @@ const About = () => {
             md={6}
             sx={{
               backgroundImage: "url('/about-banner.jpg')",
+
               backgroundSize: "cover",
               backgroundPosition: "center",
               borderRadius: "10px",
-              p: "0",
               height: {
                 xs: "300px",
                 md: "auto",
               },
               width: {
-                xs: "100%",
+                xs: "95%",
                 md: "auto",
               },
             }}
