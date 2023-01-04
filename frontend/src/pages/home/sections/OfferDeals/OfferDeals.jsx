@@ -42,7 +42,7 @@ const OfferDeals = () => {
                     height={40}
                     sx={{
                       width: "80%",
-                      height: "200px",
+                      height: "400px",
                       borderRadius: "15px",
                       mx: "auto",
                     }}
@@ -93,7 +93,7 @@ const OfferDeals = () => {
   
 
 
-  
+
   return (
     <Box>
       <Container sx={{ py: "30px", backgroundColor: "#FBF9F2" }}>
