@@ -12,6 +12,11 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import SendIcon from "@mui/icons-material/Send";
 import { OutlinedInput } from "@mui/material";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import React from "react";
 
 const Footer = () => {
@@ -41,26 +46,50 @@ const Footer = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  gap: 1,
                   fontSize: "16px",
                   fontWeight: "500",
                 }}
               >
-                <Link to="/about" color={"#cbccd0"} underline={"none"}>
-                  About us
-                </Link>
-                <Link to="/awards" color={"#cbccd0"} underline={"none"}>
-                  Awards
-                </Link>
-                <Link to="/alerts" color={"#cbccd0"} underline={"none"}>
-                  Travel alerts
-                </Link>
-                <Link to="/sponsorship" color={"#cbccd0"} underline={"none"}>
-                  Sponsorship
-                </Link>
-                <Link to="/pressRelease" color={"#cbccd0"} underline={"none"}>
-                  Press release
-                </Link>
+                <List disablePadding>
+                  <ListItem disablePadding>
+                    <ListItemButton
+                      component={RouterLink}
+                      to="/"
+                      sx={{p:0}}
+                    >
+                      <ListItemText>Home</ListItemText>
+                    </ListItemButton>
+                  </ListItem>
+
+                  <ListItem disablePadding>
+                    <ListItemButton
+                      component={RouterLink}
+                      to="/search-bus"
+                      sx={{p:0}}
+                    >
+                      <ListItemText>Search Bus</ListItemText>
+                    </ListItemButton>
+                  </ListItem>
+
+                  <ListItem disablePadding>
+                    <ListItemButton
+                      component={RouterLink}
+                      to="/about"
+                      sx={{p:0}}
+                    >
+                      <ListItemText>About</ListItemText>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton
+                      component={RouterLink}
+                      to="/contact"
+                      sx={{p:0}}
+                    >
+                      <ListItemText>Contact</ListItemText>
+                    </ListItemButton>
+                  </ListItem>
+              </List>
               </Box>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
