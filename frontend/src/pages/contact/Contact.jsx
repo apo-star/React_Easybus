@@ -9,7 +9,21 @@ const Contact = () => {
   useDocTitle("Contact");
   const { mutate, isLoading } = useCreateNewContact();
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const phone = e.target.phone.value;
+    const message = e.target.message.value;
+    const data = {
+      name: name,
+      email: email,
+      phoneNo: phone,
+      message: message
+    }
+    mutate(data)
+
+  };
 
   return (
     <Box marginTop={10} marginBottom={5}>
@@ -40,7 +54,6 @@ const Contact = () => {
             <Box>
               <NavLink
                 to="/"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 className="link"
               >
                 Home
@@ -48,7 +61,6 @@ const Contact = () => {
               <span>| </span>
               <NavLink
                 to="/contact"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 className="link"
               >
                 Contact Us
@@ -70,7 +82,7 @@ const Contact = () => {
                   required
                   sx={{
                     marginRight: "10px",
-                    width: { xs: "300px", lg: "450px" },
+                    width: { xs: "300px", lg: "450px",md:"450px" },
                     marginBottom: "15px",
                   }}
                   label="Your Name"
@@ -84,10 +96,11 @@ const Contact = () => {
                   required
                   sx={{
                     marginRight: "10px",
-                    width: { xs: "300px", lg: "450px" },
+                    width: { xs: "300px", lg: "450px",md:"450px" },
                     marginBottom: "15px",
                   }}
                   id="outlined-basic"
+                  name="email"
                   label="Your Email"
                   placeholder="Your Email"
                   variant="outlined"
@@ -98,25 +111,13 @@ const Contact = () => {
                   required
                   sx={{
                     marginRight: "10px",
-                    width: { xs: "300px", lg: "450px" },
-                    marginBottom: "15px",
-                  }}
-                  id="outlined-basic"
-                  label="Subject"
-                  placeholder="Subject"
-                  variant="outlined"
-                />{" "}
-                <br />
-                <TextField
-                  required
-                  sx={{
-                    marginRight: "10px",
-                    width: { xs: "300px", lg: "450px" },
+                    width: { xs: "300px", lg: "450px",md:"450px" },
                     marginBottom: "15px",
                   }}
                   id="outlined-basic"
                   label="Your Mobile"
                   placeholder="Your Mobile"
+                  name="phone"
                   variant="outlined"
                 />
                 <br />
@@ -127,10 +128,11 @@ const Contact = () => {
                   minRows={1}
                   className="text-area"
                   style={{ height: 100 }}
-                  name="Message"
+                  name="message"
                   id="outlined-basic"
                   placeholder="Message"
-                  variant="outlined"
+                  variant="outlined"    
+             
                 />
               </Box>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
