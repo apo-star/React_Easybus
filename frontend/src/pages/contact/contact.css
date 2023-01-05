@@ -20,7 +20,7 @@ textarea::placeholder{
     line-height: 10px;
 
 }
-@media screen and (max-width:1200px) {
+@media screen and (max-width:900px) {
     .text-area{
         width: 300px;
     }
