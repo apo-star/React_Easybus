@@ -15,7 +15,7 @@ EasyBus is a platform providing Online Bus Ticket Booking Service.
 
 <h2>Deployment</h2>
 
-- Front: `https://easybus-391fd.web.app`
+- Front: https://easybus-391fd.web.app
 - Back: on Vercel
 
 <h2>Admin Credentials</h2>
