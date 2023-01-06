@@ -22,7 +22,7 @@ const Contact = () => {
       message: message
     }
     mutate(data)
-
+    e.target.reset()
   };
 
   return (
