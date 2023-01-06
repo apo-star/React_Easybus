@@ -11,6 +11,7 @@ import Contact from "../pages/contact/Contact";
 import AddNewBus from "../pages/dashboard/AddNewBus";
 import AllAdmin from "../pages/dashboard/AllAdmin";
 import AllBus from "../pages/dashboard/AllBus";
+import AllContacts from "../pages/dashboard/AllContacts";
 import Dashboard from "../pages/dashboard/Dashboard";
 import ErrorPage from "../pages/error/ErrorPage";
 import Home from "../pages/home/Home";
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/alladmin",
         element: <AllAdmin />,
+      },
+      {
+        path: "/dashboard/allcontact",
+        element: <AllContacts />,
       },
     ],
   },

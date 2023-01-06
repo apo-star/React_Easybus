@@ -15,6 +15,10 @@ const SideBar = () => {
         link: "/dashboard",
       },
       {
+        name: "All Contacts",
+        link: "/dashboard/allcontact",
+      },
+      {
         name: "All Admin",
         link: "/dashboard/alladmin",
       },
