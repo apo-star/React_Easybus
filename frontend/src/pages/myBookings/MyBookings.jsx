@@ -14,7 +14,9 @@ const MyBookings = () => {
   return (
     <Container sx={{ marginTop: "110px", marginBottom: "20px" }}>
       {
-        bookings.length < 1 ? <table>
+        bookings.length<1 ? 
+        <h1>No Booking found</h1> 
+        : <table>
           <caption>My Booking</caption>
           <thead>
             <tr>
@@ -47,7 +49,7 @@ const MyBookings = () => {
               )
             )}
           </tbody>
-        </table> : <h1>No Booking found</h1>
+        </table> 
       }
     </Container>
   );
