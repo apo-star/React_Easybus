@@ -1,24 +1,25 @@
-<h1>EasyBus</h1>
-EasyBus is a platform providing Online Bus Ticket Booking Service.
+<h2>EasyBus</h2>
 
-<h2>Features</h2>
+**Website Link:** [https://easybus-391fd.web.app/](https://easybus-391fd.web.app/)
 
-- A visitor can see What and Why EasyBus is, Current Deals offered by EasyBus, available Bus Routes, answers to some Frequently Asked Questions, and contact EasyBus simply by filling in a form.
-- A user, while signed in with a Password Account or Google or Facebook, can start booking a ticket by searching for a bus with starting point, destination and journey date, selecting a seat if a bus is available, then completing payment— thus having a seat booked.
-- A signed-in user can see/cancel his/her bookings on the protected 'My Bookings' page.
-- An admin, when signed in, can see all users, remove a user, promote a user to an admin, see all admins, remove an admin, see all buses, delete a bus and add a new bus.
+**Credentials:**
 
-<h2>Tech Stack</h2>
+```
+Admin Email: admin@gmail.com
+Admin Password: 12345678
+```
 
-- Front: React, React Router DOM, Material UI, Redux Toolkit, React Query, Stripe, Axios, Firebase (Authentication), react-countup, React Hook Form, React Hot Toast, Swiper, Vite (as Dev Server and Build Tool).
-- Back: concurrently, Typescript, Node, ExpressJS, cors, JWT Authorization, MongoDB, Mongoose, dotenv, stripe.
+**Website Overview:** EasyBus is a Online Bus Ticket Booking platform where a user can book their desirable seats for any particular date and destination.
 
-<h2>Deployment</h2>
+**Features:**
 
-- Front: https://easybus-391fd.web.app
-- Back: on Vercel
+- A user can see the landing page, current deals offered by EasyBus, available bus routes, and available buses and seats for a particular date and route, and he can contact EasyBus simply by filling in a form in the contact us section.
+- A User can't book a seat unless the user is logged In.
+- A user can log in via Email-Password, Google, or Facebook.
+- A logged-in user can start booking a ticket by searching for a bus with a starting point, destination, and journey date. Then he can select the bus he wants to travel to and also he can choose any available seat.
+- After that user can pay through stripe and after successful payment that seat will be booked for that user and he can see this in the My Booking section.
+- Dashboard is a private route for the admin, so only the admins can see and access the route.
+- In the Dashboard admin will see all users, all admins, all buses, add bus, and all contact sections.
+- A admin can remove a user, promote a user to an admin, remove an admin, see all buses, delete a bus, add a new bus, and see all contacts.
 
-<h2>Admin Credentials</h2>
-
-- Email: `admin@gmail.com` ,
-- password: `12345678`
+**Technologies Used:** React, Redux, Material-UI, Express, Mongoose, JsonWebToken, Stripe, Typescript(backend), Firebase(Authentication), React Query, React-router, React-hook-form, React-countup, Axios, React-hot-toast.
