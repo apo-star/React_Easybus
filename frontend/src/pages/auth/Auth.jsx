@@ -12,12 +12,16 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthProvider";
 import SocialLogin from "./socialLogin/socialLogin";
 import { sendUserToDB } from "./userToDB";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Stack } from "@mui/system";
 
 const Auth = ({ setOpen }) => {
   const [isLogin, setIsLogin] = useState(true);
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/";
   const { userLogin, createUser, userProfileUpdate } = useContext(AuthContext);
+  console.log(from);
   const {
     register,
     formState: { errors },
@@ -34,8 +38,8 @@ const Auth = ({ setOpen }) => {
           await sendUserToDB(userProfile);
           await userProfileUpdate(userProfile);
           toast.success("Account Successfully Created");
-          setOpen(false);
           navigate(from, { replace: true });
+          setOpen(false);
         })
         .catch((error) => {
           toast.error(error.code?.split("/")[1].split("-").join(" "));
@@ -46,8 +50,8 @@ const Auth = ({ setOpen }) => {
         .then(async (res) => {
           toast.success("Login Successfully");
           await sendUserToDB(res.user);
-          setOpen(false);
           navigate(from, { replace: true });
+          setOpen(false);
         })
         .catch((error) => {
           toast.error(error.code.split("/")[1].split("-").join(" "));
@@ -56,12 +60,24 @@ const Auth = ({ setOpen }) => {
     reset();
   };
 
+  const directLogin = () => {
+    userLogin("admin@gmail.com", 12345678)
+      .then(async (res) => {
+        toast.success("Login Successfully");
+        await sendUserToDB(res.user);
+        navigate(from, { replace: true });
+        setOpen(false);
+      })
+      .catch((error) => {
+        toast.error(error.code.split("/")[1].split("-").join(" "));
+      });
+  };
   return (
     <Container
       component="main"
       maxWidth="xs"
       sx={{
-        ...(pathname === "/login" && {
+        ...(location?.pathname === "/login" && {
           paddingY: "4rem",
           paddingTop: "8.5rem",
         }),
@@ -181,29 +197,58 @@ const Auth = ({ setOpen }) => {
                 )}
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
-            sx={{
-              fontWeight: "bold",
-              backgroundColor: "primary.main",
-              color: "#fff",
-              borderRadius: "7px",
-              textTransform: "inherit",
-              boxShadow: "none",
-              border: "1px solid transparent",
-              ":hover": {
-                backgroundColor: "transparent",
-                color: "primary.main",
+          <Stack direction={"row"}>
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              sx={{
+                fontWeight: "bold",
+                backgroundColor: "primary.main",
+                color: "#fff",
+                borderRadius: "7px",
+                textTransform: "inherit",
                 boxShadow: "none",
-                border: "1px solid #FFA903",
-              },
-              marginY: "1rem",
-            }}
-          >
-            {!isLogin ? "Create Account" : "Login"}
-          </Button>
+                border: "1px solid transparent",
+                ":hover": {
+                  backgroundColor: "transparent",
+                  color: "primary.main",
+                  boxShadow: "none",
+                  border: "1px solid #FFA903",
+                },
+                marginY: "1rem",
+                marginRight: "0.5rem",
+              }}
+            >
+              {!isLogin ? "Create Account" : "Login"}
+            </Button>
+            {isLogin && (
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{
+                  fontWeight: "bold",
+                  backgroundColor: "primary.main",
+                  color: "#fff",
+                  borderRadius: "7px",
+                  textTransform: "inherit",
+                  boxShadow: "none",
+                  border: "1px solid transparent",
+                  ":hover": {
+                    backgroundColor: "transparent",
+                    color: "primary.main",
+                    boxShadow: "none",
+                    border: "1px solid #FFA903",
+                  },
+                  marginY: "1rem",
+                  marginLeft: "0.5rem",
+                }}
+                onClick={directLogin}
+              >
+                Direct Login (Admin)
+              </Button>
+            )}
+          </Stack>
           <Divider>
             <Chip
               label="or continue with"

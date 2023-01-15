@@ -31,14 +31,14 @@ const TicketPayment = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   if (!bookedBus) {
-    return navigate(-1);
+    return navigate("/search-bus");
   }
   const ticketPrice = bookedBus.fare * bookedseats.length;
-  const bookSeat = bookedBus.seats.filter((each) => each.tempBooked === true);
-  const seatNos = [];
-  bookSeat.map((each) => {
-    seatNos.push(each.seatNo);
-  });
+  // const bookSeat = bookedBus.seats.filter((each) => each.tempBooked === true);
+  // const seatNos = [];
+  // bookSeat.map((each) => {
+  //   seatNos.push(each.seatNo);
+  // });
   const {
     register,
     formState: { errors, isSubmitting },

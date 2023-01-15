@@ -33,17 +33,20 @@ const AuthProvider = ({ children }) => {
 
   // update user profile
   const userProfileUpdate = (userProfile) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, userProfile);
   };
 
   // user sign out
   const userSignOut = () => {
+    setLoading(true);
     localStorage.removeItem("easybus");
     return signOut(auth);
   };
 
   // google sign in
   const userGoogleSignIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
