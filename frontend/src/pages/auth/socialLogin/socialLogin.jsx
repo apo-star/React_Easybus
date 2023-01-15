@@ -19,8 +19,8 @@ const SocialLogin = ({ setOpen }) => {
       .then(async (res) => {
         await sendUserToDB(res.user);
         console.info("User Data sent to DB");
+        navigate(from, { replace: true });
         setOpen(false);
-        navigate("/");
       })
       .catch((error) => {
         console.error(error.code);
@@ -32,8 +32,8 @@ const SocialLogin = ({ setOpen }) => {
     userFacebookSignIn()
       .then(async (res) => {
         await sendUserToDB(res.user);
+        navigate(from, { replace: true });
         setOpen(false);
-        navigate("/");
       })
       .catch((error) => {
         console.log(error.code);
