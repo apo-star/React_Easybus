@@ -14,6 +14,7 @@ import { useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const BootstrapTooltip = styled(({ className, ...props }) => (
@@ -32,9 +33,10 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
   },
 }));
 const SeatLayout = ({ booking, dateInSearch }) => {
-  const { setBookedSeats, bookedseats, setBookedBus, journeyDate } =
+  const { setBookedSeats, bookedseats, setBookedBus, journeyDate, bookedBus } =
     useContext(DataContext);
   const [booked, setBooked] = useState(true);
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const updateSeat = (seatInfo) => {
     return axios.patch(
@@ -95,7 +97,21 @@ const SeatLayout = ({ booking, dateInSearch }) => {
     setBookedBus(booking);
     // toast(seat.seatNo);
   };
-  console.log(bookedseats);
+
+  // temporary booking reset
+  const handleBookingReset = () => {
+    fetch("https://easybus-backend.vercel.app/api/v1/bus/reset", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ seatNo: bookedseats, busId: bookedBus._id }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          navigate("/payment");
+        }
+      });
+  };
   return (
     <Box>
       <Stack
@@ -186,7 +202,7 @@ const SeatLayout = ({ booking, dateInSearch }) => {
               transition: "all 0.5s",
             },
           }}
-          to={`/payment`}
+          onClick={handleBookingReset}
           disabled={booked}
         >
           Cofirm Booking
