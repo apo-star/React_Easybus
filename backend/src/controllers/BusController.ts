@@ -57,15 +57,16 @@ export const DeleteBus = async (req: Request, res: Response) => {
 
 export const UpdateTempBookedSeat = async (req: Request, res: Response) => {
   const busId = req.body.busId;
-  const busSeatNo = req.body.seatNo as [string];
+  const busSeatNo = req.body.seatNo;
   try {
     const bookedBus = await Bus.findById(busId);
-    busSeatNo.map((seatNo) => {
-      const selectedSeat = bookedBus?.seats.find(
-        (seat) => seat.seatNo === seatNo
-      );
-      selectedSeat!.tempBooked = false;
-    });
+    const selectedSeat = bookedBus?.seats.find(
+      (seat) => seat.seatNo === busSeatNo
+    );
+    if (selectedSeat?.tempBooked === undefined) {
+      return res.status(404).json({ success: false });
+    }
+    selectedSeat.tempBooked = !selectedSeat.tempBooked;
     await bookedBus?.save();
     res.status(200).json({ success: true, data: bookedBus });
   } catch (error) {
@@ -77,19 +78,18 @@ export const UpdateTempBookedSeat = async (req: Request, res: Response) => {
 };
 
 export const ResetTempBookedSeat = async (req: Request, res: Response) => {
-  const from = req.query.from;
-  const to = req.query.to;
+  const busId = req.body.busId;
+  const busSeatNo = req.body.seatNo as [string];
   try {
-    const availableBus = await Bus.find({
-      departureLocation: from,
-      arrivalLocation: to,
+    const bookedBus = await Bus.findById(busId);
+    busSeatNo.map((seatNo) => {
+      const selectedSeat = bookedBus?.seats.find(
+        (seat) => seat.seatNo === seatNo
+      );
+      selectedSeat!.tempBooked = false;
     });
-    availableBus.map((bus) =>
-      bus.seats.map((seat) => seat.tempBooked === false)
-    );
-
-    // await availableBus?.save();
-    res.status(200).json({ success: true, data: availableBus });
+    await bookedBus?.save();
+    res.status(200).json({ success: true, data: bookedBus });
   } catch (error) {
     res.status(400).json({
       success: false,
