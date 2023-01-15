@@ -45,7 +45,7 @@ function Header(props) {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-  const { userRole, loading } = useCheckUserRoleByEmail();
+  const { data: userRole, isLoading } = useCheckUserRoleByEmail();
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
