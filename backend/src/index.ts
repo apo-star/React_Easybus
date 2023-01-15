@@ -8,6 +8,7 @@ import offerDeals from "./routes/offerDeals";
 import stripe from "./routes/stripe";
 import busRoute from "./routes/busRoute";
 import booking from "./routes/booking";
+import contact from "./routes/contact";
 
 const app = express();
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use("/api/v1", offerDeals);
 app.use("/api/v1", busRoute);
 app.use("/api/v1", booking);
 app.use("/api/v1", stripe);
+app.use("/api/v1", contact);
 
 dbConnect()
   .then(() => {

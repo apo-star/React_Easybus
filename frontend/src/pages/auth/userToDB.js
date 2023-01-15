@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export async function sendUserToDB(firebaseUser) {
-  console.log("Name before sending", firebaseUser.displayName);
   try {
     const { data } = await axios.post(
       `https://easybus-backend.vercel.app/api/v1/user/new`,
@@ -10,7 +9,7 @@ export async function sendUserToDB(firebaseUser) {
         email: firebaseUser.email,
       }
     );
-    console.info("User Data sent to DB", data);
+
     localStorage.setItem("easybus", data.token);
   } catch (err) {
     console.info(

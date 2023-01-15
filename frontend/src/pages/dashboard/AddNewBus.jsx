@@ -16,6 +16,7 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useCreateNewBus } from "../../hooks/useBusesData";
+import useDocTitle from "../../hooks/useDocTitle";
 
 const categories = [
   {
@@ -67,6 +68,7 @@ const schedule = [
 ];
 
 const AddNewBus = () => {
+  useDocTitle("Add New Bus");
   const { mutate, isLoading } = useCreateNewBus();
 
   const [districts, setDistricts] = useState([]);

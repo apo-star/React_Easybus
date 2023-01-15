@@ -7,7 +7,6 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 export const SendStripeApi = async (req: Request, res: Response) => {
   try {
     const price = req.body.price;
-    console.log(price);
     const amount = price * 100;
 
     const paymentIntent = await stripe.paymentIntents.create({

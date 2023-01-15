@@ -15,11 +15,13 @@ import {
   useMakeAdminUser,
   useUsersData,
 } from "../../hooks/useUsersData";
+import useDocTitle from "../../hooks/useDocTitle";
 
 function createData(name, email) {
   return { name, email };
 }
 const AllAdmin = () => {
+  useDocTitle("All-Admin");
   const { data: admins, isLoading } = useUsersData("admin");
   const { mutate: mutateDelete } = useDeleteUser("admin");
 
@@ -30,7 +32,6 @@ const AllAdmin = () => {
   const handleRemove = (id) => {
     mutateDelete(id);
   };
-  console.log(admins);
   return (
     <div>
       <TableContainer sx={{ width: "80%", position: "absolute", top: 120 }}>

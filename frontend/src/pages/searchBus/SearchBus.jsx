@@ -19,6 +19,7 @@ import { useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import useDocTitle from "../../hooks/useDocTitle";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -62,6 +63,7 @@ const districts = [
   },
 ];
 export default function SearchBus() {
+  useDocTitle("Search-Bus");
   const [searchParams] = useSearchParams();
   const fromInSearch = searchParams.get("from");
   const toInSearch = searchParams.get("to");
@@ -72,7 +74,6 @@ export default function SearchBus() {
   const navigate = useNavigate();
 
   const handleSearch = (data) => {
-    console.log("Form", data);
     if (
       !districts
         .slice(1)

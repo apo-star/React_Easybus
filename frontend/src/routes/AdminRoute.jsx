@@ -2,20 +2,20 @@ import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { AuthContext } from "../context/AuthProvider";
-import useCheckUserRole from "../hooks/useCheckUserRole";
+import { useCheckUserRole } from "../hooks/useCheckUserRole";
 
 const AdminRoute = ({ children }) => {
   const location = useLocation();
-  const { loading, userRole } = useCheckUserRole();
+  const { isLoading, data: userRole } = useCheckUserRole();
   const { user, loading: userLoader } = useContext(AuthContext);
-
-  if (userLoader || loading) {
+  if (userLoader || isLoading) {
     return (
       <div>
         <Spinner />
       </div>
     );
   }
+  // console.log(loading);
 
   if (user?.uid && userRole === "admin") {
     return children;

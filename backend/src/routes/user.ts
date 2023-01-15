@@ -4,6 +4,7 @@ import {
   DeleteUser,
   GetAllUsers,
   GetUserRole,
+  GetUserRoleByEmail,
   UpdateUserRole,
 } from "../controllers/UserController";
 import { CheckExistingUser } from "../middlewares/CheckExistingUser";
@@ -14,8 +15,9 @@ import { VerifyJwt } from "../middlewares/VerifyJwt";
 const router = express.Router();
 
 router.get("/admin/users", VerifyJwt, VerifyAdmin, GetAllUsers);
-router.get("/user/role", VerifyJwt, GetUserRole);
 router.post("/user/new", CheckExistingUser, CreateNewUser);
+router.get("/user/role", VerifyJwt, GetUserRole);
+router.get("/user/role/:email", GetUserRoleByEmail);
 router.patch(
   "/admin/user/:id",
   ValidateId,

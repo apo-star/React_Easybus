@@ -49,6 +49,23 @@ export const GetUserRole = async (req: Request, res: Response) => {
   }
 };
 
+export const GetUserRoleByEmail = async (req: Request, res: Response) => {
+  try {
+    const user = await QueryUser(req.params.email);
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+    res.status(200).json({ success: true, data: user.role });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: (error as Error).message,
+    });
+  }
+};
+
 export const UpdateUserRole = async (req: Request, res: Response) => {
   try {
     const user = await User.findById(req.params.id);

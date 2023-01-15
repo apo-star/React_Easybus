@@ -22,8 +22,10 @@ import { DataContext } from "../../context/DataProvider";
 import { AuthContext } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import useDocTitle from "../../hooks/useDocTitle";
 
 const TicketPayment = () => {
+  useDocTitle("Payment");
   const { bookedseats, bookedBus, journeyDate } = useContext(DataContext);
   const { user } = useContext(AuthContext);
   const queryClient = useQueryClient();

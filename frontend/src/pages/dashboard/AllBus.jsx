@@ -10,12 +10,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Chip } from "@mui/material";
 import Spinner from "../../components/Spinner";
 import { useBusesData, useDeleteBus } from "../../hooks/useBusesData";
+import useDocTitle from "../../hooks/useDocTitle";
 
 function createData(name, fare, departureLocation, ArrivalLocation) {
   return { name, fare, departureLocation, ArrivalLocation };
 }
 
 const AllBus = () => {
+  useDocTitle("All-Bus");
   const { data: buses, isLoading } = useBusesData();
   const { mutate } = useDeleteBus();
 
@@ -29,7 +31,10 @@ const AllBus = () => {
   return (
     <div>
       <TableContainer sx={{ width: "80%", position: "absolute", top: 120 }}>
-        <Table sx={{ width: "100%", margin: "auto" }} aria-label="caption table">
+        <Table
+          sx={{ width: "100%", margin: "auto" }}
+          aria-label="caption table"
+        >
           <TableHead>
             <TableRow sx={{ backgroundColor: "#212529" }}>
               <TableCell align="center" sx={{ color: "white" }}>

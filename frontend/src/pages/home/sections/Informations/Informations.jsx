@@ -14,8 +14,8 @@ const Informations = () => {
     },
     {
       _id: 2,
-      icon: "https://i.ibb.co/L115RKB/plane.png",
-      title: "International Flight",
+      icon: "https://i.ibb.co/Xzs2LYF/ticket-640w-removebg-preview.png",
+      title: "Book Your Ticket",
       phone: "Call +1 555 666 888 for",
       description: "booking assistance",
     },

@@ -34,18 +34,18 @@ export const GetAllBuses = async (req: Request, res: Response) => {
 
 export const DeleteBus = async (req: Request, res: Response) => {
   try {
-    const user = await Bus.findById(req.params.id);
-    if (!user) {
+    const bus = await Bus.findById(req.params.id);
+    if (!bus) {
       return res.status(404).json({
         success: false,
         message: "Bus Not Found",
       });
     }
-    await user.delete();
+    await bus.delete();
     res.status(200).json({
       success: true,
       message: "Bus successfully deleted",
-      data: user,
+      data: bus,
     });
   } catch (error) {
     res.status(400).json({
@@ -57,16 +57,15 @@ export const DeleteBus = async (req: Request, res: Response) => {
 
 export const UpdateTempBookedSeat = async (req: Request, res: Response) => {
   const busId = req.body.busId;
-  const busSeatNo = req.body.seatNo;
+  const busSeatNo = req.body.seatNo as [string];
   try {
     const bookedBus = await Bus.findById(busId);
-    const selectedSeat = bookedBus?.seats.find(
-      (seat) => seat.seatNo === busSeatNo
-    );
-    if (selectedSeat?.tempBooked === undefined) {
-      return res.status(404).json({ success: false });
-    }
-    selectedSeat.tempBooked = !selectedSeat.tempBooked;
+    busSeatNo.map((seatNo) => {
+      const selectedSeat = bookedBus?.seats.find(
+        (seat) => seat.seatNo === seatNo
+      );
+      selectedSeat!.tempBooked = false;
+    });
     await bookedBus?.save();
     res.status(200).json({ success: true, data: bookedBus });
   } catch (error) {

@@ -1,13 +1,17 @@
+import React, { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import Spinner from "../components/Spinner";
 import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
-import About from "../pages/about/About";
+const About = React.lazy(() => import("../pages/about/About"));
+// import About from "../pages/about/About";
 import Auth from "../pages/auth/Auth";
 import Booking from "../pages/booking/Booking";
 import Contact from "../pages/contact/Contact";
 import AddNewBus from "../pages/dashboard/AddNewBus";
 import AllAdmin from "../pages/dashboard/AllAdmin";
 import AllBus from "../pages/dashboard/AllBus";
+import AllContacts from "../pages/dashboard/AllContacts";
 import Dashboard from "../pages/dashboard/Dashboard";
 import ErrorPage from "../pages/error/ErrorPage";
 import Home from "../pages/home/Home";
@@ -33,7 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
@@ -67,11 +75,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: (
-      <AdminRoute>
-        <DashboardLayout />
-      </AdminRoute>
-    ),
+    element: <DashboardLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -89,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/alladmin",
         element: <AllAdmin />,
+      },
+      {
+        path: "/dashboard/allcontact",
+        element: <AllContacts />,
       },
     ],
   },
