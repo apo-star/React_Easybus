@@ -57,16 +57,15 @@ export const DeleteBus = async (req: Request, res: Response) => {
 
 export const UpdateTempBookedSeat = async (req: Request, res: Response) => {
   const busId = req.body.busId;
-  const busSeatNo = req.body.seatNo;
+  const busSeatNo = req.body.seatNo as [string];
   try {
     const bookedBus = await Bus.findById(busId);
-    const selectedSeat = bookedBus?.seats.find(
-      (seat) => seat.seatNo === busSeatNo
-    );
-    if (selectedSeat?.tempBooked === undefined) {
-      return res.status(404).json({ success: false });
-    }
-    selectedSeat.tempBooked = !selectedSeat.tempBooked;
+    busSeatNo.map((seatNo) => {
+      const selectedSeat = bookedBus?.seats.find(
+        (seat) => seat.seatNo === seatNo
+      );
+      selectedSeat!.tempBooked = false;
+    });
     await bookedBus?.save();
     res.status(200).json({ success: true, data: bookedBus });
   } catch (error) {
