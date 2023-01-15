@@ -19,14 +19,14 @@ const Contact = () => {
       name: name,
       email: email,
       phoneNo: phone,
-      message: message
-    }
-    mutate(data)
-    e.target.reset()
+      message: message,
+    };
+    mutate(data);
+    e.target.reset();
   };
 
   return (
-    <Box marginTop={10} marginBottom={5}>
+    <Box marginTop={9} marginBottom={5}>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Box
           className="contact-bg"
@@ -52,17 +52,11 @@ const Contact = () => {
               Contact Us
             </Typography>
             <Box>
-              <NavLink
-                to="/"
-                className="link"
-              >
+              <NavLink to="/" className="link">
                 Home
               </NavLink>{" "}
               <span>| </span>
-              <NavLink
-                to="/contact"
-                className="link"
-              >
+              <NavLink to="/contact" className="link">
                 Contact Us
               </NavLink>
             </Box>
@@ -82,7 +76,7 @@ const Contact = () => {
                   required
                   sx={{
                     marginRight: "10px",
-                    width: { xs: "300px", lg: "450px",md:"450px" },
+                    width: { xs: "300px", lg: "450px", md: "450px" },
                     marginBottom: "15px",
                   }}
                   label="Your Name"
@@ -96,7 +90,7 @@ const Contact = () => {
                   required
                   sx={{
                     marginRight: "10px",
-                    width: { xs: "300px", lg: "450px",md:"450px" },
+                    width: { xs: "300px", lg: "450px", md: "450px" },
                     marginBottom: "15px",
                   }}
                   id="outlined-basic"
@@ -111,7 +105,7 @@ const Contact = () => {
                   required
                   sx={{
                     marginRight: "10px",
-                    width: { xs: "300px", lg: "450px",md:"450px" },
+                    width: { xs: "300px", lg: "450px", md: "450px" },
                     marginBottom: "15px",
                   }}
                   id="outlined-basic"
@@ -131,8 +125,7 @@ const Contact = () => {
                   name="message"
                   id="outlined-basic"
                   placeholder="Message"
-                  variant="outlined"    
-             
+                  variant="outlined"
                 />
               </Box>
               <Box sx={{ display: "flex", justifyContent: "center" }}>

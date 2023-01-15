@@ -1,28 +1,26 @@
 .contact-bg {
-    background:linear-gradient(0deg,rgba(0, 53, 128, 1), rgb(0, 0,0,0)), url("../../assets/contact-img.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  background: linear-gradient(0deg, rgba(0, 53, 128, 1), rgb(0, 0, 0, 0)),
+    url("/contact-img.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.link{
-    text-decoration: none;
-    color:#fff;
-    font-weight: 300;
+.link {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 300;
 }
-.text-area{
-    width: 450px;
-   
+.text-area {
+  width: 450px;
 }
-textarea::placeholder{
-    padding: 15px !important;
-    font-size: 18px;
-    line-height: 10px;
-
+textarea::placeholder {
+  padding: 15px !important;
+  font-size: 18px;
+  line-height: 10px;
 }
-@media screen and (max-width:900px) {
-    .text-area{
-        width: 300px;
-    }
+@media screen and (max-width: 900px) {
+  .text-area {
+    width: 300px;
+  }
 }
-

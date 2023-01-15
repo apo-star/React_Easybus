@@ -136,7 +136,7 @@ export default function SearchBus() {
                 paddingTop: "0px",
               }}
               alt="The house from the offer."
-              src="/busImage.PNG"
+              src="/busImage.png"
             />
           </Grid>
           <Grid

@@ -8,17 +8,22 @@ const About = React.lazy(() => import("../pages/about/About"));
 import Auth from "../pages/auth/Auth";
 import Booking from "../pages/booking/Booking";
 import Contact from "../pages/contact/Contact";
-import AddNewBus from "../pages/dashboard/AddNewBus";
-import AllAdmin from "../pages/dashboard/AllAdmin";
-import AllBus from "../pages/dashboard/AllBus";
-import AllContacts from "../pages/dashboard/AllContacts";
-import Dashboard from "../pages/dashboard/Dashboard";
+// import AddNewBus from "../pages/dashboard/AddNewBus";
+const AddNewBus = React.lazy(() => import("../pages/dashboard/AddNewBus"));
+// import AllAdmin from "../pages/dashboard/AllAdmin";
+const AllAdmin = React.lazy(() => import("../pages/dashboard/AllAdmin"));
+// import AllBus from "../pages/dashboard/AllBus";
+const AllBus = React.lazy(() => import("../pages/dashboard/AllBus"));
+// import AllContacts from "../pages/dashboard/AllContacts";
+const AllContacts = React.lazy(() => import("../pages/dashboard/AllContacts"));
+// import Dashboard from "../pages/dashboard/Dashboard";
+const Dashboard = React.lazy(() => import("../pages/dashboard/Dashboard"));
 import ErrorPage from "../pages/error/ErrorPage";
 import Home from "../pages/home/Home";
-import MyBookings from "../pages/myBookings/MyBookings";
+// import MyBookings from "../pages/myBookings/MyBookings";
+const MyBookings = React.lazy(() => import("../pages/myBookings/MyBookings"));
 import SearchBus from "../pages/searchBus/SearchBus";
 import TicketPayment from "../pages/ticketPayment/TicketPayment";
-import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./privateRoute";
 
 const router = createBrowserRouter([
@@ -59,7 +64,9 @@ const router = createBrowserRouter([
         path: "/my-bookings",
         element: (
           <PrivateRoute>
-            <MyBookings />
+            <Suspense fallback={<Spinner />}>
+              <MyBookings />
+            </Suspense>
           </PrivateRoute>
         ),
       },
@@ -80,23 +87,43 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Dashboard />
+          </Suspense>
+        ),
       },
       {
         path: "/dashboard/addbus",
-        element: <AddNewBus />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <AddNewBus />
+          </Suspense>
+        ),
       },
       {
         path: "/dashboard/allbus",
-        element: <AllBus />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <AllBus />
+          </Suspense>
+        ),
       },
       {
         path: "/dashboard/alladmin",
-        element: <AllAdmin />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <AllAdmin />
+          </Suspense>
+        ),
       },
       {
         path: "/dashboard/allcontact",
-        element: <AllContacts />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <AllContacts />
+          </Suspense>
+        ),
       },
     ],
   },
