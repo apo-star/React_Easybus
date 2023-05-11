@@ -11,11 +11,7 @@ import { Pagination, Autoplay } from "swiper";
 import { Box } from "@mui/system";
 
 export default function HeroSlider() {
-  const images = [
-    "https://i.ibb.co/jyxGVJf/flor-najera-q-LU1wz9nq-BI-unsplash.jpg",
-    "https://i.ibb.co/sJjgKRp/valentyn-chernetskyi-zko-CS4u3-Co-unsplash.jpg",
-    "https://i.ibb.co/GQ7KZV6/jonathan-borba-T5jzp-RTVF1-U-unsplash.jpg",
-  ];
+  const images = ["/hero/hero2.jpg", "/hero/hero1.jpg", "/hero/hero3.jpg"];
   return (
     <Box
       sx={{
@@ -26,7 +22,7 @@ export default function HeroSlider() {
       <Swiper
         pagination={false}
         modules={[Pagination, Autoplay]}
-        className="mySwiper"
+        className='mySwiper'
         autoplay={{
           delay: 1500,
           disableOnInteraction: false,
@@ -35,7 +31,7 @@ export default function HeroSlider() {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <Box component="img" alt="The house from the offer." src={image} />
+            <Box component='img' alt='The house from the offer.' src={image} />
           </SwiperSlide>
         ))}
       </Swiper>

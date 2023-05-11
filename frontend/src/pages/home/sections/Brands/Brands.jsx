@@ -7,20 +7,20 @@ import { Box, Stack } from "@mui/system";
 import style from "./Brands.module.css";
 
 const brands = [
-  "https://themehut.co/html/geair/assets/img/brand/brand_img01.png",
-  "https://themehut.co/html/geair/assets/img/brand/brand_img05.png",
-  "https://themehut.co/html/geair/assets/img/brand/brand_img03.png",
-  "https://themehut.co/html/geair/assets/img/brand/brand_img06.png",
-  "https://themehut.co/html/geair/assets/img/brand/brand_img04.png",
-  "https://themehut.co/html/geair/assets/img/brand/brand_img02.png",
-  "https://themehut.co/html/geair/assets/img/brand/brand_img04.png",
-  "https://themehut.co/html/geair/assets/img/brand/brand_img01.png",
-  "https://themehut.co/html/geair/assets/img/brand/brand_img05.png",
-  "https://themehut.co/html/geair/assets/img/brand/brand_img06.png",
+  "/brand/brand2.png",
+  "/brand/brand1.png",
+  "/brand/brand3.png",
+  "/brand/brand4.png",
+  "/brand/brand5.png",
+  "/brand/brand3.png",
+  "/brand/brand4.png",
+  "/brand/brand1.png",
+  "/brand/brand5.png",
+  "/brand/brand2.png",
 ];
 const Brands = () => {
   return (
-    <Box sx={{ bgcolor: "#672A4B" }}>
+    <Box sx={{ bgcolor: "rgb(254,168,3)" }}>
       <Stack maxWidth={"90%"} mx={"auto"}>
         <Swiper
           slidesPerView={2}
